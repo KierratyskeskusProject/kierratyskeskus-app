@@ -6,3 +6,5 @@
 
 #Package-lock.json
 package-lock.json*
+
+.DS_Store
