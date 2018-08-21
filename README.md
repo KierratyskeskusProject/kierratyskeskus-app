@@ -1,5 +1,5 @@
 ## Clone project
-    git clone
+    git clone https://github.com/KierratyskeskusProject/kierratyskeskus-app
 ## How to install
     In root folder run yarn
     Go to client folder and run yarn
