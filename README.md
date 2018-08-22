@@ -1,10 +1,12 @@
 ## Clone project
     git clone https://github.com/KierratyskeskusProject/kierratyskeskus-app
 ## How to install
-    In root folder run yarn
-    Go to client folder and run yarn
+    cd into client folder and run yarn
+    cd into root folder run yarn
+    
 ## How to run app
-    To run server side: npm run start
+    From root folder
+    To run server side: yarn run start
     To run server in dev mode: yarn run server
     To run clinet side: yarn run client
     To run both: yarn run dev
