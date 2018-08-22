@@ -12,7 +12,7 @@
     To run both: yarn run dev
 ## Workflow with git
     Create branch with task related name:
-    git checkout -b <Your brnach name>
+    git checkout -b <Your branch name>
     
     Add file(s):
     git add <filename> || .
