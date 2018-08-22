@@ -24,7 +24,9 @@
     Push changes to git:
     git push
     
-    Checkout git-cheat-sheat in root folder for more git commands 
+    Checkout git-cheat-sheat in root folder for more git commands
+    
+[![Build Status](https://travis-ci.org/KierratyskeskusProject/kierratyskeskus-app.svg?branch=master)](https://travis-ci.org/KierratyskeskusProject/kierratyskeskus-app)
     
     
     
