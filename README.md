@@ -23,7 +23,7 @@
     Push changes to git:
     git push
     
-    Checkout git-cheat-sheat in root folder for more git commands
+    Checkout git-cheat-sheat in root folder for more git commands 
     
     
     
