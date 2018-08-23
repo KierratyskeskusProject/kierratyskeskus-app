@@ -9,9 +9,12 @@
     To run server in dev mode: yarn run server
     To run clinet side: yarn run client
     To run both: yarn run dev
-## Workflow with git
+## Workflow with git and lint
     Start with creating your own branch with task related name:
     git checkout -b <Your branch name>
+    
+    Run ESLint check and fix minor issues:
+    yarn run lint --fix
     
     Add file(s):
     git add <filename> || .
