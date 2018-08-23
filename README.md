@@ -3,16 +3,14 @@
 ## How to install
     cd kierratyskeskus-app/client && yarn
     cd .. && yarn
-    
 ## How to run app
-    From root folder
+    From project root folder
     To run server side: yarn run start
     To run server in dev mode: yarn run server
     To run clinet side: yarn run client
     To run both: yarn run dev
-    
 ## Workflow with git
-    Create branch with task related name:
+    Start with creating your own branch with task related name:
     git checkout -b <Your branch name>
     
     Add file(s):
