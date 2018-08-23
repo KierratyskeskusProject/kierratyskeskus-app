@@ -13,9 +13,6 @@
     Start with creating your own branch with task related name:
     git checkout -b <Your branch name>
     
-    Before adding and commiting run ESLint for fixing minor issues:
-    yarn run lint --fix
-    
     Add file(s):
     git add <filename> || .
     
