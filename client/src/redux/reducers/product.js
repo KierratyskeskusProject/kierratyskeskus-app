@@ -1,32 +1,28 @@
-export const PRODUCT = 'PRODUCT';
+import {PRODUCT} from '../actions/types';
 
-export function product(payload){
-  return {
-    type: PRODUCT,
-    payload,
-  }
-}
 
 const initialState = {
     id: null,
-    title: '',
+    title: 'no title',
     images: [],
-    shelf_no: null,
+    shelfNo: 0,
     date: null,
-    description: '',
+    description: 'no description',
+    category: '',
 }
 
 export default function(state = initialState, action){
   switch(action.type){
     case PRODUCT:
-    return Object.assign({}, state, {
-          id: action.payload.name,
+      return Object.assign({}, state, {
+          id: action.payload.id,
           title: action.payload.title,
           images: action.payload.images,
-          shelf_no: action.payload.shelf_no,
-          date: action.payload.date,
+          shelfNo: action.payload.shelfNo,
+          date: new Date(),
           description: action.payload.description,
-      })
+          category: action.payload.category,
+      });
 
       default: return state
   }

@@ -1,10 +1,8 @@
 import { combineReducers } from 'redux';
+import { reducer as formReducer } from 'redux-form'
 import product from './product';
 
-const reducers = {
-  product: product
-};
-
-const rootReducer = combineReducers(reducers);
-
-export default rootReducer;
+export default combineReducers({
+  product: product,
+  form: formReducer
+});
