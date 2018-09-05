@@ -1,8 +1,8 @@
-import React from 'react'
-import { Field, reduxForm } from 'redux-form'
+import React from 'react';
+import { Field, reduxForm } from 'redux-form';
 
-let ProductForm = props => {
-  const { handleSubmit } = props
+const ProductForm = (props) => {
+  const { handleSubmit } = props;
   return (
     <form onSubmit={handleSubmit}>
       <div>
@@ -15,12 +15,12 @@ let ProductForm = props => {
         <Field name="description" placeholder="shelf no" component="input" type="text" />
       </div>
     </form>
-  )
-}
+  );
+};
 
 ProductForm = reduxForm({
   form: 'productInfo',
-  enableReinitialize: true,
-})(ProductForm)
+  // enableReinitialize: true,
+})(ProductForm);
 
-export default ProductForm
+export default ProductForm;
