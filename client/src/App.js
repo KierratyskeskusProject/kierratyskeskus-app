@@ -42,8 +42,7 @@ class App extends Component {
   };
 
   render() {
-    const { product } = this.props;
-    const { title, shelfNo, description } = product;
+    const { product: { title, shelfNo, description } } = this.props;
     return (
       <div className="App">
         <div className="panel">
