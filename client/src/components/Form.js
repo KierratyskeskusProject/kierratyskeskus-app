@@ -18,9 +18,7 @@ const ProductForm = (props) => {
   );
 };
 
-ProductForm = reduxForm({
+export default reduxForm({
   form: 'productInfo',
   // enableReinitialize: true,
 })(ProductForm);
-
-export default ProductForm;
