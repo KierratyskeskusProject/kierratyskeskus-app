@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import { PRODUCT } from './types'; // type is imported.
 
 // the function to update the product state.
