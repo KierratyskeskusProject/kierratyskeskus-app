@@ -21,7 +21,8 @@ const mapDispatchToProps = dispatch => ({
 
 class App extends Component {
   updateStates = (event) => {
-    const info = Object.assign({}, this.props.product);
+    const { product } = this.props;
+    const info = Object.assign({}, product);
 
     switch (event.target.name) {
       case 'title':
@@ -36,10 +37,13 @@ class App extends Component {
       default:
         return false;
     }
-    return this.props.productDispatch(info);
+    const { productDispatch } = this.props;
+    return productDispatch(info);
   };
 
   render() {
+    const { product } = this.props;
+    const { title, shelfNo, description } = product;
     return (
       <div className="App">
         <div className="panel">
@@ -78,9 +82,9 @@ class App extends Component {
 
           <div className="formData">
             <p>custom form data</p>
-            <p>{this.props.product.title}</p>
-            <p>{this.props.product.shelfNo}</p>
-            <p>{this.props.product.description}</p>
+            <p>{title}</p>
+            <p>{shelfNo}</p>
+            <p>{description}</p>
           </div>
         </div>
       </div>
