@@ -19,7 +19,8 @@ let ProductForm = props => {
 }
 
 ProductForm = reduxForm({
-  form: 'productInfo'
+  form: 'productInfo',
+  enableReinitialize: true,
 })(ProductForm)
 
 export default ProductForm
