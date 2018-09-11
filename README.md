@@ -3,6 +3,13 @@
 ## How to install
     cd kierratyskeskus-app/client && yarn
     cd .. && yarn
+    Install SOX. SOX is required to use the audio recordings from the backend
+
+    Osx/linux:
+    `brew install sox`
+
+    Windows:
+    `https://github.com/JoFrhwld/FAVE/wiki/Sox-on-Windows`
 ## How to run app
     From project root folder
     To run server side: yarn run start
@@ -12,23 +19,19 @@
 ## Workflow with git and lint
     Start with creating your own branch with task related name:
     git checkout -b <Your branch name>
-    
+
     Run ESLint check and fix minor issues:
     yarn run lint --fix
-    
+
     Add file(s):
     git add <filename> || .
-    
+
     Commit changes:
     git commit -m "Your meaningful commit message"
-    
+
     Push changes to git:
     git push
-    
-    Checkout git-cheat-sheat in root folder for more git commands
-    
-[![Build Status](https://travis-ci.org/KierratyskeskusProject/kierratyskeskus-app.svg?branch=master)](https://travis-ci.org/KierratyskeskusProject/kierratyskeskus-app)
-    
-    
-    
 
+    Checkout git-cheat-sheat in root folder for more git commands
+
+[![Build Status](https://travis-ci.org/KierratyskeskusProject/kierratyskeskus-app.svg?branch=master)](https://travis-ci.org/KierratyskeskusProject/kierratyskeskus-app)
