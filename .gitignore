@@ -8,7 +8,7 @@
 package-lock.json*
 
 #google auth file
-key.json
+/services/voiceRecognition/key.json
 
 .DS_Store
 
