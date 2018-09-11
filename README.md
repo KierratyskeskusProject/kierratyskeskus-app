@@ -6,10 +6,10 @@
     Install SOX. SOX is required to use the audio recordings from the backend
 
     Osx/linux:
-    `brew install sox`
+    brew install sox
 
     Windows:
-    `https://github.com/JoFrhwld/FAVE/wiki/Sox-on-Windows`
+    https://github.com/JoFrhwld/FAVE/wiki/Sox-on-Windows
 ## How to run app
     From project root folder
     To run server side: yarn run start
