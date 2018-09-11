@@ -6,7 +6,7 @@
     
     Install SOX. SOX is required to use the audio recordings from the backend
 
-    #Osx/linux:
+    #Osx: Terminal
     brew install sox
 
     #Windows:
