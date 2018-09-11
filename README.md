@@ -3,12 +3,13 @@
 ## How to install
     cd kierratyskeskus-app/client && yarn
     cd .. && yarn
+    
     Install SOX. SOX is required to use the audio recordings from the backend
 
-    Osx/linux:
+    #Osx/linux:
     brew install sox
 
-    Windows:
+    #Windows:
     https://github.com/JoFrhwld/FAVE/wiki/Sox-on-Windows
 ## How to run app
     From project root folder
