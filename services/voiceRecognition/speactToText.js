@@ -21,6 +21,7 @@ const request = {
   interimResults: true,
 };
 
+
 // Create a recognize stream
 const recognizeStream = client
   .streamingRecognize(request)
