@@ -9,4 +9,7 @@
 
 .DS_Store
 
-key.json
+#Keys
+/services/voiceRecognition/key.json
+
+yarn.lock
