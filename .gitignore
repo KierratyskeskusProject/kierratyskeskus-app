@@ -4,13 +4,9 @@
 #Idea files
 /.idea
 
-#Package-lock.json
-package-lock.json*
-
 #google auth file
 /services/voiceRecognition/key.json
 
 .DS_Store
 
-yarn.lock
 

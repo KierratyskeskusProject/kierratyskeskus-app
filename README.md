@@ -1,10 +1,11 @@
 ## Clone project
     git clone https://github.com/KierratyskeskusProject/kierratyskeskus-app
 ## How to install
+#### App
     cd kierratyskeskus-app/client && yarn
     cd .. && yarn
-    
-    Install SOX. SOX is required to use the audio recordings from the backend
+### Sox
+    Install SOX. SOX is required to use the audio recordings from the backend.
 
     #Osx: Terminal
     brew install sox
