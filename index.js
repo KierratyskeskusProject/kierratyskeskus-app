@@ -10,13 +10,17 @@ const db = new sqlite3.Database(':memory:', (err) => {
   return null;
 });
 
-// db.close((err) => {
-//   if (err) {
-//     return console.error(err.message);
-//   }
-//   console.log('Close the database connection.');
-//   return null;
-// });
+db.serialize(() => {
+  db.run('CREATE TABLE test');
+});
+
+db.close((err) => {
+  if (err) {
+    return console.error(err.message);
+  }
+  console.log('Close the database connection.');
+  return null;
+});
 
 const app = express();
 
