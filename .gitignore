@@ -13,3 +13,6 @@
 /services/voiceRecognition/key.json
 
 yarn.lock
+
+#vscode files
+/.vscode
