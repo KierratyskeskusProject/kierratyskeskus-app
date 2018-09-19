@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import Fields from './Fields';
+import _ from 'lodash';
+
 
 class AddItemForm extends Component {
     renderFields() {
-        return (
-            <Field 
-             key={name}
-             component={input}
-             type='text'
-             label={label}
-             name={name}
-            />
-        )
+        return _.map(Fields, ({ label, name }) => {
+            return (
+                <Field 
+                // key={name}
+                 component={input}
+                 type='text'
+                 label={label}
+                 name={name}
+                />
+            )
+        })
+        
     }
     render() {
         return (
