@@ -19,6 +19,7 @@
     "concurrently": "^3.6.1",
     "express": "^4.16.3",
     "node-record-lpcm16": "^0.3.1",
+    "node-webcam": "^0.4.4",
     "nodemon": "^1.18.4",
     "sqlite3": "^4.0.2"
   },
