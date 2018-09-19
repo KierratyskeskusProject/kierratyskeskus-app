@@ -7,3 +7,4 @@ export default [
   { label: 'Product weight', name: 'weight' },
   { label: 'Duration', name: 'duration' },
 ];
+
