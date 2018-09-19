@@ -1,10 +1,8 @@
-import React from 'react'
+import React from 'react';
 
-export default InputComponent {input, label} => {
-    return (
-        <div class="input">
-            <label>{label}</label>
-            <input {...input} type="text" style={{marginBottom: "20px"}}/>
-        </div>
-    );
-};
+export default ({ input, label }) => (
+  <div className="input">
+    <label>{label}</label>
+    <input {...input} type="text" style={{ marginBottom: '20px' }} />
+  </div>
+);
