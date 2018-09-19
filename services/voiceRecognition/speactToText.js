@@ -37,7 +37,7 @@ record
     sampleRateHertz,
     threshold: 0,
     verbose: false,
-    recordProgram: 'rec',
+    recordProgram: 'sox',
     silence: '5.0',
   })
   .on('error', console.error)
