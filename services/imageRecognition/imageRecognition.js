@@ -1,12 +1,12 @@
 const vision = require('@google-cloud/vision');
 
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: `${__dirname}/key.json`,
+  keyFilename: '../voiceRecognition/key.json',
 });
 
 // Performs label detection on the image file
 const imageRecognition = () => client
-  .labelDetection('./from_external.jpg')
+  .labelDetection('./image.jpg')
   .then((results) => {
     const labels = results[0].labelAnnotations;
 
