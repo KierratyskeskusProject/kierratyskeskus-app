@@ -11,5 +11,9 @@
 
 #Keys
 /services/voiceRecognition/key.json
+/services/imageRecognition/key.json
 
 yarn.lock
+
+#vscode files
+/.vscode
