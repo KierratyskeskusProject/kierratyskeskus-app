@@ -19,9 +19,10 @@ class AddItemForm extends Component {
   }
 
   render() {
+    const { handleSubmit } = this.props;
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit}>
+        <form onSubmit={handleSubmit}>
           {this.renderFields()}
           <button type="submit">Submit</button>
 
