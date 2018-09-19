@@ -4,18 +4,22 @@ import './App.css';
 // redux
 import { connect } from 'react-redux';
 import { productInfo } from './redux/actions/productAction';
+import { personInfo } from './redux/actions/personAction';
 
 import ProductForm from './components/Form';
+import PersonForm from './components/personForm';
 
 // get access to the states in the the store
 const mapStateToProps = state => ({
   product: state.product,
+  person: state.person,
   form: state.form,
 });
 
 // this is where you (can) dispatch actions and send the payload to the actions.
 const mapDispatchToProps = dispatch => ({
   productDispatch: payload => dispatch(productInfo(payload)),
+  personDispatch: payload => dispatch(personInfo(payload)),
 });
 // redux ends
 
@@ -23,7 +27,6 @@ class App extends Component {
   updateStates = (event) => {
     const { product } = this.props;
     const info = Object.assign({}, product);
-
     switch (event.target.name) {
       case 'title':
         info.title = event.target.value;
@@ -34,6 +37,16 @@ class App extends Component {
       case 'description':
         info.description = event.target.value;
         break;
+      case 'firstName':
+        return this.props.personDispatch({
+          ...this.props.person,
+          firstName: event.target.value,
+        });
+      case 'lastName':
+        return this.props.personDispatch({
+          ...this.props.person,
+          lastName: event.target.value,
+        });
       default:
         return false;
     }
@@ -70,6 +83,18 @@ class App extends Component {
               </p>
             </form>
           </div>
+          <h1>Person</h1>
+          <PersonForm />
+
+          <p>custom-form</p>
+          <form onChange={event => this.updateStates(event)}>
+            <p>
+              <input type="text" name="firstName" placeholder="firstname" />
+            </p>
+            <p>
+              <input type="text" name="lastName" placeholder="lastname" />
+            </p>
+          </form>
         </div>
 
         <div className="panel">
@@ -84,6 +109,7 @@ class App extends Component {
             <p>{title}</p>
             <p>{shelfNo}</p>
             <p>{description}</p>
+
           </div>
         </div>
       </div>
