@@ -5,8 +5,9 @@ const imageCapture = () => {
   const anotherCam = nodeWebcam.create();
   anotherCam.capture('./images/image.jpg', (err, data) => {
     if (data) {
-      imageRecognition();
+      imageRecognition().then(result => result);
     }
+    return null;
   });
 };
 

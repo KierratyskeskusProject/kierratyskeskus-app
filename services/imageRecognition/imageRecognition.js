@@ -11,7 +11,8 @@ const imageRecognition = () => client
     const labels = results[0].labelAnnotations;
 
     console.log('Labels:');
-    labels.forEach(label => console.log(label.description));
+    labels.map((label, key) => console.log('map', key, label.description));
+    return labels;
   })
   .catch((err) => {
     console.error('ERROR:', err);

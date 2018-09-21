@@ -1,8 +1,8 @@
 const imageCapture = require('../../services/imageRecognition/imageCapture');
 
 class ImageCapture {
-  static getCapturedImg() {
-    imageCapture();
+  getCapturedImg() {
+    imageCapture().then(imageData => imageData);
   }
 }
 
