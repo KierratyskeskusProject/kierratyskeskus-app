@@ -3,7 +3,7 @@ const imageRecognition = require('./imageRecognition');
 
 const imageCapture = () => {
   const anotherCam = nodeWebcam.create();
-  anotherCam.capture('image', (err, data) => {
+  anotherCam.capture('./images/image', (err, data) => {
     if (data) {
       imageRecognition();
     }

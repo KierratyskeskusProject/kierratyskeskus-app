@@ -17,3 +17,6 @@ yarn.lock
 
 #vscode files
 /.vscode
+
+#images
+/services/images/*
