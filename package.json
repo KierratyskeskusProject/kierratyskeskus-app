@@ -16,6 +16,7 @@
     "@google-cloud/speech": "^2.0.0",
     "@google-cloud/vision": "^0.22.0",
     "babel-eslint": "^9.0.0",
+    "body-parser": "^1.18.3",
     "concurrently": "^3.6.1",
     "express": "^4.16.3",
     "node-record-lpcm16": "^0.3.1",
