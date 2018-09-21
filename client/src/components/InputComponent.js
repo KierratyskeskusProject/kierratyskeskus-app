@@ -1,7 +1,5 @@
 import React from 'react';
 
-const className = '';
-
 export default ({ input, label, meta }) => (
   <div className="form-group">
     <label>{label}</label>

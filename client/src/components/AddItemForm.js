@@ -66,6 +66,6 @@ export default reduxForm({
 );
 =======
   validate,
-  form: 'simple'
+  form: 'simple',
 })(AddItemForm);
 >>>>>>> Added basic validation to check if field is empty
