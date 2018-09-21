@@ -1,4 +1,4 @@
-.App{
+/*.App{
   width: 100%;
   background: #F00;
 }
@@ -26,4 +26,12 @@
 .formData{
     border-bottom: 1px solid #CCC;
     height:150px;
+}
+
+form {
+ display: inline-block;
+}
+*/
+.btn {
+  margin-top: 20px;
 }
