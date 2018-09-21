@@ -31,7 +31,7 @@ class AddItemForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className="form-group">
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} autocomplete="off">
           {this.renderFields()}
           <Field
             key="description"
