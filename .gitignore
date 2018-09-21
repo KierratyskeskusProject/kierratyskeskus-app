@@ -19,4 +19,4 @@ yarn.lock
 /.vscode
 
 #images
-/services/images/*
+/services/imageRecognition/images/*
