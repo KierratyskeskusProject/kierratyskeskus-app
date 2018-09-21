@@ -47,5 +47,5 @@ class AddItemForm extends Component {
 
 export default reduxForm({
   validate,
-  form: 'simple'
+  form: 'simple',
 })(AddItemForm);
