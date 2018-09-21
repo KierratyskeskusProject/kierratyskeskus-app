@@ -1,9 +1,12 @@
 const imageCapture = require('../../services/imageRecognition/imageCapture');
 
 const ImageCapture = () => {
-  console.log('imageCapture', imageCapture);
-  const t = imageCapture();
-  console.log('t', t);
+  setTimeout(() => {
+    console.log('imagecapture', imageCapture());
+  }, 5000);
+  imageCapture().then(setTimeout((data) => {
+    console.log('data', data);
+  }, 5000));
 };
 
 module.exports = ImageCapture;

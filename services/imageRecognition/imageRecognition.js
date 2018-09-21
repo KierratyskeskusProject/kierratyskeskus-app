@@ -18,4 +18,5 @@ const imageRecognition = () => client
     console.error('ERROR:', err);
   });
 
+
 module.exports = imageRecognition;
