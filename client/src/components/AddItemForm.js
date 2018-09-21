@@ -4,10 +4,14 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import Fields from './Fields';
 import InputComponent from './InputComponent';
+<<<<<<< HEAD
 // import insertProduct from '../api/insertProduct';
 import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
 
+=======
+import validate from './Validation';
+>>>>>>> Added basic validation to check if field is empty
 
 class AddItemForm extends Component {
   Submit(values) {
@@ -55,7 +59,13 @@ class AddItemForm extends Component {
 }
 
 export default reduxForm({
+<<<<<<< HEAD
   form: 'simple',
 })(
   connect(null, { postForm })(AddItemForm),
 );
+=======
+  validate,
+  form: 'simple'
+})(AddItemForm);
+>>>>>>> Added basic validation to check if field is empty
