@@ -1,9 +1,9 @@
 const imageCapture = require('../../services/imageRecognition/imageCapture');
 
-class ImageCapture {
-  getCapturedImg() {
-    imageCapture().then(imageData => imageData);
-  }
-}
+const ImageCapture = () => {
+  console.log('imageCapture', imageCapture);
+  const t = imageCapture();
+  console.log('t', t);
+};
 
 module.exports = ImageCapture;
