@@ -30,15 +30,15 @@ class AddItemForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="form-group">
-        <form onSubmit={handleSubmit}>
+      <div>
+        <form onSubmit={handleSubmit} autoComplete="off">
           {this.renderFields()}
           <Field
             key="description"
             name="description"
             component={this.renderDescriptionField}
           />
-          <button className="btn btn-primary" type="submit">Submit</button>
+          <button className="btn btn-success submit" type="submit">Submit</button>
         </form>
       </div>
     );
