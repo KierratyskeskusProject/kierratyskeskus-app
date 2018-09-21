@@ -1,6 +1,5 @@
 export default [
   { label: 'Product Name', name: 'name' },
-  { label: 'Product Description', name: 'description' },
   { label: 'Condition', name: 'condition' },
   { label: 'Price', name: 'price' },
   { label: 'Category', name: 'category' },

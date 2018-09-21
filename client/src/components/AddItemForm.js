@@ -6,15 +6,24 @@ import InputComponent from './InputComponent';
 
 
 class AddItemForm extends Component {
+  renderDescriptionField(field) {
+    return (
+      <div className="form-group">
+        <label>Product Description</label>
+        <textarea className="form-control" rows="3" {...field.input} />
+      </div>
+    );
+  }
+
   renderFields() {
     return _.map(Fields, ({ label, name }) => (
-        <Field
-          key={name}
-          component={InputComponent}
-          type="text"
-          label={label}
-          name={name}
-        />
+      <Field
+        key={name}
+        component={InputComponent}
+        type="text"
+        label={label}
+        name={name}
+      />
     ));
   }
 
@@ -24,6 +33,11 @@ class AddItemForm extends Component {
       <div className="form-group">
         <form onSubmit={handleSubmit}>
           {this.renderFields()}
+          <Field
+            key="description"
+            name="description"
+            component={this.renderDescriptionField}
+          />
           <button className="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
