@@ -1,9 +1,11 @@
 import React from 'react';
 
+const className = '';
+
 export default ({ input, label, meta }) => (
-  <div>
+  <div className="form-group">
     <label>{label}</label>
-    <input {...input} type="text" className="form-control" />
-    {meta.touched ? meta.error : ''}
+    <input {...input} type="text" className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`} />
+    <div className="invalid-feedback">{meta.touched ? meta.error : ''}</div>
   </div>
 );

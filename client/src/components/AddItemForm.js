@@ -30,7 +30,7 @@ class AddItemForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div className="form-group">
+      <div>
         <form onSubmit={handleSubmit} autoComplete="off">
           {this.renderFields()}
           <Field
