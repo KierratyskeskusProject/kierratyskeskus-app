@@ -1,5 +1,66 @@
-.btn {
+/* .btn {
   margin-top: 20px;
+} */
+
+body {
+  background-color: rgba(241, 209, 184, 0.15);
 }
 
-/*0, 167, 126*/
+.header {
+  width: 100%;
+  margin: auto;
+  background-color:rgb(0, 167, 126);
+  /* Space reservation for photos. Adjust or delete when necessary > */
+  margin-bottom: 5em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  /* Part of Header; replace with logo */
+  color: rgb(255, 255, 255);
+}
+
+.heading {
+  /* Part of Header */
+  color: rgb(255, 255, 255);
+}
+
+.trunk {
+  /* Includes everything underneath Header, such as form */
+  margin-left: 5em;
+  margin-right: 5em;
+  padding-bottom: 2em; 
+}
+
+input, textarea {
+  border: 2px rgb(0, 167, 126) solid !important;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.submit {
+  /* Submit button of the form */
+  margin: auto;
+  display: block;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 167, 126);
+  border: rgb(0, 153, 115);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.submit:hover, .submit:active {
+  background-color: rgb(0, 117, 88);
+  border: rgb(0, 153, 115);
+}
+
+.submit:focus {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+
+/*  
+  rgb(0, 167, 126)
+  rgb(241, 209, 184)  
+*/
