@@ -14,23 +14,23 @@ class AddItemForm extends Component {
 
   renderFields() {
     return _.map(Fields, ({ label, name }) => (
-      <Field
-        key={name}
-        component={InputComponent}
-        type="text"
-        label={label}
-        name={name}
-      />
+        <Field
+          key={name}
+          component={InputComponent}
+          type="text"
+          label={label}
+          name={name}
+        />
     ));
   }
 
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
-        <form onSubmit={handleSubmit(this.Submit.bind(this))}>
+      <div className="form-group">
+        <form onSubmit={handleSubmit}>
           {this.renderFields()}
-          <button type="submit">Sumbit</button>
+          <button className="btn btn-primary" type="submit">Submit</button>
         </form>
       </div>
     );

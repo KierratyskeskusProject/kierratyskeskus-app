@@ -1,8 +1,8 @@
 import React from 'react';
 
 export default ({ input, label }) => (
-  <div className="input">
+  <div>
     <label>{label}</label>
-    <input {...input} type="text" style={{ marginBottom: '20px' }} />
+    <input {...input} type="text" className="form-control" />
   </div>
 );
