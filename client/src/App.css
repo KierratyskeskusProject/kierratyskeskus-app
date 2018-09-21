@@ -1,37 +1,5 @@
-/*.App{
-  width: 100%;
-  background: #F00;
-}
-
-.panel{
-  width: 50%;
-  float: left;
-  margin: 0 auto;
-  text-align: center;
-  align-items: center;
-}
-
-.titleCon{
-  width: 50%;
-  float: left;
-  background: #CCC;
-}
-
-.inputCon{
-  width: 50%;
-  float: left;
-  background: #EEE;
-}
-
-.formData{
-    border-bottom: 1px solid #CCC;
-    height:150px;
-}
-
-form {
- display: inline-block;
-}
-*/
 .btn {
   margin-top: 20px;
 }
+
+/*0, 167, 126*/
