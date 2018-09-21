@@ -3,7 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-
+import validate from './Validation';
 
 class AddItemForm extends Component {
   renderDescriptionField(field) {
@@ -31,7 +31,7 @@ class AddItemForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <div className="form-group">
-        <form onSubmit={handleSubmit} autocomplete="off">
+        <form onSubmit={handleSubmit} autoComplete="off">
           {this.renderFields()}
           <Field
             key="description"
@@ -46,5 +46,6 @@ class AddItemForm extends Component {
 }
 
 export default reduxForm({
-  form: 'simple',
+  validate,
+  form: 'simple'
 })(AddItemForm);
