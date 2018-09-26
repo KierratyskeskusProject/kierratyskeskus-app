@@ -10,6 +10,7 @@ import { postForm } from '../redux/actions/index';
 class AddItemForm extends Component {
   Submit(values) {
     postForm(values);
+    console.log(values);
   }
 
   renderFields() {
