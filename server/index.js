@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const ProductRoutes = require('./routes/products.routes');
 const CaptureImg = require('./routes/captureImg.routes');
 
@@ -8,6 +9,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.listen(PORT, () => {
