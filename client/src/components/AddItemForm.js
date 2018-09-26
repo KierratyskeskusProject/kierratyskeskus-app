@@ -3,6 +3,7 @@ import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
 import Fields from './Fields';
 import InputComponent from './InputComponent';
+import ImageBar from './Images';
 
 
 class AddItemForm extends Component {
@@ -32,6 +33,7 @@ class AddItemForm extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit} autoComplete="off">
+          <ImageBar />
           {this.renderFields()}
           <Field
             key="description"
