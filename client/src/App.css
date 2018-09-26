@@ -11,7 +11,7 @@ body {
   margin: auto;
   background-color:rgb(0, 167, 126);
   /* Space reservation for photos. Adjust or delete when necessary > */
-  margin-bottom: 5em;
+  margin-bottom: 2em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -30,6 +30,41 @@ body {
   margin-left: 5em;
   margin-right: 5em;
   padding-bottom: 2em; 
+}
+
+.imageBar {
+  margin-bottom: 2em;
+}
+
+.addImage {
+  height: 200px;
+  width: 150px;
+  color: white;
+  background-color: rgb(200, 200, 200);
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.addImage:before {
+  content: "";
+  height: 190px;
+  width: 140px;
+  border: 5px dashed white;
+  border-radius: 5px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.addImage:focus, .addImage:active {
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+}
+
+.fa {
+  font-size: 50px;
 }
 
 input, textarea {

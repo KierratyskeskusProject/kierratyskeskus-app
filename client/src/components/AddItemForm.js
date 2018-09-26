@@ -6,6 +6,8 @@ import Fields from './Fields';
 import InputComponent from './InputComponent';
 // import insertProduct from '../api/insertProduct';
 import { postForm } from '../redux/actions/index';
+import ImageBar from './Images';
+
 
 class AddItemForm extends Component {
   Submit(values) {
@@ -36,6 +38,7 @@ class AddItemForm extends Component {
     return (
       <div>
         <form onSubmit={handleSubmit} autoComplete="off">
+          <ImageBar />
           {this.renderFields()}
           <Field
             key="description"
