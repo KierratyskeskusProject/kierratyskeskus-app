@@ -9,7 +9,7 @@ class Header extends Component {
           {/* Replace with company logo, if it's included */}
         </div>
         <div className="headerContent col-4" />
-          {/* Space for page title if company logo is used */}
+        {/* Space for page title if company logo is used */}
         <div className="heading col-4">
           {/* Action/setting buttons? */}
         </div>
