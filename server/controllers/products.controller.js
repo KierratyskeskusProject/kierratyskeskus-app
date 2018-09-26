@@ -5,9 +5,13 @@ class Product {
     db.all('SELECT * FROM products', callback);
   }
 
-  static createItem(data, cb) {
-    const sql = 'INSERT INTO products(id, title) VALUES (?, ?)';
-    db.run(sql, data.id, data.title, cb);
+  static createItem(data) {
+    const sql = `INSERT INTO products(id, title) values(${parseInt(data.id, 10)}, "${data.title}")`;
+    db.run(sql, (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
   }
 }
 
