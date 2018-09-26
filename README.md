@@ -3,7 +3,7 @@
 ## How to install
 #### App
     cd kierratyskeskus-app/client && yarn
-    cd .. && yarn
+    cd .. && yarn     
 ### Sox
     Install SOX. SOX is required to use the audio recordings from the backend.
 
@@ -12,6 +12,9 @@
 
     #Windows:
     https://github.com/JoFrhwld/FAVE/wiki/Sox-on-Windows
+### Key
+    Add your Google authentication key to server/config/keys
+    Rename your key to googleKey.json
 ## How to run app
     From project root folder
     To run server side: yarn run start

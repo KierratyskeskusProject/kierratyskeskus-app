@@ -17,3 +17,10 @@ yarn.lock
 
 #vscode files
 /.vscode
+
+#images
+/services/imageRecognition/images/*
+
+/server/config/keys/*
+
+**/*.jpg
