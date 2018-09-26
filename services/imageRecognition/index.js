@@ -1,3 +1,10 @@
 const imageCapture = require('./imageCapture');
+const imageRecognition = require('./imageRecognition');
 
-imageCapture();
+const asyncCaptureAndRecognize = async () => {
+  console.log('Hello');
+  await imageCapture();
+  await imageRecognition();
+};
+
+module.exports = asyncCaptureAndRecognize;

@@ -1,10 +1,12 @@
-const ImageCapture = require('../controllers/captureImg.controller');
+const imageCapture = require('../../services/imageRecognition/imageCapture');
+const imageRecognition = require('../../services/imageRecognition/imageRecognition');
 
-const CaptureImg = (app) => {
-  app.get('/captureImg', (req, res) => {
-    const img = ImageCapture();
-    res.send(img);
+const CaptureImgRoute = (app) => {
+  app.get('/captureImg', async (req, res) => {
+    imageCapture().then(() => {
+      imageRecognition().then(data => res.send(data));
+    });
   });
 };
 
-module.exports = CaptureImg;
+module.exports = CaptureImgRoute;
