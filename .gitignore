@@ -21,4 +21,4 @@ yarn.lock
 #images
 /services/imageRecognition/images/*
 
-./server/config/keys/*
+**/*.jpg
