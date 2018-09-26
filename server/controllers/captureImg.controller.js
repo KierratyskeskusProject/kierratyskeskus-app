@@ -7,6 +7,7 @@ const client = new vision.ImageAnnotatorClient({
 });
 
 const imageCapture = (res) => {
+  // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
   const anotherCam = nodeWebcam.create();
   anotherCam.capture(`${__dirname}/images/image.jpg`, () => {
     client
