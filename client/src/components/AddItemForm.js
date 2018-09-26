@@ -8,6 +8,10 @@ import InputComponent from './InputComponent';
 import { postForm } from '../redux/actions/index';
 
 class AddItemForm extends Component {
+  Submit(values) {
+    postForm(values);
+  }
+
   renderFields() {
     return _.map(Fields, ({ label, name }) => (
       <Field
@@ -20,17 +24,13 @@ class AddItemForm extends Component {
     ));
   }
 
-  Submit(values) {
-  this.props.postForm (values);
-  }
-
   render() {
     const { handleSubmit } = this.props;
     return (
       <div>
         <form onSubmit={handleSubmit(this.Submit.bind(this))}>
           {this.renderFields()}
-          <button>Button</button>
+          <button type="submit">Sumbit</button>
         </form>
       </div>
     );
@@ -40,5 +40,5 @@ class AddItemForm extends Component {
 export default reduxForm({
   form: 'simple',
 })(
-  connect(null, { postForm })(AddItemForm)
+  connect(null, { postForm })(AddItemForm),
 );
