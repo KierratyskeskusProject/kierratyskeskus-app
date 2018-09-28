@@ -40,8 +40,12 @@ class AddItemForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
+<<<<<<< HEAD
         <form onSubmit={handleSubmit(this.Submit.bind(this))} autoComplete="off">
           <ImageBar />
+=======
+        <form onSubmit={handleSubmit} autoComplete="off">
+>>>>>>> 8fe979aa71591e54f8a6e57195c31f49d3c90bf8
           {this.renderFields()}
           <Field
             key="description"
@@ -56,6 +60,7 @@ class AddItemForm extends Component {
 }
 
 export default reduxForm({
+  validate,
   form: 'simple',
   validate,
 })(
