@@ -16,10 +16,13 @@ class AddItemForm extends Component {
   }
 
   renderDescriptionField(field) {
+    const { meta: { touched, error } } = field;
+
     return (
       <div className="form-group">
         <label>Product Description</label>
-        <textarea className="form-control" rows="3" {...field.input} />
+        <textarea className={`form-control ${touched && error ? 'is-invalid' : ''}`} rows="3" {...field.input} />
+        <div className="invalid-feedback">{touched ? error : ''}</div>
       </div>
     );
   }
@@ -56,7 +59,6 @@ class AddItemForm extends Component {
 }
 
 export default reduxForm({
-  validate,
   form: 'simple',
   validate,
 })(

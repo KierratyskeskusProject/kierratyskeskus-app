@@ -1,8 +1,8 @@
 export default function validate(values) {
   const errors = {};
 
-  if (!values.name) {
-    errors.name = 'Enter a name!';
+  if (!values.title) {
+    errors.title = 'Enter a name!';
   }
   if (!values.condition) {
     errors.condition = 'Enter a condition!';
@@ -18,6 +18,9 @@ export default function validate(values) {
   }
   if (!values.duration) {
     errors.duration = 'Enter a duration!';
+  }
+  if (!values.description) {
+    errors.description = 'Enter a description';
   }
 
   // if errors Object is empty form is valid
