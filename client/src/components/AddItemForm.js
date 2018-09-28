@@ -8,6 +8,7 @@ import InputComponent from './InputComponent';
 import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
 
+import validate from './Validation';
 
 class AddItemForm extends Component {
   Submit(values) {
@@ -15,10 +16,13 @@ class AddItemForm extends Component {
   }
 
   renderDescriptionField(field) {
+    const { meta: { touched, error } } = field;
+
     return (
       <div className="form-group">
         <label>Product Description</label>
-        <textarea className="form-control" rows="3" {...field.input} />
+        <textarea className={`form-control ${touched && error ? 'is-invalid' : ''}`} rows="3" {...field.input} />
+        <div className="invalid-feedback">{touched ? error : ''}</div>
       </div>
     );
   }
@@ -56,6 +60,7 @@ class AddItemForm extends Component {
 
 export default reduxForm({
   form: 'simple',
+  validate,
 })(
   connect(null, { postForm })(AddItemForm),
 );
