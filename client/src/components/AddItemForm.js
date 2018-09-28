@@ -12,6 +12,8 @@ import ImageBar from './Images';
 class AddItemForm extends Component {
   Submit(values) {
     postForm(values);
+  }
+
   renderDescriptionField(field) {
     return (
       <div className="form-group">
@@ -37,7 +39,7 @@ class AddItemForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <form onSubmit={handleSubmit} autoComplete="off">
+        <form onSubmit={handleSubmit(this.Submit.bind(this))} autoComplete="off">
           <ImageBar />
           {this.renderFields()}
           <Field
