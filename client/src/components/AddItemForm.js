@@ -4,22 +4,16 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-<<<<<<< HEAD
 // import insertProduct from '../api/insertProduct';
 import { postForm } from '../redux/actions/index';
-=======
->>>>>>> fb7355f2a2efcbb6ed48c0b3b29940ec65308e03
 import ImageBar from './Images';
 
 
 class AddItemForm extends Component {
-<<<<<<< HEAD
   Submit(values) {
     postForm(values);
   }
 
-=======
->>>>>>> fb7355f2a2efcbb6ed48c0b3b29940ec65308e03
   renderDescriptionField(field) {
     return (
       <div className="form-group">
