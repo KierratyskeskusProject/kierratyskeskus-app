@@ -11,7 +11,7 @@ const client = new speech.SpeechClient({
 
 const encoding = 'LINEAR16';
 const sampleRateHertz = 16000;
-const languageCode = 'en-US';
+const languageCode = 'fi-FI';
 
 const request = {
   config: {

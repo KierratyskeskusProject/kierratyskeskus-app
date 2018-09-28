@@ -9,19 +9,34 @@ const client = new vision.ImageAnnotatorClient({
 const imageCapture = (res) => {
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
   const anotherCam = nodeWebcam.create();
-  anotherCam.capture(`${__dirname}/images/image.jpg`, () => {
+  const image = `${__dirname}/images/image.jpg`;
+
+  anotherCam.capture(image, () => {
+    const collection = { labels: [], text: [] };
     client
-      .labelDetection(`${__dirname}/images/image.jpg`)
+      .labelDetection(image)
       .then((results) => {
+        const labelsArray = [];
         const labels = results[0].labelAnnotations;
-        const collection = [];
-        labels.map(label => collection.push(label.description));
-        res.send(collection);
-        return collection;
-      })
-      .catch((err) => {
-        res.send('something went wrong');
-        console.error('ERROR:', err);
+        labels.map(label => labelsArray.push(label.description));
+        collection.labels = labelsArray;
+        client
+          .textDetection(image)
+          .then((textResults) => {
+            const textArray = [];
+            const detections = textResults[0].textAnnotations;
+            detections.map((text) => {
+              textArray.push(text.description);
+              return null;
+            });
+            collection.text = textArray;
+            res.send(collection);
+            return collection;
+          })
+          .catch((err) => {
+            res.send(err);
+            console.error('ERROR:', err);
+          });
       });
   });
 };
