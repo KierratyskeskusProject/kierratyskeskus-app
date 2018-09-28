@@ -1,29 +1,101 @@
-.App{
+/* .btn {
+  margin-top: 20px;
+} */
+
+body {
+  background-color: rgba(241, 209, 184, 0.15);
+}
+
+.header {
   width: 100%;
-  background: #F00;
+  margin: auto;
+  background-color:rgb(0, 167, 126);
+  /* Space reservation for photos. Adjust or delete when necessary > */
+  margin-bottom: 2em;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.panel{
-  width: 50%;
-  float: left;
-  margin: 0 auto;
-  text-align: center;
-  align-items: center;
+.logo {
+  /* Part of Header; replace with logo */
+  color: rgb(255, 255, 255);
 }
 
-.titleCon{
-  width: 50%;
-  float: left;
-  background: #CCC;
+.heading {
+  /* Part of Header */
+  color: rgb(255, 255, 255);
 }
 
-.inputCon{
-  width: 50%;
-  float: left;
-  background: #EEE;
+.trunk {
+  /* Includes everything underneath Header, such as form */
+  margin-left: 5em;
+  margin-right: 5em;
+  padding-bottom: 2em; 
 }
 
-.formData{
-    border-bottom: 1px solid #CCC;
-    height:150px;
+.imageBar {
+  margin-bottom: 2em;
 }
+
+.addImage {
+  height: 200px;
+  width: 150px;
+  color: white;
+  background-color: rgb(200, 200, 200);
+  border-radius: 5px;
+  position: relative;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.addImage:before {
+  content: "";
+  height: 190px;
+  width: 140px;
+  border: 5px dashed white;
+  border-radius: 5px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+
+.addImage:focus, .addImage:active {
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+}
+
+.fa {
+  font-size: 50px;
+}
+
+input, textarea {
+  border: 2px rgb(0, 167, 126) solid !important;
+}
+
+input:focus, textarea:focus {
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+.submit {
+  /* Submit button of the form */
+  margin: auto;
+  display: block;
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 167, 126);
+  border: rgb(0, 153, 115);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.submit:hover, .submit:active {
+  background-color: rgb(0, 117, 88);
+  border: rgb(0, 153, 115);
+}
+
+.submit:focus {
+  box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+
+/*  
+  rgb(0, 167, 126)
+  rgb(241, 209, 184)  
+*/

@@ -6,10 +6,21 @@ import Fields from './Fields';
 import InputComponent from './InputComponent';
 // import insertProduct from '../api/insertProduct';
 import { postForm } from '../redux/actions/index';
+import ImageBar from './Images';
+
 
 class AddItemForm extends Component {
   Submit(values) {
     postForm(values);
+  }
+
+  renderDescriptionField(field) {
+    return (
+      <div className="form-group">
+        <label>Product Description</label>
+        <textarea className="form-control" rows="3" {...field.input} />
+      </div>
+    );
   }
 
   renderFields() {
@@ -28,9 +39,15 @@ class AddItemForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <form onSubmit={handleSubmit(this.Submit.bind(this))}>
+        <form onSubmit={handleSubmit(this.Submit.bind(this))} autoComplete="off">
+          <ImageBar />
           {this.renderFields()}
-          <button type="submit">Sumbit</button>
+          <Field
+            key="description"
+            name="description"
+            component={this.renderDescriptionField}
+          />
+          <button className="btn btn-success submit" type="submit">Submit</button>
         </form>
       </div>
     );
