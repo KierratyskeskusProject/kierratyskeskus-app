@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const ProductRoutes = require('./routes/products.routes');
-const CaptureImg = require('./routes/captureImg.routes');
+const ImagesRoutes = require('./routes/images.routes');
 
 const app = express();
 
@@ -22,4 +22,4 @@ app.get('/', (req, res) => {
 });
 
 ProductRoutes(app);
-CaptureImg(app);
+ImagesRoutes(app);
