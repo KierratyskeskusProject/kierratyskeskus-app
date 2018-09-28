@@ -1,15 +1,15 @@
 const nodeWebcam = require('node-webcam');
 const vision = require('@google-cloud/vision');
-const { googleKey } = require('../config/index');
+const { googleKey } = require('../config');
 
 const client = new vision.ImageAnnotatorClient({
   keyFilename: googleKey,
 });
+const image = `${__dirname}/images/image.jpg`;
 
-const imageCapture = (res) => {
+const Capture = (res) => {
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
   const anotherCam = nodeWebcam.create();
-  const image = `${__dirname}/images/image.jpg`;
 
   anotherCam.capture(image, () => {
     const collection = { labels: [], text: [] };
@@ -41,4 +41,9 @@ const imageCapture = (res) => {
   });
 };
 
-module.exports = imageCapture;
+const Send = (res) => {
+  res.sendFile(image);
+};
+
+
+module.exports = { Capture, Send };
