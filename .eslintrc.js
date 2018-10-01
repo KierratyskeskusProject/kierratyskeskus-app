@@ -12,9 +12,8 @@ module.exports = {
         "react/prop-types":"off",
         "jsx-a11y/label-has-associated-control":"off",
         "jsx-a11y/label-has-for":"off",
-        "class-methods-use-this": "off"
-
-
+        "class-methods-use-this": "off",
+        "no-console": 0
     },
     "plugins": [
         "react", "import"
