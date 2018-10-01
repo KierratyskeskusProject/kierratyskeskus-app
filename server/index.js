@@ -23,6 +23,8 @@ app.listen(PORT, () => {
   console.log(`Server is up on ${PORT}`);
 });
 
+console.log('this is not a error');
+
 // dummy endpoint
 app.get('/', (req, res) => {
   res.send('Root endpoint');
