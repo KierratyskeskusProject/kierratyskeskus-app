@@ -9,14 +9,15 @@ const client = new vision.ImageAnnotatorClient({
 
 const createImageName = () => {
   const dir = `${__dirname}/images/`;
-  const newName = Date.now() + Math.random();
+  const newName = Date.now();
   const imageN = `${dir + newName}.jpg`;
   return imageN;
 };
 
-const image = createImageName();
+let image = createImageName();
 
 const Capture = (res) => {
+  image = createImageName();
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
   const anotherCam = nodeWebcam.create();
 
@@ -56,4 +57,4 @@ const Send = (res) => {
 };
 
 
-module.exports = { Capture, Send };
+module.exports = { Capture, Send, createImageName };
