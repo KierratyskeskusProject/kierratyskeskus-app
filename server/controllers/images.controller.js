@@ -7,18 +7,20 @@ const client = new vision.ImageAnnotatorClient({
 });
 
 
-const Capture = (res) => {
-
+const createImageName = () => {
   const dir = `${__dirname}/images/`;
-  //const newName = Math.random(40).toString(36).replace(/[^a-z]+/g, '');
   const newName = Date.now() + Math.random();
-  const image = dir+newName+'.jpg';
+  const imageN = `${dir + newName}.jpg`;
+  return imageN;
+};
 
+const image = createImageName();
+
+const Capture = (res) => {
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
   const anotherCam = nodeWebcam.create();
 
   anotherCam.capture(image, () => {
-
     const collection = { labels: [], text: [] };
     client
       .labelDetection(image)
@@ -47,6 +49,7 @@ const Capture = (res) => {
       });
   });
 };
+
 
 const Send = (res) => {
   res.sendFile(image);
