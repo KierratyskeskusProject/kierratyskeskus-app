@@ -56,4 +56,4 @@ const Send = (res) => {
 };
 
 
-module.exports = { Capture, Send, createImageName };
+module.exports = { Capture, Send };
