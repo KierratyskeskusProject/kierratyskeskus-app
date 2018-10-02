@@ -22,6 +22,10 @@ const Capture = (res) => {
 
   anotherCam.capture(image, () => {
     const collection = { labels: [], text: [] };
+    const totalObject = {
+      imageName: null,
+      collection: [],
+    };
     client
       .labelDetection(image)
       .then((results) => {
@@ -38,8 +42,10 @@ const Capture = (res) => {
               textArray.push(text.description);
               return null;
             });
+            totalObject.collection = collection;
+            totalObject.imageName = image;
             collection.text = textArray;
-            res.send(collection);
+            res.send(totalObject);
             return collection;
           })
           .catch((err) => {
