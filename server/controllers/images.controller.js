@@ -11,7 +11,7 @@ const Capture = (res) => {
 
   const dir = `${__dirname}/images/`;
   //const newName = Math.random(40).toString(36).replace(/[^a-z]+/g, '');
-    const newName = Date.now() + Math.random();
+  const newName = Date.now() + Math.random();
   const image = dir+newName+'.jpg';
 
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
