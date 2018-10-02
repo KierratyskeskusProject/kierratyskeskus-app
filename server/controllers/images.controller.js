@@ -10,8 +10,7 @@ const client = new vision.ImageAnnotatorClient({
 const createImageName = () => {
   const dir = `${__dirname}/images/`;
   const newName = Date.now();
-  const imageN = `${dir + newName}.jpg`;
-  return imageN;
+  return `${dir + newName}.jpg`;
 };
 
 let image = createImageName();
