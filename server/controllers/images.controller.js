@@ -5,9 +5,18 @@ const { googleKey } = require('../config');
 const client = new vision.ImageAnnotatorClient({
   keyFilename: googleKey,
 });
-const image = `${__dirname}/images/image.jpg`;
+
+
+const createImageName = () => {
+  const dir = `${__dirname}/images/`;
+  const newName = Date.now();
+  return `${dir + newName}.jpg`;
+};
+
+let image = createImageName();
 
 const Capture = (res) => {
+  image = createImageName();
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
   const anotherCam = nodeWebcam.create();
 
@@ -40,6 +49,7 @@ const Capture = (res) => {
       });
   });
 };
+
 
 const Send = (res) => {
   res.sendFile(image);
