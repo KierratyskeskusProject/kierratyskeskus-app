@@ -17,7 +17,7 @@ module.exports = {
         "no-console": 0
     },
     "plugins": [
-        "react", "import"
+        "react", "import","react-redux"
     ],
     "parser": "babel-eslint",
 

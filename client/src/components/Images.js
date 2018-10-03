@@ -1,23 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import ImageButton from './AddImageButton';
-import TakeImg from '../api/TakeImg';
+import { fetchImage } from '../redux/actions';
 
 class ImageBar extends Component {
-  takeImage = async () => {
-    const take = await TakeImg();
-    console.log(take);
-  }
-
   render() {
+    const { fetchImage } = this.props;
     return (
       <div className="imageBar">
         {/* Images added to new item appear here, as well as Add Image button. */}
         <ImageButton
-          action={() => this.takeImage()}
+          action={() => fetchImage()}
         />
       </div>
     );
   }
 }
 
-export default ImageBar;
+export default connect(null, { fetchImage })(ImageBar);
