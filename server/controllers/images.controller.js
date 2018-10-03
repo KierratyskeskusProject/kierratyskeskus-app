@@ -22,11 +22,7 @@ const Capture = (res) => {
   const anotherCam = nodeWebcam.create();
 
   anotherCam.capture(image, () => {
-    const collection = { labels: [], text: [] };
-    const totalObject = {
-      imageName: null,
-      collection: [],
-    };
+    const collection = { labels: [], text: [], imageName: "" };
     client
       .labelDetection(image)
       .then((results) => {
@@ -43,10 +39,9 @@ const Capture = (res) => {
               textArray.push(text.description);
               return null;
             });
-            totalObject.collection = collection;
-            totalObject.imageName = image;
             collection.text = textArray;
-            res.send(totalObject);
+            collection.imageName = image;
+            res.send(collection);
             return collection;
           })
           .catch((err) => {
