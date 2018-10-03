@@ -1,5 +1,6 @@
 const nodeWebcam = require('node-webcam');
 const vision = require('@google-cloud/vision');
+const path = require('path');
 const { googleKey } = require('../config');
 
 const client = new vision.ImageAnnotatorClient({
@@ -8,7 +9,8 @@ const client = new vision.ImageAnnotatorClient({
 
 
 const createImageName = () => {
-  const dir = `${__dirname}/images/`;
+  const dir = path.join(__dirname, '../images/');
+  console.log('dir name', dir);
   const newName = Date.now();
   return `${dir + newName}.jpg`;
 };
