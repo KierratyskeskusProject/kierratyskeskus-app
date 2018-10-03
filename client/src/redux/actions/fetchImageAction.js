@@ -11,6 +11,8 @@ const fetchImage = () => {
     });
     return request.then(
       (image) => {
+        const imageJSON = image.json();
+        console.log('image', imageJSON);
         dispatch(fetchImageSuccess(image));
       },
       error => dispatch(fetchImageFailure(error)),
