@@ -5,16 +5,16 @@ import { fetchImage } from '../redux/actions';
 
 class ImageBar extends Component {
   render() {
-    const { fetchImage } = this.props;
+    const { fetch } = this.props;
     return (
       <div className="imageBar">
         {/* Images added to new item appear here, as well as Add Image button. */}
         <ImageButton
-          action={() => fetchImage()}
+          action={() => fetch()}
         />
       </div>
     );
   }
 }
 
-export default connect(null, { fetchImage })(ImageBar);
+export default connect(null, { fetch: fetchImage })(ImageBar);
