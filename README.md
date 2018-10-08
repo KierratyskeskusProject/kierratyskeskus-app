@@ -13,6 +13,8 @@
     #Windows:
     https://github.com/JoFrhwld/FAVE/wiki/Sox-on-Windows
 ### Key
+If you don't have Google Credentials, you can go to [cloud.google.com](https://cloud.google.com). Go to console and enable `Cloud Speech API` and `Cloud Vision API`.
+
     Add your Google authentication key to server/config/keys
     Rename your key to googleKey.json
 ## How to run app
