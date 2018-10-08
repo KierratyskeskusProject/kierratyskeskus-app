@@ -9,9 +9,6 @@
 
 .DS_Store
 
-#Keys
-/services/voiceRecognition/key.json
-/services/imageRecognition/key.json
 
 yarn.lock
 
@@ -21,7 +18,7 @@ yarn.lock
 #images
 /services/imageRecognition/images/*
 
-/server/config/keys/googleKey.json
+*/googleKey.json
 
 **/*.jpg
 
