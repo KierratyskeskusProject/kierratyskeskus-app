@@ -1,6 +1,7 @@
 const nodeWebcam = require('node-webcam');
 const vision = require('@google-cloud/vision');
 const path = require('path');
+const fs = require('fs');
 const { googleKey } = require('../config');
 
 const client = new vision.ImageAnnotatorClient({
@@ -14,6 +15,11 @@ const createImageName = () => {
   return `${dir + newName}.jpg`;
 };
 
+const imageToBase64 = (file) => {
+  const image = fs.readFileSync(file);
+  return new Buffer.from(image).toString('base64'); // eslint-disable-line new-cap
+};
+
 let image = createImageName();
 
 const Capture = (res) => {
@@ -22,7 +28,8 @@ const Capture = (res) => {
   const anotherCam = nodeWebcam.create();
 
   anotherCam.capture(image, () => {
-    const collection = { labels: [], text: [], imageName: "" };
+    const collection = { labels: [], text: [], imageInBase64: '' };
+
     client
       .labelDetection(image)
       .then((results) => {
@@ -40,7 +47,7 @@ const Capture = (res) => {
               return null;
             });
             collection.text = textArray;
-            collection.imageName = image;
+            collection.imageInBase64 = imageToBase64(image);
             res.send(collection);
             return collection;
           })

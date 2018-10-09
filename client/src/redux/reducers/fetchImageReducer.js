@@ -28,7 +28,7 @@ const fetchImageReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        images: action.payload.image,
+        images: [...state.images, action.payload.image],
       };
     default:
       return state;
