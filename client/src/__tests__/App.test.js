@@ -11,6 +11,6 @@ beforeEach(() => {
   wrapped = shallow(<App />);
 });
 
-it('shows a item form', () => {
+it('shows an item form', () => {
   expect(wrapped.find(AddItemForm).length).toEqual(1);
 });
