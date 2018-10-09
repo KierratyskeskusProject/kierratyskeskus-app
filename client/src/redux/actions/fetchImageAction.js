@@ -10,13 +10,11 @@ const fetchImage = () => {
       method: 'GET',
     });
     return request.then(
-      (image) => {
-        return image.json();
-      }).then((imageJSON) => {
-        dispatch(fetchImageSuccess(imageJSON));
-      },
-      error => dispatch(fetchImageFailure(error)),
-    );
+      image => image.json(),
+    ).then((imageJSON) => {
+      dispatch(fetchImageSuccess(imageJSON));
+    },
+    error => dispatch(fetchImageFailure(error)));
   };
   return action;
 };
