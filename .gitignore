@@ -23,3 +23,4 @@ yarn.lock
 **/*.jpg
 
 npm-debug.log
+server/config/keys/googleKey.json
