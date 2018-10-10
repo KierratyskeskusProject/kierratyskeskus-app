@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const ProductRoutes = require('./routes/products.routes');
 const ImagesRoutes = require('./routes/images.routes');
+const WeightRoutes = require('./routes/weight.routes');
 
 const app = express();
 
@@ -27,5 +28,7 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
   res.send('Root endpoint!');
 });
+
+WeightRoutes(app);
 ProductRoutes(app);
 ImagesRoutes(app);
