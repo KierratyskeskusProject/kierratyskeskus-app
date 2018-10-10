@@ -18,7 +18,7 @@ yarn.lock
 #images
 /services/imageRecognition/images/*
 
-*/googleKey.json
+**/googleKey.json
 
 **/*.jpg
 
