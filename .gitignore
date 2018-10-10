@@ -18,9 +18,8 @@ yarn.lock
 #images
 /services/imageRecognition/images/*
 
-*/googleKey.json
+**/googleKey.json
 
 **/*.jpg
 
 npm-debug.log
-server/config/keys/googleKey.json
