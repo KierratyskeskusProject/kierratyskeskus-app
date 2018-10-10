@@ -7,6 +7,7 @@ import InputComponent from './InputComponent';
 // import insertProduct from '../api/insertProduct';
 import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
+import UpdateWeightButton from './UpdateWeightButton';
 
 import validate from './Validation';
 
@@ -16,12 +17,18 @@ class AddItemForm extends Component {
   }
 
   renderDescriptionField(field) {
-    const { meta: { touched, error } } = field;
+    const {
+      meta: { touched, error },
+    } = field;
 
     return (
       <div className="form-group">
         <label>Product Description</label>
-        <textarea className={`form-control ${touched && error ? 'is-invalid' : ''}`} rows="3" {...field.input} />
+        <textarea
+          className={`form-control ${touched && error ? 'is-invalid' : ''}`}
+          rows="3"
+          {...field.input}
+        />
         <div className="invalid-feedback">{touched ? error : ''}</div>
       </div>
     );
@@ -29,13 +36,7 @@ class AddItemForm extends Component {
 
   renderFields() {
     return _.map(Fields, ({ label, name }) => (
-      <Field
-        key={name}
-        component={InputComponent}
-        type="text"
-        label={label}
-        name={name}
-      />
+      <Field key={name} component={InputComponent} type="text" label={label} name={name} />
     ));
   }
 
@@ -46,12 +47,11 @@ class AddItemForm extends Component {
         <form onSubmit={handleSubmit(this.Submit.bind(this))} autoComplete="off">
           <ImageBar />
           {this.renderFields()}
-          <Field
-            key="description"
-            name="description"
-            component={this.renderDescriptionField}
-          />
-          <button className="btn btn-success submit" type="submit">Submit</button>
+          <Field key="description" name="description" component={this.renderDescriptionField} />
+          <button className="btn btn-success submit" type="submit">
+            Submit
+          </button>
+          <UpdateWeightButton />
         </form>
       </div>
     );
@@ -62,5 +62,8 @@ export default reduxForm({
   form: 'simple',
   validate,
 })(
-  connect(null, { postForm })(AddItemForm),
+  connect(
+    null,
+    { postForm },
+  )(AddItemForm),
 );
