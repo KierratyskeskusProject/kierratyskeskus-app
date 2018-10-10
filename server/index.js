@@ -27,5 +27,8 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
   res.send('Root endpoint!');
 });
+
 ProductRoutes(app);
 ImagesRoutes(app);
+
+module.exports = app;
