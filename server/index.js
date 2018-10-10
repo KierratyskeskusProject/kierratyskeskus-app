@@ -28,6 +28,7 @@ app.listen(PORT, () => {
 app.get('/', (req, res) => {
   res.send('Root endpoint!');
 });
+
+WeightRoutes(app);
 ProductRoutes(app);
 ImagesRoutes(app);
-WeightRoutes(app);

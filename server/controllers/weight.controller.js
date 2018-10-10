@@ -1,48 +1,58 @@
-const DymoScale = () => {
-  const HID = require('node-hid');
+const scale = () => {
+  var HID = require('node-hid'),
+      usb = require('usb');
 
-  this.device = function () {
-    // HACK: cache the device in a variable (deviceHandle)
-    // On some machines (OS X 10.10+ ?) re-opening the same device
-    // results in a "cannot open device" error
-    if (!this.deviceHandle) {
-      const devices = HID.devices().filter(x => x.manufacturer === 'DYMO');
+  var reading = false,
+      interval,
+      vid = 0x922,
+      pid = 0x8003;
 
-      if (devices.length > 0) {
-        this.deviceHandle = new HID.HID(devices[0].path);
+  // try to connect to the scale if available
+  startReading();
+
+  usb.on('attach', function (device) {
+      if (device.deviceDescriptor.idVendor === vid && device.deviceDescriptor.idProduct === pid) {
+          console.log('Dymo M10 attached');
+          interval = setInterval(startReading, 1000);
+      }
+  });
+
+  usb.on('detach', function (device) {
+      if (device.deviceDescriptor.idVendor === vid && device.deviceDescriptor.idProduct === pid) {
+          console.log('Dymo M10 detached');
+          reading = false;
+          clearInterval(interval);
+      }
+  });
+
+  function startReading() {
+      if (reading) return;
+      try {
+          var d = new HID.HID(vid, pid);
+
+          console.log('Starting to read data from scale');
+          reading = true;
+
+          d.on("data", function (data) {
+              var buf = new Buffer(data);
+              var grams = buf[4] + (256 * buf[5]);
+              //not sure about emit
+              d.emit('weight', grams);
+              console.log(grams);
+          });
+
+          d.on("error", function (error) {
+              console.log(error);
+              reading = false;
+              d.close();
+          });
+      } catch (err) {
+          if (/cannot open device/.test(err.message)) {
+              console.log('Dymo M10 cannot be found');
+          } else
+              console.log(err);
       }
     }
-    return this.deviceHandle;
-  };
+}
 
-  this.read = function (callback) {
-    const device = this.device();
-
-    if (device) {
-      device.read((error, data) => {
-        if (error) {
-          return callback(error);
-        }
-
-        const weight = { value: 0, unit: null };
-        const raw = ((256 * data[5]) + data[4]);
-
-        if (data[1] === 4) {
-          if (data[2] === 11) {
-            weight.value = parseFloat(raw / 10.0);
-            weight.unit = 'ounces';
-          } else if (data[2] === 2) {
-            weight.value = raw;
-            weight.unit = 'grams';
-          }
-        }
-
-        callback(null, weight);
-      });
-    } else {
-      callback(new Error('device offline'));
-    }
-  };
-};
-
-module.exports = new DymoScale();
+module.exports = scale;
