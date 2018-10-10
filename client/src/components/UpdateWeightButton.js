@@ -5,8 +5,8 @@ const onWeightSubmit = (event) => {
 };
 
 export default () => (
-  <div>
-    <button type="button" onClick={onWeightSubmit}>
+  <div className="input-group-append">
+    <button className="btn btn-outline-secondary" type="button" onClick={onWeightSubmit}>
       Update Weight
     </button>
   </div>

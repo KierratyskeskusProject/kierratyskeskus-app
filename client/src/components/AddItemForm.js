@@ -7,7 +7,6 @@ import InputComponent from './InputComponent';
 // import insertProduct from '../api/insertProduct';
 import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
-import UpdateWeightButton from './UpdateWeightButton';
 
 import validate from './Validation';
 
@@ -51,7 +50,6 @@ class AddItemForm extends Component {
           <button className="btn btn-success submit" type="submit">
             Submit
           </button>
-          <UpdateWeightButton />
         </form>
       </div>
     );
