@@ -28,33 +28,35 @@ const Capture = (res) => {
   const anotherCam = nodeWebcam.create();
 
   anotherCam.capture(image, () => {
-    const collection = { labels: [], text: [], imageInBase64: '' };
+    const promises = [
+      client
+        .labelDetection(image)
+        .then(results => results)
+        .catch(error => res.send(error)),
+      client
+        .textDetection(image)
+        .then(textResults => textResults)
+        .catch(error => res.send(error))];
 
-    client
-      .labelDetection(image)
-      .then((results) => {
+    Promise.all(promises)
+      .then((values) => {
+        const collection = { labels: [], text: [], imageInBase64: '' };
         const labelsArray = [];
-        const labels = results[0].labelAnnotations;
-        labels.map(label => labelsArray.push(label.description));
+        const textArray = [];
+
+        values[0].map((item) => {
+          item.labelAnnotations.map(label => labelsArray.push(label.description));
+          item.textAnnotations.map(text => textArray.push(text.description));
+          return null;
+        });
+        collection.text = textArray;
+        collection.imageInBase64 = imageToBase64(image);
         collection.labels = labelsArray;
-        client
-          .textDetection(image)
-          .then((textResults) => {
-            const textArray = [];
-            const detections = textResults[0].textAnnotations;
-            detections.map((text) => {
-              textArray.push(text.description);
-              return null;
-            });
-            collection.text = textArray;
-            collection.imageInBase64 = imageToBase64(image);
-            res.send(collection);
-            return collection;
-          })
-          .catch((err) => {
-            res.send(err);
-            console.error('ERROR:', err);
-          });
+        res.send(collection);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.send(error);
       });
   });
 };
