@@ -36,11 +36,17 @@ const Capture = (res) => {
       client
         .textDetection(image)
         .then(textResults => textResults)
-        .catch(error => res.send(error))];
+        .catch(error => res.send(error)),
+    ];
 
     Promise.all(promises)
       .then((values) => {
-        const collection = { labels: [], text: [], imageInBase64: '' };
+        const collection = {
+          labels: [],
+          text: [],
+          imageName: '',
+          imageInBase64: '',
+        };
         const labelsArray = [];
         const textArray = [];
 
@@ -50,6 +56,7 @@ const Capture = (res) => {
           return null;
         });
         collection.text = textArray;
+        collection.imageName = image.replace(/^\D+/g, '');
         collection.imageInBase64 = imageToBase64(image);
         collection.labels = labelsArray;
         res.send(collection);
@@ -66,5 +73,15 @@ const Send = (res) => {
   res.sendFile(image);
 };
 
+const Delete = (res, imageName) => {
+  const dir = path.join(__dirname, '../images/');
+  fs.unlink(dir + imageName, (err) => {
+    if (err) {
+      res.send(err);
+    }
+  });
+  res.send(200);
+};
 
-module.exports = { Capture, Send };
+
+module.exports = { Capture, Send, Delete };
