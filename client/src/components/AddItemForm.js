@@ -4,7 +4,6 @@ import _ from 'lodash';
 import { connect } from 'react-redux';
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-// import insertProduct from '../api/insertProduct';
 import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
 
