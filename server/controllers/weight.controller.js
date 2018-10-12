@@ -1,4 +1,4 @@
-const DymoScale = () => {
+const DymoScale = function () {
   const HID = require('node-hid');
 
   this.device = function () {
@@ -20,6 +20,7 @@ const DymoScale = () => {
 
     if (device) {
       device.read((error, data) => {
+        console.debug(data.buffer);
         if (error) {
           return callback(error);
         }
