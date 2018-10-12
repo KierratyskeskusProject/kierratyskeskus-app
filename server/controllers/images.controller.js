@@ -38,17 +38,21 @@ const Capture = (res) => {
         .then(textResults => textResults)
         .catch(error => res.send(error))];
 
+
     Promise.all(promises)
       .then((values) => {
         const collection = { labels: [], text: [], imageInBase64: '' };
         const labelsArray = [];
         const textArray = [];
 
-        values[0].map((item) => {
-          item.labelAnnotations.map(label => labelsArray.push(label.description));
-          item.textAnnotations.map(text => textArray.push(text.description));
-          return null;
+        values.forEach((value) => {
+          value.map((item) => {
+            item.labelAnnotations.map(label => labelsArray.push(label.description));
+            item.textAnnotations.map(text => textArray.push(text.description));
+            return null;
+          });
         });
+
         collection.text = textArray;
         collection.imageInBase64 = imageToBase64(image);
         collection.labels = labelsArray;
