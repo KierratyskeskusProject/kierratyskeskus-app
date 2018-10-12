@@ -39,6 +39,7 @@ const Capture = (res) => {
         .catch(error => res.send(error)),
     ];
 
+
     Promise.all(promises)
       .then((values) => {
         const collection = {
@@ -50,11 +51,14 @@ const Capture = (res) => {
         const labelsArray = [];
         const textArray = [];
 
-        values[0].map((item) => {
-          item.labelAnnotations.map(label => labelsArray.push(label.description));
-          item.textAnnotations.map(text => textArray.push(text.description));
-          return null;
+        values.forEach((value) => {
+          value.map((item) => {
+            item.labelAnnotations.map(label => labelsArray.push(label.description));
+            item.textAnnotations.map(text => textArray.push(text.description));
+            return null;
+          });
         });
+
         collection.text = textArray;
         collection.imageName = image.replace(/^\D+/g, '');
         collection.imageInBase64 = imageToBase64(image);
