@@ -12,6 +12,7 @@ const ImagesRoutes = (app) => {
   });
 
   app.delete('/delete_image', (req, res) => {
+    console.log('SEND', req.body);
     Delete(res, req.body.imageName);
   });
 };

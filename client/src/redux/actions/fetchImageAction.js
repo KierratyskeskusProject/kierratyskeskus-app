@@ -26,10 +26,12 @@ const fetchImage = () => {
   return action;
 };
 
-const deleteImage = (imageName, imageId) => {
+const deleteImage = (imageName) => {
   const action = (dispatch) => {
     const url = 'http://localhost:5000/delete_image';
     dispatch(deleteImageBegin());
+
+    console.log('IMAGGAAGGA', imageName);
 
     const request = fetch(url, {
       method: 'DELETE',
@@ -37,7 +39,7 @@ const deleteImage = (imageName, imageId) => {
     });
 
     return request.then(
-      response => dispatch(deleteImageSuccess(response, imageId)),
+      response => dispatch(deleteImageSuccess(response, imageName)),
       error => dispatch(deleteImageFailure(error)),
     );
   };

@@ -29,9 +29,9 @@ export const deleteImageBegin = () => ({
   type: DELETE_IMAGE_BEGIN,
 });
 
-export const deleteImageSuccess = response => ({
+export const deleteImageSuccess = (response, image) => ({
   type: DELETE_IMAGE_SUCCESS,
-  payload: { response },
+  payload: { response, image },
 });
 
 export const deleteImageFailure = error => ({
