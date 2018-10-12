@@ -84,7 +84,7 @@ const Delete = (res, imageName) => {
       res.send(err);
     }
   });
-  res.send(200);
+  res.sendStatus(200);
 };
 
 
