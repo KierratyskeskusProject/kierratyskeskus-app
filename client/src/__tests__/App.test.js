@@ -1,4 +1,4 @@
-// Testing works by running command 'npm run test' from client folder
+// Testing works by running command 'yarn run test' from client folder
 import React from 'react';
 import { shallow } from 'enzyme';
 
