@@ -1,7 +1,8 @@
 const DymoScale = function () {
   const HID = require('node-hid');
 
-  this.device = function () {
+  this.weight = 0;
+  this.device = (function () {
     // HACK: cache the device in a variable (deviceHandle)
     // On some machines (OS X 10.10+ ?) re-opening the same device
     // results in a "cannot open device" error
@@ -13,36 +14,16 @@ const DymoScale = function () {
       }
     }
     return this.deviceHandle;
-  };
+  })();
+
+  this.device.on("data", (data) => {
+    this.weight = data[4];
+  });
+
+  this.device.on("error", (error) => console.log(error));
 
   this.read = function (callback) {
-    const device = this.device();
-
-    if (device) {
-      device.read((error, data) => {
-        console.debug(data.buffer);
-        if (error) {
-          return callback(error);
-        }
-
-        const weight = { value: 0, unit: null };
-        const raw = ((256 * data[5]) + data[4]);
-
-        if (data[1] === 4) {
-          if (data[2] === 11) {
-            weight.value = parseFloat(raw / 10.0);
-            weight.unit = 'ounces';
-          } else if (data[2] === 2) {
-            weight.value = raw;
-            weight.unit = 'grams';
-          }
-        }
-
-        callback(null, weight);
-      });
-    } else {
-      callback(new Error('device offline'));
-    }
+    callback(null, {value: this.weight, unit: null});
   };
 };
 
