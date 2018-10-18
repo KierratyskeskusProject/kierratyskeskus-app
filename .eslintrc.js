@@ -15,7 +15,6 @@ module.exports = {
         "jsx-a11y/label-has-for": "off",
         "class-methods-use-this": "off",
         "no-console": 0,
-        "linebreak-style": 0
     },
     "plugins": [
         "react", "import"
