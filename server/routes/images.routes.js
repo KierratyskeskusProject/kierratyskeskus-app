@@ -1,7 +1,7 @@
 const ImagesController = require('../controllers/images.controller');
 
 const ImagesRoutes = (app) => {
-  const { Capture, Send } = ImagesController;
+  const { Capture, Send, Delete } = ImagesController;
 
   app.get('/capture', (req, res) => {
     Capture(res);
@@ -9,6 +9,10 @@ const ImagesRoutes = (app) => {
 
   app.get('/image', (req, res) => {
     Send(res);
+  });
+
+  app.delete('/delete_image', (req, res) => {
+    Delete(res, req.body.imageName);
   });
 };
 

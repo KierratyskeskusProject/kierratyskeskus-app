@@ -1,5 +1,7 @@
 const nodeWebcam = require('node-webcam');
 const vision = require('@google-cloud/vision');
+const path = require('path');
+const fs = require('fs');
 const { googleKey } = require('../config');
 
 const client = new vision.ImageAnnotatorClient({
@@ -8,9 +10,14 @@ const client = new vision.ImageAnnotatorClient({
 
 
 const createImageName = () => {
-  const dir = `${__dirname}/images/`;
+  const dir = path.join(__dirname, '../images/');
   const newName = Date.now();
   return `${dir + newName}.jpg`;
+};
+
+const imageToBase64 = (file) => {
+  const image = fs.readFileSync(file);
+  return new Buffer.from(image).toString('base64'); // eslint-disable-line new-cap
 };
 
 let image = createImageName();
@@ -21,31 +28,46 @@ const Capture = (res) => {
   const anotherCam = nodeWebcam.create();
 
   anotherCam.capture(image, () => {
-    const collection = { labels: [], text: [] };
-    client
-      .labelDetection(image)
-      .then((results) => {
+    const promises = [
+      client
+        .labelDetection(image)
+        .then(results => results)
+        .catch(error => res.send(error)),
+      client
+        .textDetection(image)
+        .then(textResults => textResults)
+        .catch(error => res.send(error)),
+    ];
+
+
+    Promise.all(promises)
+      .then((values) => {
+        const collection = {
+          labels: [],
+          text: [],
+          imageName: '',
+          imageInBase64: '',
+        };
         const labelsArray = [];
-        const labels = results[0].labelAnnotations;
-        labels.map(label => labelsArray.push(label.description));
-        collection.labels = labelsArray;
-        client
-          .textDetection(image)
-          .then((textResults) => {
-            const textArray = [];
-            const detections = textResults[0].textAnnotations;
-            detections.map((text) => {
-              textArray.push(text.description);
-              return null;
-            });
-            collection.text = textArray;
-            res.send(collection);
-            return collection;
-          })
-          .catch((err) => {
-            res.send(err);
-            console.error('ERROR:', err);
+        const textArray = [];
+
+        values.forEach((value) => {
+          value.map((item) => {
+            item.labelAnnotations.map(label => labelsArray.push(label.description));
+            item.textAnnotations.map(text => textArray.push(text.description));
+            return null;
           });
+        });
+
+        collection.text = textArray;
+        collection.imageName = image.replace(/^\D+/g, '');
+        collection.imageInBase64 = imageToBase64(image);
+        collection.labels = labelsArray;
+        res.send(collection);
+      })
+      .catch((error) => {
+        console.log(error);
+        res.send(error);
       });
   });
 };
@@ -55,5 +77,15 @@ const Send = (res) => {
   res.sendFile(image);
 };
 
+const Delete = (res, imageName) => {
+  const dir = path.join(__dirname, '../images/');
+  fs.unlink(dir + imageName, (err) => {
+    if (err) {
+      res.send(err);
+    }
+  });
+  res.sendStatus(200);
+};
 
-module.exports = { Capture, Send };
+
+module.exports = { Capture, Send, Delete };
