@@ -16,7 +16,9 @@ class AddItemForm extends Component {
   }
 
   renderInputFields() {
-    return _.map(Fields, ({ label, name }) => (
+    const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }], _.isEqual);
+
+    return _.map(inputFields, ({ label, name }) => (
       <Field key={name} component={InputComponent} type="text" label={label} name={name} />
     ));
   }
