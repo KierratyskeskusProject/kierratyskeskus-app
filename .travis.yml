@@ -15,7 +15,7 @@ install:
 
 # npm start with no hang up and allowing using command line/wait for 3 seconds for server start
 script:
+  - npm run lint
   - nohup npm run start &
   - sleep 3
-  - npm run lint
   - npm run test
