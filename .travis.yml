@@ -12,7 +12,6 @@ cache:
 install:
   - npm install
   - npm run build
-
 # npm start with no hang up and allowing using command line/wait for 3 seconds for server start
 script:
   - nohup npm run start &
