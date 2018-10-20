@@ -20,6 +20,8 @@ app.use((req, res, next) => {
   next();
 });
 
+
+// build static front for tests
 if (['ci'].includes(process.env.NODE_ENV)) {
   app.use(express.static('client/build'));
   app.get('*', (req, res) => {
