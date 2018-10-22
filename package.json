@@ -2,14 +2,15 @@
   "name": "kerratuskeskus",
   "version": "1.0.0",
   "description": "kerratuskeskus project",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "electron .",
     "server": "nodemon ./server/index.js",
     "client": "npm run start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run start\" \"BROWSER=none npm run client\"",
     "lint": "eslint \"./**/*.js\""
   },
+
   "author": "Chilicorn",
   "license": "ISC",
   "dependencies": {
@@ -20,6 +21,7 @@
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.1",
     "cors": "^2.8.4",
+    "electron": "^3.0.5",
     "express": "^4.16.3",
     "node-record-lpcm16": "^0.3.1",
     "node-webcam": "^0.4.4",
