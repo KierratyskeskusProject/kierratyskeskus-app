@@ -11,7 +11,6 @@ cache:
 # install client
 install:
   - npm install
-# run test script
 script:
   - npm run lint
   - cd client && npm run test
