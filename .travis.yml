@@ -8,7 +8,7 @@ cache:
     directories:
     - node_modules
     - client/node_modules
-
+# install client
 install:
   - npm install
   - cd client && npm install
