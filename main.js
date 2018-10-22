@@ -1,38 +1,30 @@
-const {app, BrowserWindow} = require('electron')
+const { app, BrowserWindow } = require('electron');
 
 let win = null;
 
 function createWindow() {
   // Initialize the window to our specified dimensions
-  win = new BrowserWindow({width: 1000, height: 600});
-
-  // Specify entry point
+  win = new BrowserWindow({width: 1000, height: 600, show: true})
   win.loadURL('http://localhost:3000');
 
-  // Show dev tools
-  // Remove this line before distributing
-  win.webContents.openDevTools()
-
   // Remove window once app is closed
-  win.on('closed', function () {
+  win.on('closed', () => {
     win = null;
   });
 }
 
 
-app.on('ready', function () {
-
+app.on('ready-to-show', () => {
   createWindow();
-
 });
 
 app.on('activate', () => {
   if (win === null) {
-    createWindow()
+    createWindow();
   }
-})
+});
 
-app.on('window-all-closed', function () {
+app.on('window-all-closed', () => {
   if (process.platform != 'darwin') {
     app.quit();
   }
