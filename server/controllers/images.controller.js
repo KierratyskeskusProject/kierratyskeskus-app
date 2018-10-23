@@ -60,10 +60,8 @@ const Capture = (res) => {
           collection.imageInBase64 = imageToBase64(image);
           collection.labels = labelsArray;
           res.send(collection);
-          clearInterval(this.timer);
         })
         .catch((error) => {
-          clearInterval(this.timer);
           console.log(error);
           res.send(error);
         });
