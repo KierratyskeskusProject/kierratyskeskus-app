@@ -1,10 +1,9 @@
 const HID = require('node-hid');
 
-const DymoScale = function () {
+const DymoScale = function scale() {
   this.weight = 0;
   this.error = null;
-
-  this.device = (function () {
+  this.device = (function findDevice() {
     if (!this.deviceHandle) {
       const devices = HID.devices().filter(x => x.manufacturer === 'DYMO');
 
@@ -16,8 +15,8 @@ const DymoScale = function () {
   }());
 
 
-  this.device.on('data', (data) => {
-    this.weight = data[4];
+  this.device.on('data', ([,,,, weight]) => {
+    this.weight = weight;
     console.log(this.weight);
   });
 
@@ -26,8 +25,8 @@ const DymoScale = function () {
   });
 
 
-  this.read = function (callback) {
-    callback(this.error, { value: this.weight, unit: null });
+  this.read = function callbackFunc(callback) {
+    callback(this.error, { value: this.weight });
   };
 };
 
