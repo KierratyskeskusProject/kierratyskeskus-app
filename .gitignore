@@ -5,7 +5,7 @@
 /.idea
 
 #google auth file
-/services/voiceRecognition/key.json
+**/googleKey.json
 
 .DS_Store
 
@@ -17,8 +17,6 @@ yarn.lock
 
 #images
 /services/imageRecognition/images/*
-
-**/googleKey.json
 
 **/*.jpg
 

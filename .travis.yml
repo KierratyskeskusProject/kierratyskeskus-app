@@ -1,6 +1,7 @@
 language: node_js
+
 node_js:
-  - 8
+- 8
 # linux dist
 dist: trusty
 
@@ -18,7 +19,9 @@ before_install:
   - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 
 install:
-  - npm install
+- npm install
+- cd client && npm install
 
 script:
-  - npm run lint
+- npm run test
+- cd .. && npm run lint
