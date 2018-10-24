@@ -9,7 +9,7 @@
     "client": "npm run start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "lint": "eslint \"./**/*.js\"",
-    "test": "./node_modules/.bin/mocha --reporter spec"
+    "test": "./node_modules/.bin/mocha"
   },
   "author": "Chilicorn",
   "license": "ISC",

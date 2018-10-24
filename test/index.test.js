@@ -1,16 +1,10 @@
-const expect = require('chai').expect; // eslint-disable-line prefer-destructuring
+const { expect } = require('chai');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 
 const server = require('../server/index');
 
 chai.use(chaiHttp);
-
-describe('First test', () => {
-  it('Should assert true to be true', () => {
-    expect(true).to.be.true;
-  });
-});
 
 describe('/GET /', () => {
   it('it should get root endpoint', (done) => {
@@ -40,17 +34,16 @@ describe('/GET /products', () => {
   });
 });
 
-describe('/GET /capture', async () => {
+describe('/GET /capture', () => {
   it('it should get /capture endpoint', (done) => {
     chai.request(server)
       .get('/capture')
-      .end((err, res) => {
-        if (err) {
-          console.log(err);
-        }
-        expect(res.body).to.be.an('object');
-        this.timeout(10000);
-        setTimeout(done, 10000);
+      .then((res) => {
+        expect(res.statusCode).to.equal(200);
+        expect(res.body).to.be.a('object');
+        done();
+      }).catch((err) => {
+        console.error(err);
       });
-  });
+  }).timeout(30000);
 });
