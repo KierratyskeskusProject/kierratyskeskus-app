@@ -1,12 +1,25 @@
+import moxios from 'moxios';
 import { postForm } from '../postFormAction';
 import { POST_FORM_SUCCESS, postFormSuccess } from '../../types/index';
+
+// Using moxios to do the 'POST' request on postFormAction otherwise we get a network error
+beforeEach(() => {
+  moxios.install();
+  moxios.stubRequest('http://localhost:5000/products', {
+    status: 200,
+    response: [],
+  });
+});
+
+afterEach(() => {
+  moxios.uninstall();
+});
 
 describe('postForm', () => {
   it('has the correct type', () => {
     const action = postForm();
-    const postFormType = POST_FORM_SUCCESS;
 
-    expect(action.type).toEqual(postFormType);
+    expect(action.type).toEqual(POST_FORM_SUCCESS);
   });
 
   it('has the correct payload', () => {
