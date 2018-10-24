@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+import axios from 'axios';
 import {
   fetchImageBegin,
   fetchImageFailure,
@@ -7,6 +8,7 @@ import {
   deleteImageFailure,
   deleteImageSuccess,
 } from '../types';
+
 
 const fetchImage = () => {
   const action = (dispatch) => {
@@ -30,13 +32,7 @@ const deleteImage = (imageName) => {
   const action = (dispatch) => {
     const url = 'http://localhost:5000/delete_image';
     dispatch(deleteImageBegin());
-
-    console.log('IMAGGAAGGA', imageName);
-
-    const request = fetch(url, {
-      method: 'DELETE',
-      body: imageName,
-    });
+    const request = axios.post(url, { imageName });
 
     return request.then(
       response => dispatch(deleteImageSuccess(response, imageName)),
