@@ -47,6 +47,12 @@ body {
   overflow: hidden;
 }
 
+.image {
+  height: inherit;
+  /* Temporary fix to centering images, unlikely to work on portraits...: */
+  margin-left:-40%;
+}
+
 .addImage {
   height: 200px;
   width: 150px;
