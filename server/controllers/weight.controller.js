@@ -1,6 +1,6 @@
 const HID = require('node-hid');
 
-const DymoScale = function scale() {
+const DymoScale = function dymoScale() {
   this.weight = 0;
   this.error = null;
   this.device = (function findDevice() {
