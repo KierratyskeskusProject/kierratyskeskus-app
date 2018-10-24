@@ -11,7 +11,8 @@ import DescriptionField from './DescriptionField';
 import validate from './Validation';
 
 class AddItemForm extends Component {
-  Submit(values) {
+  onSubmit(values) {
+    console.log('jee');
     postForm(values);
   }
 
@@ -27,7 +28,7 @@ class AddItemForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <form onSubmit={handleSubmit(this.Submit.bind(this))} autoComplete="off">
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))} autoComplete="off">
           <ImageBar />
           {this.renderInputFields()}
           <Field key="description" name="description" component={DescriptionField} />
