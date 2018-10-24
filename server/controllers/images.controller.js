@@ -27,37 +27,45 @@ const Capture = (res) => {
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
   const anotherCam = nodeWebcam.create();
 
-  anotherCam.capture(image, () => {
-    const promises = [
-      client
-        .labelDetection(image)
-        .then(results => results)
-        .catch(error => res.send(error)),
-      client
-        .textDetection(image)
-        .then(textResults => textResults)
-        .catch(error => res.send(error))];
+  anotherCam.capture(image, (err) => {
+    if (err) {
+      console.error(err);
+    } else {
+      const promises = [
+        client.labelDetection(image),
+        client.textDetection(image),
+      ];
 
-    Promise.all(promises)
-      .then((values) => {
-        const collection = { labels: [], text: [], imageInBase64: '' };
-        const labelsArray = [];
-        const textArray = [];
+      Promise.all(promises)
+        .then((values) => {
+          const collection = {
+            labels: [],
+            text: [],
+            imageName: '',
+            imageInBase64: '',
+          };
+          const labelsArray = [];
+          const textArray = [];
 
-        values[0].map((item) => {
-          item.labelAnnotations.map(label => labelsArray.push(label.description));
-          item.textAnnotations.map(text => textArray.push(text.description));
-          return null;
+          values.forEach((value) => {
+            value.map((item) => {
+              item.labelAnnotations.map(label => labelsArray.push(label.description));
+              item.textAnnotations.map(text => textArray.push(text.description));
+              return null;
+            });
+          });
+
+          collection.text = textArray;
+          collection.imageName = image.replace(/^\D+/g, '');
+          collection.imageInBase64 = imageToBase64(image);
+          collection.labels = labelsArray;
+          res.send(collection);
+        })
+        .catch((error) => {
+          console.log(error);
+          res.send(error);
         });
-        collection.text = textArray;
-        collection.imageInBase64 = imageToBase64(image);
-        collection.labels = labelsArray;
-        res.send(collection);
-      })
-      .catch((error) => {
-        console.log(error);
-        res.send(error);
-      });
+    }
   });
 };
 
@@ -66,5 +74,15 @@ const Send = (res) => {
   res.sendFile(image);
 };
 
+const Delete = (res, imageName) => {
+  const dir = path.join(__dirname, '../images/');
+  fs.unlink(dir + imageName, (err) => {
+    if (err) {
+      res.send(err);
+    }
+  });
+  res.sendStatus(200);
+};
 
-module.exports = { Capture, Send };
+
+module.exports = { Capture, Send, Delete };

@@ -1,6 +1,7 @@
 language: node_js
+
 node_js:
-  - 8
+- 8
 # linux dist
 dist: trusty
 
@@ -10,7 +11,9 @@ cache:
     - client/node_modules
 
 install:
-  - npm install
+- npm install
+- cd client && npm install
 
 script:
-  - npm run lint
+- npm run test
+- cd .. && npm run lint

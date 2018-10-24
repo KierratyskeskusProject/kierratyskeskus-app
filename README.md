@@ -12,6 +12,8 @@
 
     #Windows:
     https://github.com/JoFrhwld/FAVE/wiki/Sox-on-Windows
+### ImageSnap
+    It is required to install imagesnap in order to take photos trough web cam (Mac OS)
 ### Key
 If you don't have Google Credentials, you can go to [cloud.google.com](https://cloud.google.com). Go to console and enable `Cloud Speech API` and `Cloud Vision API`.
 
