@@ -7,9 +7,7 @@ import Image from './Image';
 class ImageBar extends Component {
   renderImages() {
     const { images } = this.props;
-    console.log(images);
     if (images.images.length !== 0) {
-      console.log('Ei varmaan toimi');
       images.images.map(item => <Image src={item.imageInBase64} />);
     }
   }
