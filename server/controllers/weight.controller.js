@@ -12,6 +12,29 @@ const unit = 'grams';
 let error = null;
 
 const DymoScale = function dymoScale() {
+  const startReading = () => {
+    if (reading) return;
+    try {
+      const d = new HID.HID(vid, pid);
+      reading = true;
+
+      d.on('data', (data) => {
+        const buf = Buffer.from(data);
+        weight = buf[4] * 100;
+      });
+
+      d.on('error', (err) => {
+        reading = false;
+        error = err;
+        d.close();
+      });
+    } catch (err) {
+      if (/cannot open device/.test(err.message)) {
+        msg = 'Dymo cannot be found';
+      }
+    }
+  };
+
   usb.on('attach', (device) => {
     if (device.deviceDescriptor.idVendor === vid && device.deviceDescriptor.idProduct === pid) {
       msg = 'Dymo M10 attached';
@@ -28,31 +51,6 @@ const DymoScale = function dymoScale() {
       clearInterval(interval);
     }
   });
-
-  const startReading = () => {
-    if (reading) return;
-    try {
-      const d = new HID.HID(vid, pid);
-      reading = true;
-
-      d.on('data', (data) => {
-        const buf = Buffer.from(data);
-
-        const grams = buf[4] * 100;
-        weight = grams;
-      });
-
-      d.on('error', (err) => {
-        reading = false;
-        error = err;
-        d.close();
-      });
-    } catch (err) {
-      if (/cannot open device/.test(err.message)) {
-        msg = 'Dymo cannot be found';
-      }
-    }
-  };
 
   startReading();
 
