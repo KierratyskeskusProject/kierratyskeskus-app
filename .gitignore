@@ -9,7 +9,6 @@
 
 .DS_Store
 
-
 yarn.lock
 
 #vscode files
@@ -19,5 +18,7 @@ yarn.lock
 /services/imageRecognition/images/*
 
 **/*.jpg
+
+package-lock.json
 
 npm-debug.log
