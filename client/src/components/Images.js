@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import ImageButton from './AddImageButton';
 import { fetchImage, deleteImage } from '../redux/actions';
 
@@ -25,6 +24,7 @@ class ImageBar extends Component {
   }
 }
 
+/*
 ImageBar.defaultProps = {
   imageName: '',
 };
@@ -34,6 +34,7 @@ ImageBar.propTypes = {
   deleteOneImage: PropTypes.func.isRequired,
   imageName: PropTypes.string,
 };
+*/
 
 const mapStateToProps = state => ({
   imageName: state.images.images.length === 0 ? '' : state.images.images[0].imageName,
