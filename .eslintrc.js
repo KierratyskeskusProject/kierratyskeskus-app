@@ -20,5 +20,6 @@ module.exports = {
         "react", "import","react-redux"
     ],
     "parser": "babel-eslint",
+    
 
 };
