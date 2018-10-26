@@ -5,7 +5,7 @@ const fs = require('fs');
 const { googleKey } = require('../config');
 
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: googleKey,
+  keyFilename: googleKey || process.env.googleKey,
 });
 
 

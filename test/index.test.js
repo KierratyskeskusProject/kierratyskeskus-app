@@ -7,7 +7,7 @@ const server = require('../server/index');
 chai.use(require('chai-http'));
 
 describe('/GET /', () => {
-  it('it should get root endpoint', (done) => {
+  it('should get root endpoint', (done) => {
     chai.request(server)
       .get('/')
       .end((err, res) => {
@@ -21,7 +21,7 @@ describe('/GET /', () => {
 });
 
 describe('/GET /products', () => {
-  it('it should get products endpoint', (done) => {
+  it('should get products endpoint', (done) => {
     chai.request(server)
       .get('/products')
       .end((err, res) => {
@@ -35,7 +35,7 @@ describe('/GET /products', () => {
 });
 
 describe('/GET /capture', () => {
-  it('it should get /capture endpoint', (done) => {
+  it('should get /capture endpoint', (done) => {
     chai.request(server)
       .get('/capture')
       .then((res) => {
@@ -50,10 +50,8 @@ describe('/GET /capture', () => {
 
 describe('/POST /delete_image', () => {
   const fileName = 'test-file';
-  console.log('2', fileName);
-  it('it should post /delete_image endpoint', (done) => {
-    fs.writeFileSync(`./server/images/${fileName}`, 'This is a testing file', () => {
-      console.log('1', fileName);
+  it('should post /delete_image endpoint', (done) => {
+    fs.writeFile(`./server/images/${fileName}`, 'This is a testing file', () => {
       chai.request(server)
         .post('/delete_image')
         .set('content-type', 'application/json')
