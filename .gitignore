@@ -18,6 +18,9 @@ package-lock.json
 
 #images
 /services/imageRecognition/images/*
+
 **/*.jpg
 
 npm-debug.log
+
+package-lock.json
