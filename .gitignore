@@ -17,6 +17,7 @@ yarn.lock
 
 #images
 /services/imageRecognition/images/*
+
 **/*.jpg
 
 npm-debug.log

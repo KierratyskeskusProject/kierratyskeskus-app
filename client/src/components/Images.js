@@ -1,24 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ImageButton from './AddImageButton';
-import { fetchImage, deleteImage } from '../redux/actions';
-
+import { fetchImage } from '../redux/actions';
+import Image from './Image';
 
 class ImageBar extends Component {
+  renderImages() {
+    const { images } = this.props;
+    if (images.images.length !== 0) {
+      images.images.map(item => <Image src={item.imageInBase64} />);
+    }
+  }
+
   render() {
     const { fetch, deleteOneImage, imageName } = this.props;
     return (
-      <div className="imageBar">
-        {/* Images added to new item appear here, as well as Add Image button. */}
+      <div className="imageBar row">
         <ImageButton
           action={() => fetch()}
         />
-        <button
-          type="submit"
-          onClick={() => deleteOneImage(imageName)}
-        >
-                    delete
-        </button>
+        {images.images.map(item => <Image src={`data:image/png;base64,${item.imageInBase64}`} key={item.imageName} />)}
       </div>
     );
   }
