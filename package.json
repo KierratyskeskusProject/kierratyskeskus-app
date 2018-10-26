@@ -24,7 +24,6 @@
     "events": "^3.0.0",
     "express": "^4.16.3",
     "jest": "^23.6.0",
-    "node-dymo": "^1.0.1",
     "node-hid": "^0.7.3",
     "node-record-lpcm16": "^0.3.1",
     "node-webcam": "^0.4.4",
