@@ -35,7 +35,6 @@ it('handles action of type FETCH_IMAGE_BEGIN', () => {
     type: FETCH_IMAGE_BEGIN,
   }
   const newState = fetchImageReducer(initialState, action);
-  // console.log(newState.debug());
   expect(newState.loading).toEqual(true);
 });
 
