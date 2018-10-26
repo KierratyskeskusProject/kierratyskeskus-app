@@ -1,7 +1,7 @@
 {
-  "name": "kerratuskeskus",
+  "name": "kierratyskeskus",
   "version": "1.0.0",
-  "description": "kerratuskeskus project",
+  "description": "kierratuskeskus project",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
@@ -21,13 +21,18 @@
     "body-parser": "^1.18.3",
     "concurrently": "^3.6.1",
     "cors": "^2.8.4",
+    "events": "^3.0.0",
     "express": "^4.16.3",
+    "jest": "^23.6.0",
+    "node-dymo": "^1.0.1",
+    "node-hid": "^0.7.3",
     "node-record-lpcm16": "^0.3.1",
     "node-webcam": "^0.4.4",
     "nodemon": "^1.18.4",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^4.0.2",
+    "usb": "^1.3.3"
   },
   "devDependencies": {
     "chai": "^4.2.0",
