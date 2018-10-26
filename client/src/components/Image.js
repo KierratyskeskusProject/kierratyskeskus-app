@@ -31,8 +31,7 @@ class Image extends Component {
         </button>
         <Modal show={show} onHide={this.handleClose} animation={false}>
           <Modal.Body>
-            <img src={src} alt="Loading unsuccessful" />
-            <p>I am here</p>
+            <img src={src} alt="Loading unsuccessful" className="fullscreen" />
           </Modal.Body>
         </Modal>
       </div>

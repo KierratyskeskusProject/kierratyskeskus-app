@@ -60,6 +60,32 @@ body {
   animation-duration: 0.5s;
 }
 
+.modal-backdrop {
+  background-color: #0000005c;
+}
+
+.modal-body {
+  padding: 1px;
+}
+
+.modal-content {
+  position: sticky !important;
+  border: none !important;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2) !important;
+  border-radius: 10px !important;
+}
+
+.fullscreen {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* .modal-dialog {
+    max-width: 55%;
+    margin: 1.75rem auto;
+} */
+
 @keyframes imageFadeIn {
   0% {
     left: -164.5px;
