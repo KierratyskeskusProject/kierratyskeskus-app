@@ -24,3 +24,5 @@ package-lock.json
 npm-debug.log
 
 package-lock.json
+
+**/test-file

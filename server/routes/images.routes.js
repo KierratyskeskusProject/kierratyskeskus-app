@@ -11,7 +11,7 @@ const ImagesRoutes = (app) => {
     Send(res);
   });
 
-  app.delete('/delete_image', (req, res) => {
+  app.post('/delete_image', (req, res) => {
     Delete(res, req.body.imageName);
   });
 };
