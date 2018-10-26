@@ -25,5 +25,6 @@ module.exports = {
         "react", "import","react-redux", "mocha", "chai-friendly", "chai-expect"
     ],
     "parser": "babel-eslint",
+    
 
 };
