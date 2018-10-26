@@ -1,10 +1,10 @@
 const { expect } = require('chai');
 const chai = require('chai');
-const chaiHttp = require('chai-http');
+const fs = require('fs');
 
 const server = require('../server/index');
 
-chai.use(chaiHttp);
+chai.use(require('chai-http'));
 
 describe('/GET /', () => {
   it('it should get root endpoint', (done) => {
@@ -40,10 +40,31 @@ describe('/GET /capture', () => {
       .get('/capture')
       .then((res) => {
         expect(res.statusCode).to.equal(200);
-        expect(res.body).to.be.a('object');
+        expect(res.body).to.be.an('object');
         done();
       }).catch((err) => {
         console.error(err);
       });
+  }).timeout(30000);
+});
+
+describe('/POST /delete_image', () => {
+  const fileName = 'test-file';
+  console.log('2', fileName);
+  it('it should post /delete_image endpoint', (done) => {
+    fs.writeFileSync(`./server/images/${fileName}`, 'This is a testing file', () => {
+      console.log('1', fileName);
+      chai.request(server)
+        .post('/delete_image')
+        .set('content-type', 'application/json')
+        .send({ imageName: fileName })
+        .then((res) => {
+          expect(res.statusCode).to.equal(200);
+          done();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
   }).timeout(30000);
 });

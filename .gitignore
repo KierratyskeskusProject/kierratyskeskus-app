@@ -21,3 +21,7 @@ yarn.lock
 **/*.jpg
 
 npm-debug.log
+
+package-lock.json
+
+**/test-file
