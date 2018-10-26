@@ -34,4 +34,3 @@ ImagesRoutes(app);
 WeightRoutes(app);
 
 module.exports = app;
-
