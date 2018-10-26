@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const ProductRoutes = require('./routes/products.routes');
 const ImagesRoutes = require('./routes/images.routes');
-const WeightRoutes = require('./routes/weight.routes');
 
 const app = express();
 
@@ -23,4 +22,3 @@ app.get('/', (req, res) => {
 });
 ProductRoutes(app);
 ImagesRoutes(app);
-WeightRoutes(app);
