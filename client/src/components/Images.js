@@ -7,6 +7,7 @@ import Image from './Image';
 class ImageBar extends Component {
   renderImages() {
     const { images } = this.props;
+    document.getElementsByClassName('imageBar')[0].style.height = 'auto';
     if (images.images.length !== 0) {
       images.images.map(item => <Image src={item.imageInBase64} />);
     }
