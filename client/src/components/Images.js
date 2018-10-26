@@ -13,7 +13,8 @@ class ImageBar extends Component {
   }
 
   render() {
-    const { fetch, deleteOneImage, imageName } = this.props;
+    console.log(this.props);
+    const { fetch, images } = this.props;
     return (
       <div className="imageBar row">
         <ImageButton
@@ -38,8 +39,8 @@ ImageBar.propTypes = {
 */
 
 const mapStateToProps = state => ({
-  imageName: state.images.images.length === 0 ? '' : state.images.images[0].imageName,
+  images: state.images,
 });
 
 export default connect(mapStateToProps,
-  { fetch: fetchImage, deleteOneImage: deleteImage })(ImageBar);
+  { fetch: fetchImage })(ImageBar);

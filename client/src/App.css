@@ -45,6 +45,7 @@ body {
   margin-left: 1em;
   margin-top: 1em;
   overflow: hidden;
+  position: relative;
 }
 
 .image {
@@ -110,6 +111,12 @@ input:focus, textarea:focus {
 
 .submit:focus {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.button {
+  right: 10px;
+  top: 10px;
+  position: absolute;
 }
 
 
