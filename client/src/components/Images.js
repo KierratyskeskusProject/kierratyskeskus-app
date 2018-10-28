@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import ImageButton from './AddImageButton';
 
-import { fetchImage} from '../redux/actions';
+import { fetchImage } from '../redux/actions';
 import Image from './Image';
 
 
@@ -26,6 +26,7 @@ class ImageBar extends Component {
         {images.images.map(item => (
           <Image
             src={`data:image/png;base64,${item.imageInBase64}`}
+            imageName={item.imageName}
             key={item.imageName}
           />
         ))}
@@ -35,12 +36,6 @@ class ImageBar extends Component {
   }
 }
 
-/*
-const mapStateToProps = state => ({
-  imageName: state.images.images.length === 0 ? '' : state.images.images[0].imageName,
-});
-
-*/
 
 function mapStateToProps(state) {
   return {
