@@ -53,6 +53,13 @@ body {
   margin-left:-40%;
 }
 
+.btn-deleteImage{
+  position: relative;
+  top: 10px;
+  left: 10px;
+
+}
+
 .addImage {
   height: 200px;
   width: 150px;
