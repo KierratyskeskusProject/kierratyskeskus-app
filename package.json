@@ -27,7 +27,9 @@
     "prop-types": "^15.6.2",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^4.0.2",
+    "node-hid": "latest",
+    "usb": "latest"
   },
   "devDependencies": {
     "eslint": "^5.4.0",
