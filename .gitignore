@@ -11,6 +11,7 @@
 
 
 yarn.lock
+package-lock.json
 
 #vscode files
 /.vscode
