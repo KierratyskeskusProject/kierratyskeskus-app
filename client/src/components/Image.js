@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import { Modal } from 'react-bootstrap';
+import { connect } from 'react-redux';
+import DeleteButton from './DeleteButton';
+import { deleteImage } from '../redux/actions';
 
 class Image extends Component {
   constructor(props) {
@@ -22,13 +25,16 @@ class Image extends Component {
   }
 
   render() {
-    const { src } = this.props;
+    const { deleteOneImage, imageName, src } = this.props;
     const { show } = this.state;
     return (
-      <div>
+      <div className="imageFrame">
         <button className="btn newImage" type="button" onClick={this.handleShow}>
           <img src={src} alt="Loading unsuccessful" className="image" />
         </button>
+        <DeleteButton
+          action={() => deleteOneImage(imageName)}
+        />
         <Modal show={show} onHide={this.handleClose} animation={false}>
           <Modal.Body>
             <img src={src} alt="Loading unsuccessful" className="fullscreen" />
@@ -39,4 +45,5 @@ class Image extends Component {
   }
 }
 
-export default Image;
+
+export default connect(null, { deleteOneImage: deleteImage })(Image);

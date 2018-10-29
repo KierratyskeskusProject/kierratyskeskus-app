@@ -74,25 +74,30 @@ body {
   }
 }
 
-.newImage {
-  /* Buttons (for firing modals) housing new images added to Image Bar */
+.imageFrame {
   height: 200px;
   width: 150px;
+  margin-left: 15px;
+  margin-top: 1em;
   background-color: rgb(200, 200, 200);
   border-radius: 5px;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
-  margin-left: 15px;
-  margin-top: 1em;
-  overflow: hidden;
-  top: 0 !important;
-  border: none !important;
-  border-radius: 5px;
-  opacity: 1;
   position: relative;
+  opacity: 1;
   animation-name: imageFadeIn;
   animation-iteration-count: 1;
   animation-timing-function: ease-in;
   animation-duration: 0.5s;
+}
+
+.newImage {
+  /* Buttons (for firing modals) housing new images added to Image Bar */
+  height: inherit;
+  width: inherit;
+  overflow: hidden;
+  top: 0 !important;
+  border: none !important;
+  border-radius: 5px;
   padding: 0 !important;
 }
 
@@ -103,11 +108,36 @@ body {
   margin-left:-40%;
 }
 
+.deleteImage {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+}
+
+.deleteImage:before {
+  content: "";
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  border-radius: 90%;
+  border: 2px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.fa-trash-alt {
+  font-size: 14px;
+}
+
 .addImage {
   /* Button for adding new images to image bar */
   height: 200px;
   width: 150px;
-  color: white;
+  color: rgb(255, 255, 255);
   background-color: rgb(200, 200, 200);
   border-radius: 5px;
   position: relative;
@@ -124,7 +154,7 @@ body {
   content: "";
   height: 190px;
   width: 140px;
-  border: 5px dashed white;
+  border: 5px dashed rgb(255, 255, 255);
   border-radius: 5px;
   position: absolute;
   top: 5px;
