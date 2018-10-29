@@ -12,7 +12,6 @@ import validate from './Validation';
 
 class AddItemForm extends Component {
   onSubmit(values) {
-    console.log('jee');
     postForm(values);
   }
 
