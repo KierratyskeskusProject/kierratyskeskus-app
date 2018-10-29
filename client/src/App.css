@@ -36,6 +36,33 @@ body {
   margin-bottom: 2em;
 }
 
+.newImage {
+  height: 200px;
+  width: 150px;
+  background-color: rgb(200, 200, 200);
+  border-radius: 5px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+  margin-left: 1em;
+  margin-top: 1em;
+  overflow: hidden;
+  position: relative;
+}
+
+.image {
+  height: inherit;
+  /* Temporary fix to centering images, unlikely to work on portraits...: */
+  margin-left:-40%;
+}
+
+.btn-deleteImage{
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: whitesmoke;
+  color: red;
+
+}
+
 .addImage {
   height: 200px;
   width: 150px;
@@ -45,6 +72,7 @@ body {
   position: relative;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
   border: none;
+  margin-top: 1em;
 }
 
 .addImage:before {

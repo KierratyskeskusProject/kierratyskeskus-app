@@ -1,5 +1,5 @@
 {
-  "name": "kierratyskeskus",
+  "name": "kerratuskeskus",
   "version": "1.0.0",
   "description": "kerratuskeskus project",
   "main": "index.js",
@@ -21,13 +21,15 @@
     "concurrently": "^3.6.1",
     "cors": "^2.8.4",
     "express": "^4.16.3",
-    "jest": "^23.6.0",
     "node-record-lpcm16": "^0.3.1",
     "node-webcam": "^0.4.4",
     "nodemon": "^1.18.4",
+    "prop-types": "^15.6.2",
     "redux-promise": "^0.6.0",
     "redux-thunk": "^2.3.0",
-    "sqlite3": "^4.0.2"
+    "sqlite3": "^4.0.2",
+    "node-hid": "latest",
+    "usb": "latest"
   },
   "devDependencies": {
     "eslint": "^5.4.0",

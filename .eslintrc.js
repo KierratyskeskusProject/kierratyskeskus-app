@@ -20,5 +20,6 @@ module.exports = {
         "react", "import",
     ],
     "parser": "babel-eslint",
+    
 
 };

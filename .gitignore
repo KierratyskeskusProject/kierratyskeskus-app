@@ -11,12 +11,15 @@
 
 
 yarn.lock
+package-lock.json
 
 #vscode files
 /.vscode
 
 #images
 /services/imageRecognition/images/*
+
 **/*.jpg
 
 npm-debug.log
+

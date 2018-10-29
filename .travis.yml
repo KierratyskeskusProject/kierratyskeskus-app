@@ -2,6 +2,7 @@ language: node_js
 
 node_js:
 - 8
+
 # linux dist
 dist: trusty
 
@@ -9,6 +10,14 @@ cache:
     directories:
     - node_modules
     - client/node_modules
+
+before_install:
+- sudo apt-get update
+- sudo apt-get install build-essential git -y
+- sudo apt-get install libudev-dev -y
+- sudo apt-get install libusb-1.0-0-dev -y
+- sudo apt-get install gcc-4.8 g++-4.8 -y
+- if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 
 install:
 - npm install
