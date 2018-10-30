@@ -7,7 +7,7 @@ const server = require('../server/index');
 chai.use(chaiHttp);
 
 describe('/GET /weight', () => {
-  it('shoud get weight endpoint', (done) => {
+  it('should get weight endpoint', (done) => {
     chai.request(server)
       .get('/weight')
       .end((err, res) => {
