@@ -19,7 +19,7 @@ const DymoScale = function dymoScale() {
       reading = true;
 
       d.on('data', (data) => {
-        //const buf = Buffer.from(data);
+        // const buf = Buffer.from(data);
         const buf = Math.round((data[4] + data[5] * 256) * 10) / 10;
         weight = buf;
         console.log(weight);
