@@ -31,7 +31,7 @@ class AddItemForm extends Component {
           <ImageBar />
           {this.renderInputFields()}
           <Field key="description" name="description" component={DescriptionField} />
-          <button className="btn btn-success submit" type="submit">Submit</button>
+          <button className="btn btn-success submit" type="submit">Add Item</button>
         </form>
       </div>
     );

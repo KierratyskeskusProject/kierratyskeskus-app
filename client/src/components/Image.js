@@ -11,16 +11,13 @@ class Image extends Component {
     this.state = {
       show: false,
     };
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
   }
 
-  handleClose() {
+  handleClose = () => {
     this.setState({ show: false });
   }
 
-  handleShow() {
+  handleShow = () => {
     this.setState({ show: true });
   }
 
@@ -37,6 +34,12 @@ class Image extends Component {
         />
         <Modal show={show} onHide={this.handleClose} animation={false}>
           <Modal.Body>
+            <button className="btn closeModal" type="button" onClick={this.handleClose}>
+              <i className="fa fa-times" />
+            </button>
+            <DeleteButton
+              action={() => deleteOneImage(imageName)}
+            />
             <img src={src} alt="Loading unsuccessful" className="fullscreen" />
           </Modal.Body>
         </Modal>
