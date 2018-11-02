@@ -226,6 +226,17 @@ input:focus, textarea:focus {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
 }
 
+.camera__container {
+  overflow: hidden;
+}
+
+.camera__actual {
+  top: 0;
+  height: 189px;
+  margin-left: -200%;
+  left: 0;
+}
+
 
 /*  
   rgb(0, 167, 126)
