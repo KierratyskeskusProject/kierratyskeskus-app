@@ -13,9 +13,10 @@ export default function validate(values) {
   if (!values.category) {
     errors.category = 'Enter a category!';
   }
-  if (!values.weight) {
-    errors.weight = 'Enter a weight!';
+  if (Number.isNaN(Number(values.weight))) {
+    errors.weight = 'Please enter a number for a weight';
   }
+
   if (!values.duration) {
     errors.duration = 'Enter a duration!';
   }
