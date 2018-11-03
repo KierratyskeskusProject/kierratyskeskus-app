@@ -13,12 +13,9 @@ class Image extends Component {
     };
   }
 
-  handleClose = () => {
-    this.setState({ show: false });
-  }
-
-  handleShow = () => {
-    this.setState({ show: true });
+  handleToggle = () => {
+    const { show } = this.state;
+    this.setState({ show: !show });
   }
 
   render() {
@@ -26,15 +23,15 @@ class Image extends Component {
     const { show } = this.state;
     return (
       <div className="imageFrame">
-        <button className="btn newImage" type="button" onClick={this.handleShow}>
+        <button className="btn newImage" type="button" onClick={this.handleToggle}>
           <img src={src} alt="Loading unsuccessful" className="image" />
         </button>
         <DeleteButton
           action={() => deleteOneImage(imageName)}
         />
-        <Modal show={show} onHide={this.handleClose} animation={false}>
+        <Modal show={show} onHide={this.handleToggle} animation={false}>
           <Modal.Body>
-            <button className="btn closeModal" type="button" onClick={this.handleClose}>
+            <button className="btn closeModal" type="button" onClick={this.handleToggle}>
               <i className="fa fa-times" />
             </button>
             <DeleteButton
