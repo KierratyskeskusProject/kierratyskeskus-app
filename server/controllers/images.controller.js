@@ -2,9 +2,10 @@ const nodeWebcam = require('node-webcam');
 const vision = require('@google-cloud/vision');
 const path = require('path');
 const fs = require('fs');
+const { googleKey } = require('../config');
 
 const client = new vision.ImageAnnotatorClient({
-  keyFilename: `${__dirname}/../../googleKey.json`,
+  keyFilename: googleKey || `${__dirname}/../../googleKey.json`,
 });
 
 const createImageName = () => {
