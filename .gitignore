@@ -11,7 +11,7 @@
 
 
 **/yarn.lock
-package-lock.json
+**/package-lock.json
 
 #vscode files
 /.vscode
