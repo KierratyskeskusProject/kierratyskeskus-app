@@ -2,8 +2,8 @@ const HID = require('node-hid');
 const usb = require('usb');
 
 
-const vid = 0x0922; // 0x922
-const pid = 0x8003; // 0x8009
+const vid = 0x0922; // 0x922 dymo 10kg
+const pid = 0x8003; // 0x8003 dymo 10 kg
 let reading = false;
 let msg = '';
 let interval;
@@ -19,8 +19,10 @@ const DymoScale = function dymoScale() {
       reading = true;
 
       d.on('data', (data) => {
-        const [,,,, weightx] = Buffer.from(data);
-        weight = weightx;
+        // const buf = Buffer.from(data);
+        const buf = Math.round((data[4] + data[5] * 256) * 10) / 10;
+        weight = buf;
+        console.log(weight);
       });
 
       d.on('error', (err) => {
