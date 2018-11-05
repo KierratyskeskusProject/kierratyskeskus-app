@@ -6,9 +6,9 @@ cache:
   directories:
   - node_modules
   - client/node_modules
-# Add encrypted googleKey and allow to use usb
+# Encrypt googleKey file and allow usb connection
 before_install:
-- openssl aes-256-cbc -K $encrypted_4cfb6dc02e5f_key -iv $encrypted_4cfb6dc02e5f_iv
+- openssl aes-256-cbc -K $encrypted_98a29f15986b_key -iv $encrypted_98a29f15986b_iv
   -in googleKey.json.enc -out googleKey.json -d
 - sudo apt-get update
 - sudo apt-get install build-essential git -y
