@@ -8,6 +8,7 @@
     "enzyme": "^3.7.0",
     "enzyme-adapter-react-16": "^1.6.0",
     "lodash": "^4.17.11",
+    "moxios": "^0.4.0",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-bootstrap": "^0.32.4",
