@@ -46,6 +46,7 @@
     "eslint-plugin-mocha": "^5.2.0",
     "eslint-plugin-react": "^7.11.1",
     "eslint-plugin-react-redux": "^2.3.0",
-    "mocha": "^5.2.0"
+    "mocha": "^5.2.0",
+    "nock": "^10.0.2"
   }
 }

@@ -1,6 +1,10 @@
 const { expect } = require('chai');
 const chai = require('chai');
 const fs = require('fs');
+const nock = require('nock');
+const response = require('./response');
+const { transformData } = require('../server/controllers/images.controller');
+
 
 const server = require('../server/index');
 
@@ -35,17 +39,17 @@ describe('/GET /products', () => {
 });
 
 describe('/GET /capture', () => {
-  it('should get /capture endpoint', (done) => {
-    chai.request(server)
+  beforeEach(() => {
+    nock('http://localhost:5000')
       .get('/capture')
-      .then((res) => {
-        expect(res.statusCode).to.equal(200);
-        expect(res.body).to.be.an('object');
-        done();
-      }).catch((err) => {
-        console.error(err);
-      });
-  }).timeout(30000);
+      .reply(200, response);
+  });
+  it('Transforms data into object with label and text detection', async () => {
+    const data = await transformData(response);
+    expect(typeof data).to.equal('object');
+    expect(data.labels[0]).to.equal('facial hair');
+    expect(data.text[1]).to.equal('The');
+  });
 });
 
 describe('/POST /delete_image', () => {
