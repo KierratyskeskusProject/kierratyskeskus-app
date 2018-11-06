@@ -18,7 +18,6 @@ class AddItemForm extends Component {
   renderInputFields() {
     const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }], _.isEqual);
     const { weight } = this.props;
-    console.log(weight.weight);
     return _.map(inputFields, ({ label, name }) => (
       <Field
         key={name}

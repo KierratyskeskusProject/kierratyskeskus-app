@@ -11,7 +11,7 @@ export default ({
         {...input}
         type="text"
         className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
-        value={actualValue}
+        value={label === 'Product weight' ? actualValue : null}
       />
       {label === 'Product weight' ? <UpdateWeightButton /> : null}
       <div className="invalid-feedback">{meta.touched ? meta.error : ''}</div>
