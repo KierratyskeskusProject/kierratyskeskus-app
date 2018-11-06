@@ -77,7 +77,6 @@ const Send = (res) => {
 
 const Delete = (res, imageName) => {
   const dir = path.join(__dirname, '../images/');
-  console.log(imageName);
   fs.unlink(dir + imageName, (err) => {
     if (err) {
       res.send(err);
