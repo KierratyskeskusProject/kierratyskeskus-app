@@ -5,8 +5,8 @@ import { fetchWeight } from '../redux/actions';
 
 const WeightButton = props => (
   <div className="input-group-append">
-    <button className="btn btn-primary" type="button" onClick={() => props.fetch()}>
-      Update Weight
+    <button className="btn btn-primary" id="weight" type="button" onClick={() => props.fetch()}>
+      <span><i className="fa fa-sync-alt" aria-hidden="true" /></span>
     </button>
   </div>
 );
