@@ -142,31 +142,18 @@ export default class CategoryAutoSuggest extends Component {
     return suggestion.name;
   }
 
-  // Use your imagination to render suggestions.
-  renderSuggestion(suggestion) {
-    return (
-      <span>{suggestion.name}</span>
-    );
-  }
-
-  renderSectionTitle(section) {
-    return (
-      <strong>{section.title}</strong>
-    );
-  }
-
   getSectionSuggestions(section) {
     return section.languages;
   }
 
-  renderInputComponent = (inputProps) => {
-    const { touched, error } = this.props;
-    return (
-      <div>
-        <input {...inputProps} className={`form-control ${touched && error ? 'is-invalid' : ''}`} />
-      </div>
-    );
-  };
+    renderInputComponent = (inputProps) => {
+      const { touched, error } = this.props;
+      return (
+        <div>
+          <input {...inputProps} className={`form-control ${touched && error ? 'is-invalid' : ''}`} />
+        </div>
+      );
+    };
 
   handleSuggestionSelected = (event, { suggestionValue, method }) => {
     const { input } = this.props;
@@ -174,10 +161,17 @@ export default class CategoryAutoSuggest extends Component {
     if (method === 'enter') {
       event.preventDefault();
     }
-  }
+  };
 
   escapeRegexCharacters(str) {
     return str.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  }
+
+  // Use your imagination to render suggestions.
+  renderSuggestion(suggestion) {
+    return (
+      <span>{suggestion.name}</span>
+    );
   }
 
   render() {
