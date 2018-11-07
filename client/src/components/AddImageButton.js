@@ -17,15 +17,23 @@ class ImageButton extends Component {
     });
   }
 
+  handleCapture() {
+    const { action } = this.props;
+    action();
+  }
+
   render() {
     const { isModalActive } = this.state;
-    const { handleModalToggle } = this;
+    const { handleModalToggle, handleCapture } = this;
     return (
       <Fragment>
         <button className="btn addImage" type="button" onClick={handleModalToggle}>
           <div className="camera__container">
             <div className="camera__actual">
-              <Webcam height="200" />
+              {!isModalActive ? (
+                <Webcam height="200" />
+              )
+                : ''}
             </div>
           </div>
           <i className="fa fa-camera" aria-hidden="true" />
