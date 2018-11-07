@@ -1,0 +1,53 @@
+.lds-dual-ring {
+    display: block;
+    margin: auto;
+    padding-left: 2em;
+    padding-right: 2em;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 167, 126);
+    border: rgb(0, 153, 115);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+
+.lds-dual-ring:after {
+    content: "";
+    width: 46px;
+    height: 46px;
+    display: block;
+    margin: 1px;
+    background-color: transparent !important;
+    border-radius: 50%;
+    border: 5px solid rgb(0, 153, 115);
+    border-color: rgb(0, 107, 80) transparent rgb(0, 107, 80) transparent;
+    animation: lds-dual-ring 0.9s alternate infinite;
+  }
+
+@keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .capture {
+    /* capture button of the form */
+    margin: auto;
+    padding-left: 2em;
+    padding-right: 2em;
+    display: block;
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 167, 126);
+    border: rgb(0, 153, 115);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .capture:hover, .capture:active {
+    background-color: rgb(0, 117, 88);
+    border: rgb(0, 153, 115);
+  }
+  
+  .capture:focus {
+    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
+  }
