@@ -12,7 +12,12 @@ import validate from './Validation';
 
 class AddItemForm extends Component {
   onSubmit(values) {
-    postForm(values);
+    const { weight } = this.props;
+    const newValues = Object.assign({}, values);
+
+    newValues.weight = weight.weight.value;
+    console.log(newValues);
+    postForm(newValues);
   }
 
   renderInputFields() {
