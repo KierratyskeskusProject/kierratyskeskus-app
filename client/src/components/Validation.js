@@ -7,7 +7,10 @@ export default function validate(values) {
     errors.title = 'Maybe a too long for a product name';
   }
   if (!values.condition) {
-    errors.condition = 'Could you Enter a condition';
+    errors.condition = 'Could you please Enter a condition';
+  }
+  if (!values.price) {
+    errors.price = 'Could you please enter a price';
   }
   if (values.price && !values.price.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
     errors.price = 'Could you please enter a valid number for a price';
@@ -15,7 +18,6 @@ export default function validate(values) {
   if (!values.category) {
     errors.category = 'Could you please enter a category!';
   }
-
   if (values.weight && !values.weight.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
     errors.weight = 'Could you please enter a valid number for a weight';
   }
