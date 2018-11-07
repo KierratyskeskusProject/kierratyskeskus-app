@@ -133,6 +133,21 @@ body {
   font-size: 14px;
 }
 
+.camera__container {
+  overflow: hidden;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+
+.camera__actual {
+  margin-left: -160%;
+  
+}
+
 .addImage {
   /* Button for adding new images to image bar */
   height: 200px;
@@ -159,6 +174,7 @@ body {
   position: absolute;
   top: 5px;
   left: 5px;
+  z-index: 5000;
 }
 
 .addImage:focus, .addImage:active {
@@ -169,6 +185,9 @@ body {
 .fa-camera {
   /* The camera icon within addImage button */
   font-size: 50px;
+  position: relative;
+  z-index: 5000;
+  opacity: 0.2;
 }
 
 input, textarea {
@@ -225,18 +244,6 @@ input:focus, textarea:focus {
 .submit:focus {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
 }
-
-.camera__container {
-  overflow: hidden;
-}
-
-.camera__actual {
-  top: 0;
-  height: 189px;
-  margin-left: -200%;
-  left: 0;
-}
-
 
 /*  
   rgb(0, 167, 126)

@@ -8,9 +8,9 @@ const ImageButton = (props) => {
       <div className="camera__container">
         <div className="camera__actual">
           <Webcam height="200" />
-          <i className="fa fa-camera" aria-hidden="true" />
         </div>
       </div>
+      <i className="fa fa-camera" aria-hidden="true" />
     </button>
   );
 };
