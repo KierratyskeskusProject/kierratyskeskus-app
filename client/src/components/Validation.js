@@ -1,13 +1,15 @@
 export default function validate(values) {
   const errors = {};
-
   if (!values.title) {
-    errors.title = 'Enter a name!';
+    errors.title = 'Enter a name';
+  }
+  if (values.title && values.title.length > 100) {
+    errors.title = 'Too long name for a product name';
   }
   if (!values.condition) {
-    errors.condition = 'Enter a condition!';
+    errors.condition = 'Enter a condition';
   }
-  if (Number.isNaN(Number(values.price))) {
+  if (values.price && !values.price.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
     errors.price = 'Please enter a number for a price';
   }
   if (!values.category) {
