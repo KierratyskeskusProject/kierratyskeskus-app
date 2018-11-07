@@ -16,9 +16,6 @@ export default function validate(values) {
   if (!values.weight) {
     errors.weight = 'Enter a weight!';
   }
-  if (!values.duration) {
-    errors.duration = 'Enter a duration!';
-  }
   if (!values.description) {
     errors.description = 'Enter a description';
   }
