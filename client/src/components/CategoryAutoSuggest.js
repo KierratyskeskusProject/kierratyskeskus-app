@@ -101,7 +101,7 @@ function getSuggestions(value) {
   const escapedValue = escapeRegexCharacters(value.trim());
 
   if (escapedValue === '') {
-    return [];
+    return languages;
   }
 
   const regex = new RegExp(`^${escapedValue}`, 'i');
@@ -150,7 +150,7 @@ export default class CategoryAutoSuggest extends Component {
 
     this.state = {
       value: '',
-      suggestions: [],
+      suggestions: languages,
     };
   }
 
@@ -165,13 +165,6 @@ export default class CategoryAutoSuggest extends Component {
   onSuggestionsFetchRequested = ({ value }) => {
     this.setState({
       suggestions: getSuggestions(value),
-    });
-  };
-
-  // Autosuggest will call this function every time you need to clear suggestions.
-  onSuggestionsClearRequested = () => {
-    this.setState({
-      suggestions: [],
     });
   };
 
@@ -197,6 +190,7 @@ export default class CategoryAutoSuggest extends Component {
           renderSectionTitle={renderSectionTitle}
           getSectionSuggestions={getSectionSuggestions}
           renderInputComponent={renderInputComponent}
+          alwaysRenderSuggestions
           inputProps={inputProps}
         />
       </div>
