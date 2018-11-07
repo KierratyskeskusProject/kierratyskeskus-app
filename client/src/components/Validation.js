@@ -13,7 +13,7 @@ export default function validate(values) {
     errors.price = 'Could you please enter a valid number for a price';
   }
   if (!values.category) {
-    errors.category = 'Enter a category!';
+    errors.category = 'Could you please enter a category!';
   }
 
   if (values.weight && !values.weight.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
@@ -21,7 +21,7 @@ export default function validate(values) {
   }
 
   if (!values.duration) {
-    errors.duration = 'Enter a duration!';
+    errors.duration = 'Could you please enter a duration!';
   }
   if (!values.description) {
     errors.description = 'Could you please enter a description';
