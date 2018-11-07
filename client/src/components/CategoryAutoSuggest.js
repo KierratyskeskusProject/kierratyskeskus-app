@@ -146,14 +146,14 @@ export default class CategoryAutoSuggest extends Component {
     return section.languages;
   }
 
-    renderInputComponent = (inputProps) => {
-      const { touched, error } = this.props;
-      return (
-        <div>
-          <input {...inputProps} className={`form-control ${touched && error ? 'is-invalid' : ''}`} />
-        </div>
-      );
-    };
+  renderInputComponent = (inputProps) => {
+    const { touched, error } = this.props;
+    return (
+      <div>
+        <input type="text" {...inputProps} className={`form-control ${touched && error ? 'is-invalid' : ''}`} />
+      </div>
+    );
+  };
 
   handleSuggestionSelected = (event, { suggestionValue, method }) => {
     const { input } = this.props;
@@ -174,6 +174,12 @@ export default class CategoryAutoSuggest extends Component {
     );
   }
 
+  renderSectionTitle(section) {
+    return (
+      <strong>{section.title}</strong>
+    );
+  }
+
   render() {
     const { label } = _.find(Fields, { label: 'Category' });
     const { value, suggestions } = this.state;
@@ -191,7 +197,6 @@ export default class CategoryAutoSuggest extends Component {
           multiSection
           suggestions={suggestions}
           onSuggestionsFetchRequested={this.onSuggestionsFetchRequested}
-          onSuggestionsClearRequested={this.onSuggestionsClearRequested}
           getSuggestionValue={this.getSuggestionValue}
           renderSuggestion={this.renderSuggestion}
           renderSectionTitle={this.renderSectionTitle}
