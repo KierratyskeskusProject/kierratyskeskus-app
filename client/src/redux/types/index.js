@@ -5,6 +5,23 @@ export const FETCH_IMAGE_FAILURE = 'FETCH_IMAGE_FAILURE';
 export const DELETE_IMAGE_BEGIN = 'DELETE_IMAGE_BEGIN';
 export const DELETE_IMAGE_SUCCESS = 'DELETE_IMAGE_SUCCESS';
 export const DELETE_IMAGE_FAILURE = 'DELETE_IMAGE_FAILURE';
+export const FETCH_WEIGHT_BEGIN = 'FETCH_WEIGTH_BEGIN';
+export const FETCH_WEIGHT_SUCCESS = 'FETCH_WEIGHT_SUCCESS';
+export const FETCH_WEIGHT_FAILURE = 'FETCH_WEIGHT_FAILURE';
+
+export const fetchWeightBegin = () => ({
+  type: FETCH_WEIGHT_BEGIN,
+});
+
+export const fetchWeightSuccess = weight => ({
+  type: FETCH_WEIGHT_SUCCESS,
+  payload: { weight },
+});
+
+export const fetchWeightFailure = error => ({
+  type: FETCH_WEIGHT_FAILURE,
+  payload: { error },
+});
 
 export const postFormSuccess = formData => ({
   type: POST_FORM_SUCCESS,
