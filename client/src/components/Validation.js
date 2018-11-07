@@ -1,23 +1,23 @@
 export default function validate(values) {
   const errors = {};
   if (!values.title) {
-    errors.title = 'Enter a name';
+    errors.title = 'Could you please enter a name';
   }
   if (values.title && values.title.length > 100) {
-    errors.title = 'Too long name for a product name';
+    errors.title = 'Maybe a too long for a product name';
   }
   if (!values.condition) {
-    errors.condition = 'Enter a condition';
+    errors.condition = 'Could you 1nter a condition';
   }
   if (values.price && !values.price.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
-    errors.price = 'Please enter a number for a price';
+    errors.price = 'Could you please enter a valid number for a price';
   }
   if (!values.category) {
     errors.category = 'Enter a category!';
   }
 
-  if (Number.isNaN(Number(values.weight))) {
-    errors.weight = 'Please enter a number for a weight';
+  if (values.weight && !values.weight.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
+    errors.weight = 'Could you please enter a valid number for a weight';
   }
 
   if (!values.duration) {
@@ -26,7 +26,5 @@ export default function validate(values) {
   if (!values.description) {
     errors.description = 'Enter a description';
   }
-
-  // if errors Object is empty form is valid
   return errors;
 }
