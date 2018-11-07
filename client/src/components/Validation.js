@@ -24,7 +24,7 @@ export default function validate(values) {
     errors.duration = 'Enter a duration!';
   }
   if (!values.description) {
-    errors.description = 'Enter a description';
+    errors.description = 'Could you please enter a description';
   }
   return errors;
 }
