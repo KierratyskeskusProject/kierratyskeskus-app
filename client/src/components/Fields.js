@@ -4,6 +4,5 @@ export default [
   { label: 'Price', name: 'price' },
   { label: 'Category', name: 'category' },
   { label: 'Product weight', name: 'weight' },
-  { label: 'Duration', name: 'duration' },
   { label: 'Product Description', name: 'description' },
 ];

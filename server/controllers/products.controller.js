@@ -13,10 +13,9 @@ class Product {
       condition,
       price,
       category,
-      duration,
       weight,
     } = data;
-    const sql = `INSERT INTO products(title, description, condition, price, category, duration, weight) values("${title}", "${description}", "${condition}", "${price}", "${category}", "${duration}", "${weight}" )`;
+    const sql = `INSERT INTO products(title, description, condition, price, category, weight) values("${title}", "${description}", "${condition}", "${price}", "${category}", "${weight}" )`;
     db.run(sql, (err) => {
       if (err) {
         console.error(err);

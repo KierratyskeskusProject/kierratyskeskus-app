@@ -17,9 +17,16 @@ class AddItemForm extends Component {
 
   renderInputFields() {
     const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }], _.isEqual);
-
+    const { weight } = this.props;
     return _.map(inputFields, ({ label, name }) => (
-      <Field key={name} component={InputComponent} type="text" label={label} name={name} />
+      <Field
+        key={name}
+        component={InputComponent}
+        type="text"
+        label={label}
+        name={name}
+        actualValue={name === 'weight' ? weight.weight.value : ''}
+      />
     ));
   }
 
@@ -38,12 +45,16 @@ class AddItemForm extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { weight: state.weight };
+}
+
 export default reduxForm({
   form: 'simple',
   validate,
 })(
   connect(
-    null,
+    mapStateToProps,
     { postForm },
   )(AddItemForm),
 );
