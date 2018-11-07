@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { fetchImage } from '../redux/actions';
 import './loading.css';
 
-class ImageButton extends Component {
+export class ImageButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
