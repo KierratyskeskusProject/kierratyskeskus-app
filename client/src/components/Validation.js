@@ -7,12 +7,13 @@ export default function validate(values) {
   if (!values.condition) {
     errors.condition = 'Enter a condition!';
   }
-  if (!values.price) {
-    errors.price = 'Enter a price!';
+  if (Number.isNaN(Number(values.price))) {
+    errors.price = 'Please enter a number for a price';
   }
   if (!values.category) {
     errors.category = 'Enter a category!';
   }
+
   if (Number.isNaN(Number(values.weight))) {
     errors.weight = 'Please enter a number for a weight';
   }
