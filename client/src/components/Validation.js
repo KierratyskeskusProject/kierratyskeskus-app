@@ -7,7 +7,7 @@ export default function validate(values) {
     errors.title = 'Maybe a too long for a product name';
   }
   if (!values.condition) {
-    errors.condition = 'Could you 1nter a condition';
+    errors.condition = 'Could you Enter a condition';
   }
   if (values.price && !values.price.match(/^[0-9]+(\.[0-9]{1,2})?$/)) {
     errors.price = 'Could you please enter a valid number for a price';
