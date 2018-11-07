@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import ImageButton from './AddImageButton';
+import AddImageButton from './AddImageButton';
 import Image from './Image';
 
 
@@ -24,7 +24,7 @@ class ImageBar extends Component {
     return (
       <div className="imageBar">
         {/* Images added to new item appear here, as well as Add Image button. */}
-        <ImageButton />
+        <AddImageButton />
         {this.renderImages()}
       </div>
     );
