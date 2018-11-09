@@ -46,17 +46,19 @@ export class ImageButton extends Component {
           ? 'camera__modal'
           : 'camera__modal camera__modal--hidden'}
         >
-          <Webcam />
-          <button
-            className={loading
-              ? 'lds-dual-ring'
-              : 'capture'}
-            type="submit"
-            onClick={() => fetch()}
-            disabled={loading}
-          >
-            {loading ? '' : 'Capture'}
-          </button>
+          <div className="camera__modal__content">
+            <Webcam />
+            <button
+              className={loading
+                ? 'lds-dual-ring'
+                : 'btn capture'}
+              type="submit"
+              onClick={() => fetch()}
+              disabled={loading}
+            >
+              {loading ? '' : <i className="fa fa-camera fa-camera-modal" aria-hidden="true" />}
+            </button>
+          </div>
         </div>
       </Fragment>
     );

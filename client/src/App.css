@@ -147,21 +147,56 @@ body {
   margin-left: -160%;
 }
 
-.camera__modal {
+.camera__modal__content {
   position: absolute;
+  width: auto;
+  margin: auto;
+  border-radius: 5px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+}
+
+.camera__modal {
   width: 100%;
   height: 100%;
+  position: absolute;
   z-index: 10;
   background-color: rgba(0, 0, 0, 0.5);
   margin: 0 auto;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  font-size: 1rem;
 }
 
 .camera__modal--hidden {
   display: none;
+}
+
+.capture {
+  width: 76px;
+  height: 76px;
+  position: relative;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+  top: -85px;
+}
+
+.capture:before {
+  content: '';
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  border: 4px solid rgb(255, 255, 255);
+  border-radius: 90%;
+  left: 3px;
+  top: 3px;
+}
+
+.fa-camera-modal {
+  font-size: 35px !important;
 }
 
 .addImage {
@@ -203,7 +238,7 @@ body {
   font-size: 50px;
   position: relative;
   z-index: 5000;
-  opacity: 0.2;
+  opacity: 1;
 }
 
 input, textarea {

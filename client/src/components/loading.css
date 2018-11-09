@@ -30,24 +30,3 @@
       transform: rotate(360deg);
     }
   }
-  
-  .capture {
-    /* capture button of the form */
-    margin: auto;
-    padding-left: 2em;
-    padding-right: 2em;
-    display: block;
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 167, 126);
-    border: rgb(0, 153, 115);
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
-  }
-  
-  .capture:hover, .capture:active {
-    background-color: rgb(0, 117, 88);
-    border: rgb(0, 153, 115);
-  }
-  
-  .capture:focus {
-    box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
-  }
