@@ -44,9 +44,9 @@ class Image extends Component {
           action={() => deleteOneImage(imageName)}
         />
 
-        <Modal show={show} onHide={this.handleToggle} animation={false}>
+        <Modal show={show} onHide={handleModalToggle} animation={false}>
           <Modal.Body>
-            <button className="btn closeModal" type="button" onClick={this.handleToggle}>
+            <button className="btn closeModal" type="button" onClick={handleModalToggle}>
               <i className="fa fa-times" />
             </button>
             <DeleteButton
