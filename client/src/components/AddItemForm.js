@@ -12,16 +12,27 @@ import validate from './Validation';
 import CategoryAutoSuggest from './CategoryAutoSuggest';
 
 class AddItemForm extends Component {
-  Submit(values) {
-    postForm(values);
+  onSubmit(values) {
+    const { weight } = this.props;
+    const newValues = Object.assign({}, values);
+
+    newValues.weight = weight.weight.value;
+    console.log(newValues);
+    postForm(newValues);
   }
 
   renderInputFields() {
-    // Product Description and Category field are rendered by their own components
-    const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }, { label: 'Category', name: 'category' }], _.isEqual);
-
+    const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }], _.isEqual);
+    const { weight } = this.props;
     return _.map(inputFields, ({ label, name }) => (
-      <Field key={name} component={InputComponent} type="text" label={label} name={name} />
+      <Field
+        key={name}
+        component={InputComponent}
+        type="text"
+        label={label}
+        name={name}
+        actualValue={name === 'weight' ? weight.weight.value : ''}
+      />
     ));
   }
 
@@ -31,7 +42,7 @@ class AddItemForm extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <form onSubmit={handleSubmit(this.Submit.bind(this))} autoComplete="off">
+        <form onSubmit={handleSubmit(this.onSubmit.bind(this))} autoComplete="off">
           <ImageBar />
           {this.renderInputFields()}
           <Field
@@ -47,12 +58,16 @@ class AddItemForm extends Component {
   }
 }
 
+function mapStateToProps(state) {
+  return { weight: state.weight };
+}
+
 export default reduxForm({
   form: 'simple',
   validate,
 })(
   connect(
-    null,
+    mapStateToProps,
     { postForm },
   )(AddItemForm),
 );

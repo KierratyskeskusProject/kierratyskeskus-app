@@ -1,7 +1,3 @@
-/* .btn {
-  margin-top: 20px;
-} */
-
 body {
   background-color: rgba(241, 209, 184, 0.15);
 }
@@ -10,8 +6,7 @@ body {
   width: 100%;
   margin: auto;
   background-color:rgb(0, 167, 126);
-  /* Space reservation for photos. Adjust or delete when necessary > */
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
@@ -33,26 +28,134 @@ body {
 }
 
 .imageBar {
+  /* Collects new images and houses a button for adding new ones */
   margin-bottom: 2em;
   width: 200%;
+  display: inline-flex;
+  width: auto;
+  height: auto;
+  position: relative;
+  transition: height 0.5s;
+}
+
+.modal-backdrop {
+  /* Shading behind the 'View fullsized image' modals */
+  background-color: #0000005c;
+}
+
+.modal-body {
+  /* 'View fullsized image' modal background */
+  padding: 1px;
+}
+
+.modal-content {
+  /* Content within the 'view fullsized picture' modal. */
+  position: sticky !important;
+  border: none !important;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2) !important;
+  border-radius: 10px !important;
+}
+
+.fullscreen {
+  /* The image housed in the 'view fullsized picture' modal. */
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* Animations for added pictures */
+@keyframes imageFadeIn {
+  0% {
+    left: -164.5px;
+    opacity: 0;
+  }
+  100% {
+    left: 0;
+    opacity: 1;
+  }
+}
+
+.imageFrame {
+  height: 200px;
+  width: 150px;
+  margin-left: 15px;
+  margin-top: 1em;
+  background-color: rgb(200, 200, 200);
+  border-radius: 5px;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+  opacity: 1;
+  animation-name: imageFadeIn;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 0.5s;
+}
+
+.newImage {
+  /* Buttons (for firing modals) housing new images added to Image Bar */
+  height: inherit;
+  width: inherit;
+  overflow: hidden;
+  top: 0 !important;
+  border: none !important;
+  border-radius: 5px;
+  padding: 0 !important;
+}
+
+.image {
+  /* New <img> added to Image Bar */
+  height: inherit;
+  /* Temporary fix to centering images, unlikely to work on portraits...: */
+  margin-left:-40%;
+}
+
+.deleteImage {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+}
+
+.deleteImage:before {
+  content: "";
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  border-radius: 90%;
+  border: 2px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.fa-trash-alt {
+  font-size: 14px;
 }
 
 .addImage {
+  /* Button for adding new images to image bar */
   height: 200px;
   width: 150px;
-  color: white;
+  color: rgb(255, 255, 255);
   background-color: rgb(200, 200, 200);
   border-radius: 5px;
   position: relative;
   box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.2);
   border: none;
+  margin-top: 1em;
+  margin-left: 15px;
+  top: 0;
+  left: 0;
+  transition: left 0.5s, top 0.5s;
 }
 
 .addImage:before {
   content: "";
   height: 190px;
   width: 140px;
-  border: 5px dashed white;
+  border: 5px dashed rgb(255, 255, 255);
   border-radius: 5px;
   position: absolute;
   top: 5px;
@@ -64,11 +167,13 @@ body {
   border: none !important;
 }
 
-.fa {
+.fa-camera {
+  /* The camera icon within addImage button */
   font-size: 50px;
 }
 
 input, textarea {
+  /* Form inputs */
   border: 2px rgb(0, 167, 126) solid !important;
 }
 
@@ -76,9 +181,36 @@ input:focus, textarea:focus {
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2) !important;
 }
 
+#weight {
+  /* Button for refreshing the item weight */
+  color: rgb(255, 255, 255);
+  background-color: rgb(0, 167, 126);
+  border: rgb(0, 167, 126);
+  border-top-right-radius: .25rem;
+  border-bottom-right-radius: .25rem;
+}
+
+#weight:hover, #weight:active {
+  background-color: rgb(0, 117, 88);
+  border: rgb(0, 167, 126);
+}
+
+#weight:focus {
+  box-shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
+}
+
+.fa-sync-alt {
+  /* Refresh icon for weight button */
+  font-size: 20px;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
 .submit {
-  /* Submit button of the form */
+  /* onSubmit button of the form */
   margin: auto;
+  padding-left: 2em;
+  padding-right: 2em;
   display: block;
   color: rgb(255, 255, 255);
   background-color: rgb(0, 167, 126);
@@ -95,6 +227,9 @@ input:focus, textarea:focus {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
 }
 
+.input-group {
+  margin-bottom: 1rem;
+}
 
 /*  
   rgb(0, 167, 126)
