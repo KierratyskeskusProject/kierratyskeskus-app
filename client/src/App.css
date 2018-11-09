@@ -145,7 +145,23 @@ body {
 
 .camera__actual {
   margin-left: -160%;
-  
+}
+
+.camera__modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.5);
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.camera__modal--hidden {
+  display: none;
 }
 
 .addImage {
@@ -244,6 +260,8 @@ input:focus, textarea:focus {
 .submit:focus {
   box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
 }
+
+
 
 /*  
   rgb(0, 167, 126)
