@@ -14,7 +14,7 @@ export default (field) => {
       <label>{label}</label>
       <textarea
         className={`form-control ${touched && error ? 'is-invalid' : ''}`}
-        rows="3"
+        rows="5"
         {...field.input}
       />
       <div className="invalid-feedback">{touched ? error : ''}</div>
