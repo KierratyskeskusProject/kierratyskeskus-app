@@ -98,6 +98,40 @@ body {
   border-radius: 10px;
 }
 
+.modal__close {
+  /* Delete button inside imageFrame, targeting that specific image */
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+}
+
+.modal__close:before {
+  content: "";
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  border-radius: 90%;
+  border: 3px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.modal__close:focus, .modal__close:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.fa-times-modal {
+  font-size: 25px;
+  margin-top: 0.2rem;
+}
+
 /* Animations for added pictures */
 @keyframes imageFadeIn {
   0% {
@@ -186,6 +220,133 @@ body {
   font-size: 14px;
 }
 
+.camera__container {
+  overflow: hidden;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+
+.camera__actual {
+  margin-left: -160%;
+}
+
+.camera__modal--hidden {
+  display: none !important;
+}
+
+.camera__modal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  top: 0;
+  left: 0;
+}
+
+.modal__content {
+  display: flex;
+  width: auto;
+  position: absolute;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  margin-top: 5rem;
+  overflow: hidden;
+}
+
+.capture, .capture__loading {
+  width: 76px;
+  height: 76px;
+  position: absolute;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 90%;
+  bottom: 10px;
+}
+
+.capture:before, .capture__loading:before {
+  content: '';
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  border: 5px solid rgb(255, 255, 255);
+  border-radius: 90%;
+  left: 3px;
+  top: 3px;
+}
+
+.capture__loading:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  background-color: transparent !important;
+  border-radius: 90%;
+  border: 6px solid;
+  border-color: rgb(255, 255, 255) transparent rgb(255, 255, 255) transparent;
+  animation: capture__animation 0.9s linear infinite;
+  top: 10px;
+  left: 10px;
+}
+
+@keyframes capture__animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fa-camera-modal {
+  font-size: 35px !important;
+}
+
+.modal__close {
+  /* Delete button inside imageFrame, targeting that specific image */
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+  z-index: 11;
+}
+
+.modal__close:before {
+  content: "";
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  border-radius: 90%;
+  border: 3px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.modal__close:focus, .modal__close:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.fa-times-modal {
+  font-size: 25px;
+  margin-top: 0.2rem;
+}
+
 .addImage {
   /* Button for adding new images to image bar */
   height: 200px;
@@ -212,6 +373,7 @@ body {
   position: absolute;
   top: 5px;
   left: 5px;
+  z-index: 5000;
 }
 
 .addImage:focus, .addImage:active {
@@ -222,6 +384,9 @@ body {
 .fa-camera {
   /* The camera icon within addImage button */
   font-size: 50px;
+  position: relative;
+  z-index: 5000;
+  opacity: 1;
 }
 
 input, textarea {
@@ -283,6 +448,7 @@ input:focus, textarea:focus {
 .input-group {
   margin-bottom: 1rem;
 }
+
 
 /*  
   rgb(0, 167, 126)

@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AddImageButton from '../AddImageButton';
+import { ImageButton } from '../AddImageButton';
 
 let wrapped;
 
 beforeEach(() => {
-  wrapped = shallow(<AddImageButton />);
+  wrapped = shallow(<ImageButton />);
 });
 
 it('returns a button and a image', () => {
