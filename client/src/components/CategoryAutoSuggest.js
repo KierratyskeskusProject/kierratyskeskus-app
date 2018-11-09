@@ -124,13 +124,19 @@ function getSuggestionValue(suggestion) {
 // Use your imagination to render suggestions.
 function renderSuggestion(suggestion) {
   return (
-    <span>{suggestion.name}</span>
+    <span>
+      <input id={suggestion.name} type="checkbox" />
+      <label className="suggestionLabelStyle" htmlFor={suggestion.name}>{suggestion.name}</label>
+    </span>
   );
 }
 
 function renderSectionTitle(section) {
   return (
-    <strong>{section.title}</strong>
+    <div>
+      <input type="checkbox" />
+      <strong>{section.title}</strong>
+    </div>
   );
 }
 
@@ -176,9 +182,8 @@ export default class CategoryAutoSuggest extends Component {
       value,
       onChange: this.onChange,
     };
-
     return (
-      <div className="form-group">
+      <div className="form-group autosuggestionStyle">
         <label>{label}</label>
         <Autosuggest
           multiSection
