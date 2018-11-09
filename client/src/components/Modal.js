@@ -33,6 +33,9 @@ export class CaptureModal extends Component {
           : 'camera__modal camera__modal--hidden'}
       >
         <div className="modal__content">
+          <button className="btn modal__close" type="button">
+            <i className="fa fa-times fa-times-modal" />
+          </button>
           <Webcam />
           <button
             className={loading
@@ -42,9 +45,6 @@ export class CaptureModal extends Component {
             onClick={() => fetch()}
             disabled={loading}
           >
-            <button className="btn closeModal" type="button" onClick={this.handleToggle}>
-              <i className="fa fa-times" />
-            </button>
             {loading ? '' : <i className="fa fa-camera fa-camera-modal" />}
           </button>
         </div>

@@ -62,6 +62,40 @@ body {
   border-radius: 10px;
 }
 
+.modal__close {
+  /* Delete button inside imageFrame, targeting that specific image */
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+}
+
+.modal__close:before {
+  content: "";
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  border-radius: 90%;
+  border: 3px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.modal__close:focus, .modal__close:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.fa-times-modal {
+  font-size: 25px;
+  margin-top: 0.2rem;
+}
+
 /* Animations for added pictures */
 @keyframes imageFadeIn {
   0% {
@@ -167,7 +201,7 @@ body {
   display: flex;
   width: auto;
   position: absolute;
-  border-radius: 10px;
+  border-radius: 25px;
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   justify-content: center;
   margin-top: 5rem;
@@ -223,6 +257,40 @@ body {
 
 .fa-camera-modal {
   font-size: 35px !important;
+}
+
+.modal__close {
+  /* Delete button inside imageFrame, targeting that specific image */
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+}
+
+.modal__close:before {
+  content: "";
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  border-radius: 90%;
+  border: 3px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.modal__close:focus, .modal__close:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.fa-times-modal {
+  font-size: 25px;
+  margin-top: 0.2rem;
 }
 
 .addImage {
