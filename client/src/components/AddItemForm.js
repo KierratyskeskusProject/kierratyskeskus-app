@@ -34,7 +34,7 @@ class AddItemForm extends Component {
         <form onSubmit={handleSubmit(this.Submit.bind(this))} autoComplete="off">
           <ImageBar />
           {this.renderInputFields()}
-          <CategoryAutoSuggest />
+          <Field key="category" name="category" component={CategoryAutoSuggest} />
           <Field key="description" name="description" component={DescriptionField} />
           <button className="btn btn-success submit" type="submit">Submit</button>
         </form>
