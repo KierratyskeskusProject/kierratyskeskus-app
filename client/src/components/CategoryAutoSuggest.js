@@ -97,6 +97,7 @@ export default class CategoryAutoSuggest extends Component {
     this.state = {
       value: '',
       suggestions: languages,
+      selectedSuggestion: '',
     };
   }
 
@@ -138,8 +139,10 @@ export default class CategoryAutoSuggest extends Component {
   // When suggestion is clicked, Autosuggest needs to populate the input
   // based on the clicked suggestion. Teach Autosuggest how to calculate the
   // input value for every given suggestion.
-  getSuggestionValue(suggestion) {
-    return suggestion.name;
+  getSuggestionValue = (suggestion) => {
+    const { value } = this.state;
+    this.setState({ selectedSuggestion: suggestion });
+    return value;
   }
 
   getSectionSuggestions(section) {
@@ -157,7 +160,13 @@ export default class CategoryAutoSuggest extends Component {
 
   handleSuggestionSelected = (event, { suggestionValue, method }) => {
     const { input } = this.props;
+    const { selectedSuggestion } = this.state;
     input.onChange(suggestionValue);
+    // console.log(selectedSuggestion);
+    if (selectedSuggestion !== '') {
+      console.log(document.getElementById(selectedSuggestion.name).checked);
+    }
+
     if (method === 'enter') {
       event.preventDefault();
     }
@@ -170,13 +179,19 @@ export default class CategoryAutoSuggest extends Component {
   // Use your imagination to render suggestions.
   renderSuggestion(suggestion) {
     return (
-      <span>{suggestion.name}</span>
+      <span>
+        <input id={suggestion.name} type="checkbox" className="suggestionCheckbox" />
+        <label className="suggestionLabel" htmlFor={suggestion.name}>{suggestion.name}</label>
+      </span>
     );
   }
 
   renderSectionTitle(section) {
     return (
-      <strong>{section.title}</strong>
+      <div>
+        <input type="checkbox" className="suggestionCheckbox" />
+        <strong>{section.title}</strong>
+      </div>
     );
   }
 

@@ -120,7 +120,7 @@ form {
   list-style-type: none;
 }
 
-.suggestionLabelStyle:hover {
+.suggestionLabel:hover {
   cursor: pointer;
   font-weight: bold;
 }
@@ -128,4 +128,9 @@ form {
 .suggestionLabelStyle {
   width: 80%;
   margin-left: 5px;
+}
+
+.suggestionCheckbox {
+  margin-top: 10px;
+  margin-right: 5px;
 }
