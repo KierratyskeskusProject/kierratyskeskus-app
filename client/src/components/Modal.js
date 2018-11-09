@@ -7,6 +7,7 @@ import { fetchImage } from '../redux/actions';
 export class CaptureModal extends Component {
   static propTypes = {
     isModalActive: PropTypes.bool.isRequired,
+    handleModalToggle: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
   }
 
@@ -24,6 +25,7 @@ export class CaptureModal extends Component {
       isModalActive,
       loading,
       fetch,
+      handleModalToggle,
     } = this.props;
     return (
       <div
@@ -33,7 +35,7 @@ export class CaptureModal extends Component {
           : 'camera__modal camera__modal--hidden'}
       >
         <div className="modal__content">
-          <button className="btn modal__close" type="button">
+          <button className="btn modal__close" type="button" onClick={() => handleModalToggle()}>
             <i className="fa fa-times fa-times-modal" />
           </button>
           <Webcam />

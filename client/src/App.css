@@ -270,6 +270,7 @@ body {
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 90%;
+  z-index: 11;
 }
 
 .modal__close:before {

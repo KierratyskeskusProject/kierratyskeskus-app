@@ -39,7 +39,7 @@ export class ImageButton extends Component {
           </div>
           <i className="fa fa-camera" aria-hidden="true" />
         </button>
-        <Modal isModalActive={isModalActive} />
+        <Modal isModalActive={isModalActive} handleModalToggle={handleModalToggle} />
       </Fragment>
     );
   }
