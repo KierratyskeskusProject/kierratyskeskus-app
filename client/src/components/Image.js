@@ -28,6 +28,7 @@ class Image extends Component {
     const { handleModalToggle } = this;
     return (
       <div className="imageFrame">
+
         <button
           className="btn newImage"
           type="button"
@@ -42,17 +43,17 @@ class Image extends Component {
         <DeleteButton
           action={() => deleteOneImage(imageName)}
         />
-        <Modal
-          show={show}
-          onHide={handleModalToggle}
-          animation={false}
-        >
+
+        <Modal show={show} onHide={this.handleToggle} animation={false}>
           <Modal.Body>
-            <img
-              src={src}
-              alt="Loading unsuccessful"
-              className="fullscreen"
+            <button className="btn closeModal" type="button" onClick={this.handleToggle}>
+              <i className="fa fa-times" />
+            </button>
+            <DeleteButton
+              action={() => deleteOneImage(imageName)}
             />
+            <img src={src} alt="Loading unsuccessful" className="fullscreen" />
+
           </Modal.Body>
         </Modal>
       </div>

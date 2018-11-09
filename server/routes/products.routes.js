@@ -11,10 +11,10 @@ const ProductRoutes = (app) => {
 
   app.post('/products', (req, res) => {
     const {
-      title, description, condition, price, category, weight, duration,
+      title, description, condition, price, category, weight,
     } = req.body;
     Products.createItem({
-      title, description, condition, price, category, weight, duration,
+      title, description, condition, price, category, weight,
     });
     res.send('OK!');
   });
