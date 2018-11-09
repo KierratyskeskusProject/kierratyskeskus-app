@@ -33,12 +33,10 @@ export class CaptureModal extends Component {
           : 'camera__modal camera__modal--hidden'}
       >
         <div className="modal__content">
-          <div className="modal__screen">
-            <Webcam />
-          </div>
+          <Webcam />
           <button
             className={loading
-              ? 'lds-dual-ring'
+              ? 'capture__loading'
               : 'btn capture'}
             type="submit"
             onClick={() => fetch()}

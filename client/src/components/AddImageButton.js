@@ -2,7 +2,6 @@ import React, { Component, Fragment } from 'react';
 import Webcam from 'react-webcam';
 import { connect } from 'react-redux';
 import Modal from './Modal';
-import './loading.css';
 
 export class ImageButton extends Component {
   constructor(props) {
