@@ -147,41 +147,39 @@ body {
   margin-left: -160%;
 }
 
-.camera__modal__content {
-  position: absolute;
-  width: auto;
-  margin: auto;
-  border-radius: 5px;
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
-  overflow: hidden;
+.camera__modal--hidden {
+  display: none;
 }
 
 .camera__modal {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.5);
-  margin: 0 auto;
-  align-items: center;
-  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.2);
+  top: 0;
+  left: 0;
 }
 
-.camera__modal--hidden {
-  display: none;
+.modal__content {
+  width: auto;
+  height: auto;
+  position: relative;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  text-align: center;
+  align-items: center;
 }
 
 .capture {
   width: 76px;
   height: 76px;
-  position: relative;
+  position: absolute;
   background-color:rgb(200, 200, 200);
   color: rgb(255, 255, 255);
   border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 90%;
-  top: -85px;
 }
 
 .capture:before {
