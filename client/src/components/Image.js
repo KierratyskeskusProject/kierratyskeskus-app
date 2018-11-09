@@ -13,7 +13,7 @@ class Image extends Component {
     };
   }
 
-  handleModalToggle() {
+  handleModalToggle = () => {
     const { show } = this.state;
     this.setState({ show: !show });
   }
