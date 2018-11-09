@@ -42,6 +42,9 @@ export class CaptureModal extends Component {
             onClick={() => fetch()}
             disabled={loading}
           >
+            <button className="btn closeModal" type="button" onClick={this.handleToggle}>
+              <i className="fa fa-times" />
+            </button>
             {loading ? '' : <i className="fa fa-camera fa-camera-modal" />}
           </button>
         </div>
