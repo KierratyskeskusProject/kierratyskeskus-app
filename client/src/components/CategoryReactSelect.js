@@ -17,6 +17,8 @@ export default class CategoryReactSelect extends Component {
       <Select
         options={scaryAnimals}
         placeholder="Select a scary animal"
+        isMulti
+        blurInputOnSelect={false}
       />
     );
   }
