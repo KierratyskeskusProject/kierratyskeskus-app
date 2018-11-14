@@ -12,13 +12,22 @@ export default ({
         ? 'input-group'
         : 'form-group'}`}
     >
-      {label !== 'Category'
+      {label !== 'Product Description' && label !== 'Category'
         ? (
           <input
             {...input}
             type="text"
             className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
             value={label === 'Product weight' ? actualValue : null}
+          />
+        )
+        : null}
+      {label === 'Product Description'
+        ? (
+          <textarea
+            className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
+            rows="5"
+            {...input}
           />
         )
         : null}
