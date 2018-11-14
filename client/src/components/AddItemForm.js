@@ -26,9 +26,11 @@ class AddItemForm extends Component {
 
   handleValueSubmit = (values) => {
     const { conditionRating } = this.state;
+    const { weight } = this.props;
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
+      weight: weight.weight.value,
     };
     postForm(newValues);
   }
@@ -36,6 +38,7 @@ class AddItemForm extends Component {
   renderInputFields() {
     const { changeConditionRating } = this;
     const { conditionRating } = this.state;
+    const { weight } = this.props;
 
     const inputFields = _.differenceWith(
       Fields,
@@ -45,7 +48,6 @@ class AddItemForm extends Component {
       }],
       _.isEqual,
     );
-
     return _.map(inputFields, ({ label, name }) => (
       <Field
         key={name}
@@ -55,6 +57,7 @@ class AddItemForm extends Component {
         name={name}
         conditionRating={conditionRating}
         changeConditionRating={changeConditionRating}
+        actualValue={name === 'weight' ? weight.weight.value : ''}
       />
     ));
   }
@@ -85,12 +88,16 @@ Submit
   }
 }
 
+function mapStateToProps(state) {
+  return { weight: state.weight };
+}
+
 export default reduxForm({
   form: 'simple',
   validate,
 })(
   connect(
-    null,
+    mapStateToProps,
     { postForm },
   )(AddItemForm),
 );

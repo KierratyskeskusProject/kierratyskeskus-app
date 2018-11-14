@@ -11,33 +11,49 @@ class Image extends Component {
     this.state = {
       show: false,
     };
-
-    this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
   }
 
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  handleShow() {
-    this.setState({ show: true });
+  handleModalToggle = () => {
+    const { show } = this.state;
+    this.setState({ show: !show });
   }
 
   render() {
-    const { deleteOneImage, imageName, src } = this.props;
+    const {
+      deleteOneImage,
+      imageName,
+      src,
+    } = this.props;
     const { show } = this.state;
+    const { handleModalToggle } = this;
     return (
       <div className="imageFrame">
-        <button className="btn newImage" type="button" onClick={this.handleShow}>
-          <img src={src} alt="Loading unsuccessful" className="image" />
+
+        <button
+          className="btn newImage"
+          type="button"
+          onClick={handleModalToggle}
+        >
+          <img
+            src={src}
+            alt="Loading unsuccessful"
+            className="image"
+          />
         </button>
         <DeleteButton
           action={() => deleteOneImage(imageName)}
         />
-        <Modal show={show} onHide={this.handleClose} animation={false}>
+
+        <Modal show={show} onHide={handleModalToggle} animation={false}>
           <Modal.Body>
+            <button className="btn closeModal" type="button" onClick={handleModalToggle}>
+              <i className="fa fa-times" />
+            </button>
+            <DeleteButton
+              action={() => deleteOneImage(imageName)}
+            />
             <img src={src} alt="Loading unsuccessful" className="fullscreen" />
+
           </Modal.Body>
         </Modal>
       </div>
@@ -45,5 +61,6 @@ class Image extends Component {
   }
 }
 
-
-export default connect(null, { deleteOneImage: deleteImage })(Image);
+export default connect(
+  null, { deleteOneImage: deleteImage },
+)(Image);

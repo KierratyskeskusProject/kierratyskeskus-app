@@ -1,11 +1,9 @@
-// const auth = require('../config/.env');
 const record = require('node-record-lpcm16');
 const speech = require('@google-cloud/speech');
-const { googleKey } = require('../../server/config/index');
 
 // Creates a client
 const client = new speech.SpeechClient({
-  keyFilename: googleKey,
+  keyFilename: `${__dirname}/../../googleKey.json`,
 });
 
 

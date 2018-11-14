@@ -10,6 +10,7 @@ class InputComponent extends Component {
       meta,
       changeConditionRating,
       conditionRating,
+      actualValue,
     } = this.props;
 
     return (
@@ -34,6 +35,9 @@ class InputComponent extends Component {
                 className={`form-control ${meta.touched && meta.error
                   ? 'is-invalid'
                   : ''}`}
+                value={label === 'Product weight'
+                  ? actualValue
+                  : null}
               />
             )}
           {label === 'Product weight' ? <UpdateWeightButton /> : null}
