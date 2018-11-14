@@ -6,15 +6,26 @@ export default ({
 }) => (
   <div>
     {<label>{label}</label>}
-    <div className={`${label === 'Product weight' ? 'input-group' : 'form-group'}`}>
+    <div
+      className={`${label === 'Product weight'
+        ? 'input-group'
+        : 'form-group'}`}
+    >
       <input
         {...input}
         type="text"
         className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
         value={label === 'Product weight' ? actualValue : null}
+
       />
-      {label === 'Product weight' ? <UpdateWeightButton /> : null}
-      <div className="invalid-feedback">{meta.touched ? meta.error : ''}</div>
+      {label === 'Product weight'
+        ? <UpdateWeightButton />
+        : null}
+      <div
+        className="invalid-feedback"
+      >
+        {meta.touched ? meta.error : ''}
+      </div>
     </div>
   </div>
 );
