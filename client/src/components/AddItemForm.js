@@ -10,6 +10,7 @@ import ImageBar from './Images';
 import DescriptionField from './DescriptionField';
 import validate from './Validation';
 import CategoryAutoSuggest from './CategoryAutoSuggest';
+import CategoryReactSelect from './CategoryReactSelect';
 
 class AddItemForm extends Component {
   onSubmit(values) {
@@ -22,7 +23,7 @@ class AddItemForm extends Component {
   }
 
   renderInputFields() {
-    const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }], _.isEqual);
+    const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }, { label: 'Category', name: 'category' }], _.isEqual);
     const { weight } = this.props;
     return _.map(inputFields, ({ label, name }) => (
       <Field
@@ -48,7 +49,7 @@ class AddItemForm extends Component {
           <Field
             key="category"
             name="category"
-            component={CategoryAutoSuggest}
+            component={CategoryReactSelect}
           />
           <Field key="description" name="description" component={DescriptionField} />
           <button className="btn btn-success submit" type="submit">Submit</button>

@@ -1,4 +1,4 @@
-export default [
+const Categories = [
   {
     title: 'Uutuudet',
   },
@@ -37,3 +37,5 @@ export default [
     ],
   },
 ];
+
+export { Categories };
