@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class CategoryTree extends Component {
   render() {
     return (
-      <div className="categoryTreeFrame">
+      <Fragment>
         <label className="title">Categories</label>
         <div className="categoryTree">
           <ul>
@@ -11,7 +11,7 @@ class CategoryTree extends Component {
             <li>Categories</li>
           </ul>
         </div>
-      </div>
+      </Fragment>
     );
   }
 }

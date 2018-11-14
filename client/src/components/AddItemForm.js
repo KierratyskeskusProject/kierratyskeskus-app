@@ -41,11 +41,11 @@ class AddItemForm extends Component {
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))} autoComplete="off">
           <ImageBar />
           <div className="row">
-            <div className="col-6">
+            <div className="col-6 formFrame">
               {this.renderInputFields()}
               <button className="btn btn-success submit" type="submit">Add Item</button>
             </div>
-            <div className="col-6">
+            <div className="col-6 categoryTreeFrame">
               <CategoryTree />
             </div>
           </div>
