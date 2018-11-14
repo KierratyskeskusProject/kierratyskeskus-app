@@ -9,8 +9,8 @@ import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
 import DescriptionField from './DescriptionField';
 import validate from './Validation';
-import CategoryAutoSuggest from './CategoryAutoSuggest';
 import CategoryReactSelect from './CategoryReactSelect';
+import CategoryTree from './CategoryTree';
 
 class AddItemForm extends Component {
   onSubmit(values) {
@@ -45,14 +45,21 @@ class AddItemForm extends Component {
       <div>
         <form onSubmit={handleSubmit(this.onSubmit.bind(this))} autoComplete="off">
           <ImageBar />
-          {this.renderInputFields()}
-          <Field
-            key="category"
-            name="category"
-            component={CategoryReactSelect}
-          />
-          <Field key="description" name="description" component={DescriptionField} />
-          <button className="btn btn-success submit" type="submit">Add Item</button>
+          <div className="row">
+            <div className="col-6">
+              {this.renderInputFields()}
+              <Field
+                key="category"
+                name="category"
+                component={CategoryReactSelect}
+              />
+              <Field key="description" name="description" component={DescriptionField} />
+              <button className="btn btn-success submit" type="submit">Add Item</button>
+            </div>
+            <div className="col-6">
+              <CategoryTree />
+            </div>
+          </div>
         </form>
       </div>
     );

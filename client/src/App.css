@@ -10,12 +10,12 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.logo {
+.headerLeft {
   /* Part of Header; replace with logo */
   color: rgb(255, 255, 255);
 }
 
-.heading {
+.headerRight {
   /* Part of Header */
   color: rgb(255, 255, 255);
 }
@@ -31,7 +31,7 @@ body {
 .imageBar {
   /* Collects new images and houses a button for adding new ones */
   margin-bottom: 2em;
-  width: 200%;
+  /* width: 200%; */
   display: inline-flex;
   width: auto;
   height: auto;
@@ -399,7 +399,7 @@ input:focus, textarea:focus {
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2) !important;
 }
 
-#weight {
+.weight {
   /* Button for refreshing the item weight */
   color: rgb(255, 255, 255);
   background-color: rgb(0, 167, 126);
@@ -408,12 +408,12 @@ input:focus, textarea:focus {
   border-bottom-right-radius: .25rem;
 }
 
-#weight:hover, #weight:active {
+.weight:hover, .weight:active {
   background-color: rgb(0, 117, 88);
   border: rgb(0, 167, 126);
 }
 
-#weight:focus {
+.weight:focus {
   box-shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
 }
 
@@ -455,10 +455,6 @@ input:focus, textarea:focus {
   rgb(0, 167, 126)
   rgb(241, 209, 184)  
 */
-
-form {
-  width: 50%;
-}
 
 .autosuggestionStyle {
   position: absolute;
