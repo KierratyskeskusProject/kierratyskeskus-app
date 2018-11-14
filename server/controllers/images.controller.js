@@ -2,6 +2,7 @@ const nodeWebcam = require('node-webcam');
 const vision = require('@google-cloud/vision');
 const path = require('path');
 const fs = require('fs');
+const detectBook = require('./BookDetection/handleDetectionData');
 
 const client = new vision.ImageAnnotatorClient({
   keyFilename: `${__dirname}/../../googleKey.json`,
@@ -62,6 +63,9 @@ const Capture = (res) => {
         const values = await Promise.all(promises);
         const imageInBase64 = imageToBase64(image);
         const responseData = transformData(values, imageInBase64);
+        console.log('response data', responseData.text);
+        const bookData = detectBook.combined(responseData.text);
+        console.log(bookData);
         res.send(responseData);
       } catch (error) {
         res.send(error);
