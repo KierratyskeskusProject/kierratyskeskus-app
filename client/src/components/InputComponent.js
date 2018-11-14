@@ -2,6 +2,9 @@ import React from 'react';
 import UpdateWeightButton from './UpdateWeightButton';
 import CategoryReactSelect from './CategoryReactSelect';
 
+// Responsible for rendering right fields for the form and adding them to redux-form
+// This component also renders errors for the fields if there are any errors in the error object
+
 export default ({
   input,
   label,
