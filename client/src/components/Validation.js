@@ -4,9 +4,9 @@ export default function validate(values) {
   if (!values.title) {
     errors.title = 'Enter a name!';
   }
-  if (!values.condition) {
+  /*   if (!values.condition) {
     errors.condition = 'Enter a condition!';
-  }
+  } */
   if (!values.price) {
     errors.price = 'Enter a price!';
   }

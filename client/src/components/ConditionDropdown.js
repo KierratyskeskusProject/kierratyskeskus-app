@@ -1,18 +1,15 @@
-import React from 'react';
-import { ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap/lib';
+import React, { Component } from 'react';
+import StarRating from 'react-star-ratings';
 
+class Rating extends Component {
+  render() {
+    return (
+      <StarRating
+        rating={5}
+        numberOfStars={3}
+      />
+    );
+  }
+}
 
-export default () => (
-  <ButtonToolbar>
-    <DropdownButton
-      bsStyle="default"
-      title="Condition"
-      noCaret
-      id="dropdown-no-caret"
-    >
-      <MenuItem eventKey="1">*</MenuItem>
-      <MenuItem eventKey="2">**</MenuItem>
-      <MenuItem eventKey="3">***</MenuItem>
-    </DropdownButton>
-  </ButtonToolbar>
-);
+export default Rating;

@@ -1,9 +1,9 @@
 export default [
   { label: 'Product Name', name: 'title' },
   { label: 'Condition', name: 'condition' },
-  { label: 'Price', name: 'price' },
+  { label: 'Price (€)', name: 'price' },
   { label: 'Category', name: 'category' },
-  { label: 'Product weight', name: 'weight' },
-  { label: 'Duration', name: 'duration' },
+  { label: 'Product weight (kg)', name: 'weight' },
+  { label: 'Duration (Days)', name: 'duration' },
   { label: 'Product Description', name: 'description' },
 ];
