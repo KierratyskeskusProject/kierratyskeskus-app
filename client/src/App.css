@@ -450,6 +450,18 @@ input:focus, textarea:focus {
   margin-bottom: 1rem;
 }
 
+.categoryTreeFrame {
+  height: 100%;
+  padding-bottom: 2rem;
+}
+
+.categoryTree {
+  height: inherit;
+  background-color: rgb(255, 255, 255);
+  border: 2px rgb(0, 167, 126) solid !important;
+  border-radius: 5px;
+  overflow: auto;
+}
 
 /*  
   rgb(0, 167, 126)

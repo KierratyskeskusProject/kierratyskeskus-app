@@ -9,7 +9,6 @@ import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
 import DescriptionField from './DescriptionField';
 import validate from './Validation';
-import CategoryReactSelect from './CategoryReactSelect';
 import CategoryTree from './CategoryTree';
 
 class AddItemForm extends Component {
