@@ -23,7 +23,7 @@ class AddItemForm extends Component {
   }
 
   renderInputFields() {
-    const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }, { label: 'Category', name: 'category' }], _.isEqual);
+    const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }], _.isEqual);
     const { weight } = this.props;
     return _.map(inputFields, ({ label, name }) => (
       <Field
@@ -48,11 +48,11 @@ class AddItemForm extends Component {
           <div className="row">
             <div className="col-6">
               {this.renderInputFields()}
-              <Field
+              {/* <Field
                 key="category"
                 name="category"
                 component={CategoryReactSelect}
-              />
+              /> */}
               <Field key="description" name="description" component={DescriptionField} />
               <button className="btn btn-success submit" type="submit">Add Item</button>
             </div>
