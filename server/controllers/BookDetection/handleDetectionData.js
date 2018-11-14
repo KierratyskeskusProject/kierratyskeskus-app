@@ -37,4 +37,4 @@ const combined = () => {
 };
 
 
-module.exports = combined;
+module.exports = { combined, detection, filter };
