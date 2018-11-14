@@ -1,12 +1,12 @@
-const jsonData = require('./data.json');
 
 
 const text = [];
 
 
-const filter = (results) => {
-  let result = results.indexOf('ISBN');
+const filter = (responseText) => {
+  let result = responseText.indexOf('ISBN');
   let res = null;
+  console.log('response text', result);
 
   switch (result) {
     case -1:
@@ -14,26 +14,26 @@ const filter = (results) => {
     default:
       // ISBN found
       result += 1;
-      result = results[result];
+      result = responseText[result];
       res = result;
       break;
   }
   return res;
 };
 
-const detection = () => {
-  const detections = jsonData;
+const detection = (responseText) => {
+  const detections = responseText;
   detections.forEach((value, index) => {
     if (index < 1) return;
     text.push(value.description);
   });
+  console.log('text', text);
   return text;
 };
 
-const combined = () => {
-  const results = detection();
-  const identifier = filter(results);
-  console.log(identifier);
+const combined = (responseText) => {
+  const identifier = filter(responseText);
+  console.log('identifier', identifier);
   return identifier;
 };
 
