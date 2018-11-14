@@ -3,7 +3,10 @@ import UpdateWeightButton from './UpdateWeightButton';
 import CategoryReactSelect from './CategoryReactSelect';
 
 export default ({
-  input, label, meta, actualValue,
+  input,
+  label,
+  meta,
+  actualValue,
 }) => (
   <div>
     {<label>{label}</label>}

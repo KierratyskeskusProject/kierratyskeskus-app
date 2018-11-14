@@ -10,6 +10,7 @@ const scaryAnimals = [
   { label: 'Snakes', value: 6 },
 ];
 
+// TODO: fix value prop input should not be null
 
 export default class CategoryReactSelect extends Component {
   render() {
