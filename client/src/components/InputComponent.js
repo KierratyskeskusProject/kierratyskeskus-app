@@ -1,5 +1,6 @@
 import React from 'react';
 import UpdateWeightButton from './UpdateWeightButton';
+import CategoryReactSelect from './CategoryReactSelect';
 
 export default ({
   input, label, meta, actualValue,
@@ -11,15 +12,21 @@ export default ({
         ? 'input-group'
         : 'form-group'}`}
     >
-      <input
-        {...input}
-        type="text"
-        className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
-        value={label === 'Product weight' ? actualValue : null}
-
-      />
+      {label !== 'Category'
+        ? (
+          <input
+            {...input}
+            type="text"
+            className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
+            value={label === 'Product weight' ? actualValue : null}
+          />
+        )
+        : null}
       {label === 'Product weight'
         ? <UpdateWeightButton />
+        : null}
+      {label === 'Category'
+        ? <CategoryReactSelect />
         : null}
       <div
         className="invalid-feedback"
