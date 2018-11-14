@@ -11,29 +11,76 @@ import DescriptionField from './DescriptionField';
 import validate from './Validation';
 
 class AddItemForm extends Component {
-  Submit(values) {
-    postForm(values);
+  constructor(props) {
+    super(props);
+    this.state = {
+      conditionRating: 0,
+    };
+  }
+
+  changeConditionRating = (newRating) => {
+    this.setState({
+      conditionRating: newRating,
+    });
+  }
+
+  handleValueSubmit = (values) => {
+    const { conditionRating } = this.state;
+    const newValues = {
+      ...values,
+      condition: conditionRating.toString(),
+    };
+    postForm(newValues);
   }
 
   renderInputFields() {
-    const inputFields = _.differenceWith(Fields, [{ label: 'Product Description', name: 'description' }], _.isEqual);
+    const { changeConditionRating } = this;
+    const { conditionRating } = this.state;
+
+    const inputFields = _.differenceWith(
+      Fields,
+      [{
+        label: 'Product Description',
+        name: 'description',
+      }],
+      _.isEqual,
+    );
 
     return _.map(inputFields, ({ label, name }) => (
-      <Field key={name} component={InputComponent} type="text" label={label} name={name} />
+      <Field
+        key={name}
+        component={InputComponent}
+        type="text"
+        label={label}
+        name={name}
+        conditionRating={conditionRating}
+        changeConditionRating={changeConditionRating}
+      />
     ));
   }
 
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
-        <form onSubmit={handleSubmit(this.Submit.bind(this))} autoComplete="off">
-          <ImageBar />
-          {this.renderInputFields()}
-          <Field key="description" name="description" component={DescriptionField} />
-          <button className="btn btn-success submit" type="submit">Submit</button>
-        </form>
-      </div>
+      <form
+        onSubmit={handleSubmit(this.handleValueSubmit)}
+        autoComplete="off"
+      >
+        <ImageBar />
+        {this.renderInputFields()}
+        <Field
+          key="description"
+          name="description"
+          component={DescriptionField}
+        />
+        <button
+          className="btn btn-success submit"
+          type="submit"
+        >
+Submit
+
+        </button>
+      </form>
     );
   }
 }

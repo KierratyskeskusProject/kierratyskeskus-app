@@ -3,22 +3,14 @@ import StarRating from 'react-star-ratings';
 import UpdateWeightButton from './UpdateWeightButton';
 
 class InputComponent extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      rating: 0,
-    };
-  }
-
-  changeRating = (newRating) => {
-    this.setState({
-      rating: newRating,
-    });
-  }
-
   render() {
-    const { input, label, meta } = this.props;
-    const { rating } = this.state;
+    const {
+      input,
+      label,
+      meta,
+      changeConditionRating,
+      conditionRating,
+    } = this.props;
 
     return (
       <div>
@@ -31,9 +23,9 @@ class InputComponent extends Component {
           {label === 'Condition'
             ? (
               <StarRating
-                rating={rating}
+                rating={conditionRating}
                 numberOfStars={3}
-                changeRating={this.changeRating}
+                changeRating={changeConditionRating}
               />
             ) : (
               <input
