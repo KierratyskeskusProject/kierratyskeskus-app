@@ -450,6 +450,7 @@ input:focus, textarea:focus {
 
 .input-group {
   margin-bottom: 1rem;
+  z-index: 0;
 }
 
 .contentFrame {
