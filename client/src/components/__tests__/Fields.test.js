@@ -8,7 +8,6 @@ it('has right fields for a form', () => {
     { label: 'Price (€)', name: 'price' },
     { label: 'Category', name: 'category' },
     { label: 'Product weight (kg)', name: 'weight' },
-    { label: 'Duration (Days)', name: 'duration' },
     { label: 'Product Description', name: 'description' },
   ];
 
