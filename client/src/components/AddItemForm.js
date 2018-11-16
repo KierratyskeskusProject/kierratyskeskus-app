@@ -8,16 +8,30 @@ import InputComponent from './InputComponent';
 import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
-import CategoryTree from './CategoryTree';
 import CategoryReactSelect, { scaryAnimals } from './CategoryReactSelect';
 
 class AddItemForm extends Component {
-  onSubmit(values) {
+  constructor(props) {
+    super(props);
+    this.state = {
+      conditionRating: 0,
+    };
+  }
+
+  changeConditionRating = (newRating) => {
+    this.setState({
+      conditionRating: newRating,
+    });
+  }
+
+  handleValueSubmit = (values) => {
+    const { conditionRating } = this.state;
     const { weight } = this.props;
-    const newValues = Object.assign({}, values);
-
-    newValues.weight = weight.weight.value;
-
+    const newValues = {
+      ...values,
+      condition: conditionRating.toString(),
+      weight: weight.weight.value,
+    };
     values.category.map((item, key) => {
       newValues.category[key] = item.value;
       return null;
@@ -26,7 +40,10 @@ class AddItemForm extends Component {
   }
 
   renderInputFields() {
+    const { changeConditionRating } = this;
+    const { conditionRating } = this.state;
     const { weight } = this.props;
+
     return _.map(Fields, ({ label, name }) => (
       <Field
         key={name}
@@ -36,7 +53,9 @@ class AddItemForm extends Component {
         type="text"
         label={label}
         name={name}
-        actualValue={name === 'weight' ? weight.weight.value : ''}
+        conditionRating={conditionRating}
+        changeConditionRating={changeConditionRating}
+        actualValue={name === 'weight' ? weight.weight.value : '0'}
       />
     ));
   }
@@ -44,27 +63,24 @@ class AddItemForm extends Component {
   render() {
     const { handleSubmit } = this.props;
     return (
-      <div>
-        <form onSubmit={handleSubmit(this.onSubmit.bind(this))} autoComplete="off">
-          <ImageBar />
-          <div className="row">
-            <div className="col-6 formFrame">
-              {this.renderInputFields()}
-              <button className="btn btn-success submit" type="submit">Add Item</button>
-            </div>
-            <div className="col-6 categoryTreeFrame">
-              <CategoryTree />
-            </div>
-          </div>
-        </form>
-      </div>
+      <form
+        onSubmit={handleSubmit(this.handleValueSubmit)}
+        autoComplete="off"
+      >
+        <ImageBar />
+        {this.renderInputFields()}
+        <button
+          className="btn btn-success submit"
+          type="submit"
+        >
+          Add Item
+        </button>
+      </form>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { weight: state.weight };
-}
+const mapStateToProps = state => ({ weight: state.weight });
 
 export default reduxForm({
   form: 'simple',

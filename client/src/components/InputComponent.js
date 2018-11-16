@@ -1,33 +1,47 @@
 import React from 'react';
+import StarRating from 'react-star-ratings';
 import UpdateWeightButton from './UpdateWeightButton';
 import CategoryReactSelect from './CategoryReactSelect';
 
 // Responsible for rendering right fields for the form and adding them to redux-form
 // This component also renders errors for the fields if there are any errors in the error object
 
-export default ({
+const InputComponent = ({
   input,
   label,
   meta,
+  changeConditionRating,
+  conditionRating,
   actualValue,
 }) => (
   <div>
-    {<label>{label}</label>}
+    <label>{label}</label>
     <div
-      className={`${label === 'Product weight'
-        ? 'input-group'
-        : 'form-group'}`}
+      className={`${input.name === 'weight' ? 'input-group' : 'form-group'}`}
     >
-      {label !== 'Product Description' && label !== 'Category'
+
+      {label !== 'Product Description' && label !== 'Category' && label !== 'Condition'
         ? (
           <input
             {...input}
             type="text"
-            className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
-            value={label === 'Product weight' ? actualValue : null}
+            className={`form-control ${meta.touched && meta.error
+              ? 'is-invalid'
+              : ''}`}
+            value={input.name === 'weight'
+              ? actualValue
+              : undefined}
           />
         )
         : null}
+      {label === 'Condition'
+        ? (
+          <StarRating
+            rating={conditionRating}
+            numberOfStars={3}
+            changeRating={changeConditionRating}
+          />
+        ) : null}
       {label === 'Product Description'
         ? (
           <textarea
@@ -37,7 +51,7 @@ export default ({
           />
         )
         : null}
-      {label === 'Product weight'
+      {input.name === 'weight'
         ? <UpdateWeightButton />
         : null}
       {label === 'Category'
@@ -51,3 +65,5 @@ export default ({
     </div>
   </div>
 );
+
+export default InputComponent;
