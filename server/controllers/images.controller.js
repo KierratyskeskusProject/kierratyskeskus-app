@@ -3,7 +3,7 @@ const vision = require('@google-cloud/vision');
 const path = require('path');
 const fs = require('fs');
 const detectBook = require('./BookDetection/handleDetectionData');
-const fetchBook = require('./BookDetection/bookDetection');
+const fetchData = require('./BookDetection/bookDetection');
 
 const client = new vision.ImageAnnotatorClient({
   keyFilename: `${__dirname}/../../googleKey.json`,
@@ -28,7 +28,7 @@ const transformData = (values, imageInBase64) => {
     text: [],
     imageName: '',
     imageInBase64: '',
-    book: ''
+    book: '',
   };
   const labelsArray = [];
   const textArray = [];
@@ -70,15 +70,15 @@ const Capture = (res) => {
         const bookData = detectBook.filter(responseText);
 
 
-        if(bookData){
+        if (bookData) {
           console.log('in bookData');
-          const finalBook = fetchBook(bookData);
+          const finalBook = await fetchData(bookData);
           console.log(finalBook);
         }
 
-        //res.send(responseData);
+
+        res.send(responseData);
       } catch (error) {
-        error = 'error'
         res.send(error);
       }
     }
