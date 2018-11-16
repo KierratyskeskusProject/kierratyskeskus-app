@@ -11,9 +11,10 @@ const scaryAnimals = [
 ];
 
 const CategoryReactSelect = (props) => {
-  const { options, input: { value } } = props;
+  const { options, label, input: { value } } = props;
   return (
-    <div>
+    <React.Fragment>
+      <label>{label}</label>
       <Select
         {...props}
         value={value}
@@ -24,7 +25,7 @@ const CategoryReactSelect = (props) => {
         isMulti
         blurInputOnSelect={false}
       />
-    </div>
+    </React.Fragment>
   );
 };
 

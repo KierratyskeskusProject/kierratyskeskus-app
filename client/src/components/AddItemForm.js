@@ -44,20 +44,23 @@ class AddItemForm extends Component {
     const { conditionRating } = this.state;
     const { weight } = this.props;
 
-    return _.map(Fields, ({ label, name }) => (
-      <Field
-        key={name}
-        multi={name === 'category' ? true : ''}
-        options={name === 'category' ? scaryAnimals : ''}
-        component={name === 'category' ? CategoryReactSelect : InputComponent}
-        type="text"
-        label={label}
-        name={name}
-        conditionRating={conditionRating}
-        changeConditionRating={changeConditionRating}
-        actualValue={name === 'weight' ? weight.weight.value : '0'}
-      />
-    ));
+    return _.map(Fields, ({ label, name }) => {
+      console.log('moi', label);
+      return (
+        <Field
+          key={name}
+          multi={name === 'category' ? true : ''}
+          options={name === 'category' ? scaryAnimals : ''}
+          component={name === 'category' ? CategoryReactSelect : InputComponent}
+          type="text"
+          label={label}
+          name={name}
+          conditionRating={conditionRating}
+          changeConditionRating={changeConditionRating}
+          actualValue={name === 'weight' ? weight.weight.value : '0'}
+        />
+      );
+    });
   }
 
   render() {
