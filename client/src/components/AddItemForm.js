@@ -57,7 +57,7 @@ class AddItemForm extends Component {
         name={name}
         conditionRating={conditionRating}
         changeConditionRating={changeConditionRating}
-        actualValue={name === 'weight' ? weight.weight.value : ''}
+        actualValue={name === 'weight' ? weight.weight.value : '0'}
       />
     ));
   }

@@ -7,7 +7,7 @@ it('has right fields for a form', () => {
     { label: 'Condition', name: 'condition' },
     { label: 'Price (€)', name: 'price' },
     { label: 'Category', name: 'category' },
-    { label: 'Product weight (kg)', name: 'weight' },
+    { label: 'Product weight (grams)', name: 'weight' },
     { label: 'Product Description', name: 'description' },
   ];
 
