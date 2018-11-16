@@ -9,7 +9,7 @@ export class CaptureModal extends Component {
     isModalActive: PropTypes.bool.isRequired,
     handleModalToggle: PropTypes.func.isRequired,
     loading: PropTypes.bool.isRequired,
-  }
+  };
 
   componentDidMount() {
     document.getElementById('trunk')
