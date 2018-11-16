@@ -1,8 +1,4 @@
 
-
-const text = [];
-
-
 const filter = (responseText) => {
   let result = responseText.indexOf('ISBN');
   let res = null;
@@ -21,15 +17,6 @@ const filter = (responseText) => {
   return res;
 };
 
-const detection = (responseText) => {
-  const detections = responseText;
-  detections.forEach((value, index) => {
-    if (index < 1) return;
-    text.push(value.description);
-  });
-  console.log('text', text);
-  return text;
-};
 
 const combined = (responseText) => {
   const identifier = filter(responseText);
@@ -38,4 +25,4 @@ const combined = (responseText) => {
 };
 
 
-module.exports = { combined, detection, filter };
+module.exports = { combined, filter };

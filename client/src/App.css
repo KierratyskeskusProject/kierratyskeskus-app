@@ -22,8 +22,9 @@ body {
 
 .trunk {
   /* Includes everything underneath Header, such as form */
-  margin-left: 5em;
-  margin-right: 5em;
+  margin-left: 12.5%;
+  margin-right: 12.5%;
+  width: 75%;
   padding-bottom: 2em; 
 }
 
@@ -35,6 +36,7 @@ body {
   height: auto;
   position: relative;
   transition: height 0.5s;
+  flex-wrap: wrap;
 }
 
 .modal-backdrop {
@@ -55,11 +57,79 @@ body {
   border-radius: 10px !important;
 }
 
+.closeModal {
+  /* Delete button inside imageFrame, targeting that specific image */
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+}
+
+.closeModal:before {
+  content: "";
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  border-radius: 90%;
+  border: 2px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.closeModal:focus, .closeModal:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.fa-times {
+  font-size: 25px;
+  margin-top: 3px;
+}
+
 .fullscreen {
   /* The image housed in the 'view fullsized picture' modal. */
   width: 100%;
   height: 100%;
   border-radius: 10px;
+}
+
+.modal__close {
+  /* Delete button inside imageFrame, targeting that specific image */
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+}
+
+.modal__close:before {
+  content: "";
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  border-radius: 90%;
+  border: 3px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.modal__close:focus, .modal__close:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.fa-times-modal {
+  font-size: 25px;
+  margin-top: 0.2rem;
 }
 
 /* Animations for added pictures */
@@ -75,6 +145,7 @@ body {
 }
 
 .imageFrame {
+  /* Frame for housing a new image & delete button for that specific image. Imagebar has several of these */
   height: 200px;
   width: 150px;
   margin-left: 15px;
@@ -91,7 +162,7 @@ body {
 }
 
 .newImage {
-  /* Buttons (for firing modals) housing new images added to Image Bar */
+  /* The image inside imageFrame. Tagged as a button (for firing a modal). */
   height: inherit;
   width: inherit;
   overflow: hidden;
@@ -101,14 +172,20 @@ body {
   padding: 0 !important;
 }
 
+.newImage:focus, .newImage:active {
+  box-shadow: 0 8px 24px 0 rgba(0, 0, 0, 0.2) !important;
+  border: none !important;
+}
+
 .image {
-  /* New <img> added to Image Bar */
+  /* New <img> added to Image Bar, housed inside newImage in imageFrame */
   height: inherit;
   /* Temporary fix to centering images, unlikely to work on portraits...: */
   margin-left:-40%;
 }
 
 .deleteImage {
+  /* Delete button inside imageFrame, targeting that specific image */
   position: absolute;
   top: -10px;
   right: -10px;
@@ -129,8 +206,145 @@ body {
   left: 2px;
 }
 
+.deleteImage:focus, .deleteImage:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.modal-body .deleteImage {
+  top: 40px;
+}
+
 .fa-trash-alt {
+  /* Icon for deleteImage button */
   font-size: 14px;
+}
+
+.camera__container {
+  overflow: hidden;
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  top: 0;
+  left: 0;
+  border-radius: 5px;
+}
+
+.camera__actual {
+  margin-left: -160%;
+}
+
+.camera__modal--hidden {
+  display: none !important;
+}
+
+.camera__modal {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  top: 0;
+  left: 0;
+}
+
+.modal__content {
+  display: flex;
+  width: auto;
+  position: absolute;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
+  justify-content: center;
+  margin-top: 5rem;
+  overflow: hidden;
+}
+
+.capture, .capture__loading {
+  width: 76px;
+  height: 76px;
+  position: absolute;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 90%;
+  bottom: 10px;
+}
+
+.capture:before, .capture__loading:before {
+  content: '';
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  border: 5px solid rgb(255, 255, 255);
+  border-radius: 90%;
+  left: 3px;
+  top: 3px;
+}
+
+.capture__loading:after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 56px;
+  height: 56px;
+  background-color: transparent !important;
+  border-radius: 90%;
+  border: 6px solid;
+  border-color: rgb(255, 255, 255) transparent rgb(255, 255, 255) transparent;
+  animation: capture__animation 0.9s linear infinite;
+  top: 10px;
+  left: 10px;
+}
+
+@keyframes capture__animation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.fa-camera-modal {
+  font-size: 35px !important;
+}
+
+.modal__close {
+  /* Delete button inside imageFrame, targeting that specific image */
+  width: 46px;
+  height: 46px;
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color:rgb(200, 200, 200);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 90%;
+  z-index: 11;
+}
+
+.modal__close:before {
+  content: "";
+  height: 42px;
+  width: 42px;
+  position: absolute;
+  border-radius: 90%;
+  border: 3px dashed rgb(255, 255, 255);
+  top: 2px;
+  left: 2px;
+}
+
+.modal__close:focus, .modal__close:active {
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.fa-times-modal {
+  font-size: 25px;
+  margin-top: 0.2rem;
 }
 
 .addImage {
@@ -159,6 +373,7 @@ body {
   position: absolute;
   top: 5px;
   left: 5px;
+  z-index: 5000;
 }
 
 .addImage:focus, .addImage:active {
@@ -169,6 +384,9 @@ body {
 .fa-camera {
   /* The camera icon within addImage button */
   font-size: 50px;
+  position: relative;
+  z-index: 5000;
+  opacity: 1;
 }
 
 input, textarea {
@@ -215,6 +433,7 @@ input:focus, textarea:focus {
   background-color: rgb(0, 167, 126);
   border: rgb(0, 153, 115);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-size: 20px;
 }
 
 .submit:hover, .submit:active {
@@ -229,6 +448,7 @@ input:focus, textarea:focus {
 .input-group {
   margin-bottom: 1rem;
 }
+
 
 /*  
   rgb(0, 167, 126)

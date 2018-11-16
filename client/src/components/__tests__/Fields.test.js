@@ -5,9 +5,9 @@ it('has right fields for a form', () => {
   const expectedFields = [
     { label: 'Product Name', name: 'title' },
     { label: 'Condition', name: 'condition' },
-    { label: 'Price', name: 'price' },
+    { label: 'Price (€)', name: 'price' },
     { label: 'Category', name: 'category' },
-    { label: 'Product weight', name: 'weight' },
+    { label: 'Product weight (kg)', name: 'weight' },
     { label: 'Product Description', name: 'description' },
   ];
 

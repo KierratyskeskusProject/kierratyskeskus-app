@@ -8,7 +8,7 @@ class App extends Component {
     return (
       <div>
         <Header />
-        <div className="trunk">
+        <div className="trunk" id="trunk">
           <AddItemForm />
         </div>
       </div>
