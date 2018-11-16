@@ -11,9 +11,7 @@ const scaryAnimals = [
 ];
 
 const CategoryReactSelect = (props) => {
-  const { options } = props;
-  const { input } = props;
-  const { value } = input;
+  const { options, input: { value } } = props;
   return (
     <div>
       <Select
