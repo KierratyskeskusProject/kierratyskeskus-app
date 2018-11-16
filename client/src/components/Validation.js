@@ -6,9 +6,9 @@ export default function validate(values) {
   if (values.title && values.title.length > 100) {
     errors.title = 'Maybe a too long for a product name';
   }
-  if (!values.condition) {
-    errors.condition = 'Could you please Enter a condition';
-  }
+  /*   if (!values.condition) {
+    errors.condition = 'Enter a condition!';
+  } */
   if (!values.price) {
     errors.price = 'Could you please enter a price';
   }

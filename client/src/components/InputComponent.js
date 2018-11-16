@@ -1,31 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
+import StarRating from 'react-star-ratings';
 import UpdateWeightButton from './UpdateWeightButton';
 
-export default ({
-  input, label, meta, actualValue,
-}) => (
-  <div>
-    {<label>{label}</label>}
-    <div
-      className={`${label === 'Product weight'
-        ? 'input-group'
-        : 'form-group'}`}
-    >
-      <input
-        {...input}
-        type="text"
-        className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
-        value={label === 'Product weight' ? actualValue : null}
+class InputComponent extends Component {
+  render() {
+    const {
+      input,
+      label,
+      meta,
+      changeConditionRating,
+      conditionRating,
+      actualValue,
+    } = this.props;
 
-      />
-      {label === 'Product weight'
-        ? <UpdateWeightButton />
-        : null}
-      <div
-        className="invalid-feedback"
-      >
-        {meta.touched ? meta.error : ''}
-      </div>
-    </div>
-  </div>
-);
+    return (
+      <div>
+        {<label>{label}</label>}
+        <div className={`${input.name === 'weight'
+          ? 'input-group'
+          : 'form-group'}`}
+        >
+
+          {label === 'Condition'
+            ? (
+              <StarRating
+                rating={conditionRating}
+                numberOfStars={3}
+                changeRating={changeConditionRating}
+              />
+            ) : (
+              <input
+                {...input}
+                type="text"
+                className={`form-control ${meta.touched && meta.error
+                  ? 'is-invalid'
+                  : ''}`}
+                value={input.name === 'weight'
+                  ? actualValue
+                  : undefined}
+              />
+            )}
+          {input.name === 'weight' ? <UpdateWeightButton /> : null}
+          <div className="invalid-feedback">{meta.touched ? meta.error : ''}</div>
+        </div>
+
+      </div>);
+  }
+}
+
+export default InputComponent;

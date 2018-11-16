@@ -15,6 +15,7 @@
     "react-dom": "^16.4.2",
     "react-redux": "^5.0.7",
     "react-scripts": "1.1.4",
+    "react-star-ratings": "^2.3.0",
     "react-webcam": "^1.0.4",
     "redux": "^4.0.0",
     "redux-form": "^7.4.2",
