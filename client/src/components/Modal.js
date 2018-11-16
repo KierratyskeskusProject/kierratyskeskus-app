@@ -45,7 +45,7 @@ export class CaptureModal extends Component {
               ? 'capture__loading'
               : 'btn capture'}
             type="submit"
-            onClick={() => [weight(), image()] }
+            onClick={() => [weight(), image()]}
             disabled={loading}
           >
             {loading ? '' : <i className="fa fa-camera fa-camera-modal" />}
