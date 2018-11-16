@@ -51,6 +51,7 @@ const DymoScale = function dymoScale() {
       console.log(msg);
       reading = false;
       clearInterval(interval);
+      weight = 0;
     }
   });
 
