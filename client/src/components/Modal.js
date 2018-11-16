@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Webcam from 'react-webcam';
 import { connect } from 'react-redux';
-import { fetchImage } from '../redux/actions';
+import { fetchImage, fetchWeight } from '../redux/actions';
 
 export class CaptureModal extends Component {
   static propTypes = {
@@ -24,7 +24,8 @@ export class CaptureModal extends Component {
     const {
       isModalActive,
       loading,
-      fetch,
+      image,
+      weight,
       handleModalToggle,
     } = this.props;
     return (
@@ -44,7 +45,7 @@ export class CaptureModal extends Component {
               ? 'capture__loading'
               : 'btn capture'}
             type="submit"
-            onClick={() => fetch()}
+            onClick={() => [weight(), image()] }
             disabled={loading}
           >
             {loading ? '' : <i className="fa fa-camera fa-camera-modal" />}
@@ -57,9 +58,10 @@ export class CaptureModal extends Component {
 
 const mapStateToProps = state => ({
   loading: state.images.loading,
+  weight: state.weight,
 });
 
 export default connect(
   mapStateToProps,
-  { fetch: fetchImage },
+  { image: fetchImage, weight: fetchWeight },
 )(CaptureModal);
