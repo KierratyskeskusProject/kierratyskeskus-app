@@ -66,15 +66,19 @@ const Capture = (res) => {
         const responseData = transformData(values, imageInBase64);
 
         const responseText = responseData.text;
-        const bookData = detectBook.combined(responseText);
+        const bookData = detectBook.filter(responseText);
         if (bookData) {
-          const book = fetchBook(bookData);
-          res.send(book);
+          fetchBook(bookData).then((xBook) => {
+            responseData.push(xBook);
+            console.log(responseData);
+          });
         }
 
         res.send(responseData);
       } catch (error) {
         res.send(error);
+      } finally {
+        res.send('error');
       }
     }
   });

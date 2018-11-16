@@ -1,8 +1,6 @@
-
 const filter = (responseText) => {
   let result = responseText.indexOf('ISBN');
   let res = null;
-  console.log('response text', result);
 
   switch (result) {
     case -1:
@@ -18,11 +16,4 @@ const filter = (responseText) => {
 };
 
 
-const combined = (responseText) => {
-  const identifier = filter(responseText);
-  console.log('identifier', identifier);
-  return identifier;
-};
-
-
-module.exports = { combined, filter };
+module.exports = { filter };
