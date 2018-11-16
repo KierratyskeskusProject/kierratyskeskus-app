@@ -6,7 +6,6 @@ const fetchData = async (identifier) => {
   const queryUrl = url + identifier;
 
   const fetchBooks = await axios.get(queryUrl);
-  console.log(fetchBooks);
   if (fetchBooks.data.totalItems === 0) return null;
   return fetchBooks.data.items[0].volumeInfo;
 };
