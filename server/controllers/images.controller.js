@@ -72,10 +72,8 @@ const Capture = (res) => {
 
         if (bookData) {
           console.log('in bookData');
-          const finalBook = await fetchData(bookData);
-          console.log(finalBook);
+          responseData.book = await fetchData(bookData);
         }
-
 
         res.send(responseData);
       } catch (error) {

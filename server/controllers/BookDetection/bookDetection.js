@@ -1,18 +1,14 @@
-const fetch = require('node-fetch');
+const axios = require('axios');
 
 
-const fetchData = (identifier) => {
+const fetchData = async (identifier) => {
   const url = 'https://www.googleapis.com/books/v1/volumes?q=ISBN:';
   const queryUrl = url + identifier;
 
-  fetch(queryUrl)
-    .then(res => res.json())
-    .then((response) => {
-      if (response.totalItems === 0) return null;
-      const book = response.items[0].volumeInfo;
-      return book;
-    });
-  return null;
+  const fetchBooks = await axios.get(queryUrl);
+  console.log(fetchBooks);
+  if (fetchBooks.data.totalItems === 0) return null;
+  return fetchBooks.data.items[0].volumeInfo;
 };
 
 module.exports = fetchData;
