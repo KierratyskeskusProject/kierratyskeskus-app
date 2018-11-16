@@ -15,7 +15,6 @@ const InputComponent = ({
   actualValue,
 }) => (
   <div>
-    {console.log(label)}
     <label>{label}</label>
     <div
       className={`${input.name === 'weight' ? 'input-group' : 'form-group'}`}

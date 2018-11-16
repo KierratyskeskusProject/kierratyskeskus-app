@@ -390,14 +390,14 @@ body {
   opacity: 1;
 }
 
-input, textarea {
-  /* Form inputs */
-  border: 2px rgb(0, 167, 126) solid !important;
-}
+/* input, textarea {
 
-input:focus, textarea:focus {
+  border: 2px rgb(0, 167, 126) solid !important;
+} */
+
+/*input:focus, textarea:focus {
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2) !important;
-}
+}*/
 
 .weight {
   /* Button for refreshing the item weight */
@@ -510,4 +510,8 @@ input:focus, textarea:focus {
 .suggestionCheckbox {
   margin-top: 10px;
   margin-right: 5px;
+}
+
+.css-10nd86i {
+  margin-bottom: 1rem;
 }
