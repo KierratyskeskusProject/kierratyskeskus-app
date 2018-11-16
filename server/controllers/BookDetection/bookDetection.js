@@ -4,6 +4,7 @@ const fetch = require('node-fetch');
 const fetchData = (identifier) => {
   const url = 'https://www.googleapis.com/books/v1/volumes?q=ISBN:';
   const queryUrl = url + identifier;
+
   fetch(queryUrl)
     .then(res => res.json())
     .then((response) => {

@@ -28,6 +28,7 @@ const transformData = (values, imageInBase64) => {
     text: [],
     imageName: '',
     imageInBase64: '',
+    book: ''
   };
   const labelsArray = [];
   const textArray = [];
@@ -43,9 +44,9 @@ const transformData = (values, imageInBase64) => {
   collection.imageName = image.replace(/^\D+/g, '');
   collection.imageInBase64 = imageInBase64;
   collection.labels = labelsArray;
+  collection.book = null;
   return collection;
 };
-
 
 const Capture = (res) => {
   image = createImageName();
@@ -67,23 +68,22 @@ const Capture = (res) => {
 
         const responseText = responseData.text;
         const bookData = detectBook.filter(responseText);
-        if (bookData) {
-          fetchBook(bookData).then((xBook) => {
-            responseData.push(xBook);
-            console.log(responseData);
-          });
+
+
+        if(bookData){
+          console.log('in bookData');
+          const finalBook = fetchBook(bookData);
+          console.log(finalBook);
         }
 
-        res.send(responseData);
+        //res.send(responseData);
       } catch (error) {
+        error = 'error'
         res.send(error);
-      } finally {
-        res.send('error');
       }
     }
   });
 };
-
 
 const Send = (res) => {
   res.sendFile(image);
