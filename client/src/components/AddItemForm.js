@@ -9,6 +9,7 @@ import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
 import CategoryTree from './CategoryTree';
+import CategoryReactSelect, { scaryAnimals } from './CategoryReactSelect';
 
 class AddItemForm extends Component {
   onSubmit(values) {
@@ -16,7 +17,11 @@ class AddItemForm extends Component {
     const newValues = Object.assign({}, values);
 
     newValues.weight = weight.weight.value;
-    console.log(newValues);
+
+    values.category.map((item, key) => {
+      newValues.category[key] = item.value;
+      return null;
+    });
     postForm(newValues);
   }
 
@@ -25,7 +30,9 @@ class AddItemForm extends Component {
     return _.map(Fields, ({ label, name }) => (
       <Field
         key={name}
-        component={InputComponent}
+        multi={name === 'category' ? true : ''}
+        options={name === 'category' ? scaryAnimals : ''}
+        component={name === 'category' ? CategoryReactSelect : InputComponent}
         type="text"
         label={label}
         name={name}

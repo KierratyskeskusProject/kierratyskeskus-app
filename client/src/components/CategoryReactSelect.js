@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Select from 'react-select';
 
 const scaryAnimals = [
@@ -10,17 +10,25 @@ const scaryAnimals = [
   { label: 'Snakes', value: 6 },
 ];
 
-// TODO: fix value prop input should not be null
-
-export default class CategoryReactSelect extends Component {
-  render() {
-    return (
+const CategoryReactSelect = (props) => {
+  const { options } = props;
+  const { input } = props;
+  const { value } = input;
+  return (
+    <div>
       <Select
-        options={scaryAnimals}
+        {...props}
+        value={value}
+        onChange={valueToChange => props.input.onChange(valueToChange)}
+        onBlur={() => props.input.onBlur(props.input.value)}
+        options={options}
         placeholder="Select a scary animal"
         isMulti
         blurInputOnSelect={false}
       />
-    );
-  }
-}
+    </div>
+  );
+};
+
+export default CategoryReactSelect;
+export { scaryAnimals };
