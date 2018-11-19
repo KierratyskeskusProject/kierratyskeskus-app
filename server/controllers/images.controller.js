@@ -69,7 +69,6 @@ const Capture = (res) => {
         const responseText = responseData.text;
         const bookData = detectBook.filter(responseText);
 
-
         if (bookData) {
           responseData.book = await fetchData(bookData);
         }
