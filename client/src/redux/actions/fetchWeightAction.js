@@ -4,7 +4,6 @@ import { fetchWeightBegin, fetchWeightSuccess, fetchWeightFailure } from '../typ
 
 const fetchWeight = () => {
   const action = (dispatch) => {
-    console.log('action');
     const url = 'http://localhost:5000/weight';
     dispatch(fetchWeightBegin());
     const request = fetch(url, {

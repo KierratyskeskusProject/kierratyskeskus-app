@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
+
 import Fields from './Fields';
 import InputComponent from './InputComponent';
 import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
-import DescriptionField from './DescriptionField';
-
 import validate from './Validation';
+import CategoryReactSelect, { scaryAnimals } from './CategoryReactSelect';
 
 class AddItemForm extends Component {
   constructor(props) {
@@ -32,6 +32,10 @@ class AddItemForm extends Component {
       condition: conditionRating.toString(),
       weight: weight.weight.value,
     };
+    values.category.map((item, key) => {
+      newValues.category[key] = item.value;
+      return null;
+    });
     postForm(newValues);
   }
 
@@ -40,18 +44,12 @@ class AddItemForm extends Component {
     const { conditionRating } = this.state;
     const { weight } = this.props;
 
-    const inputFields = _.differenceWith(
-      Fields,
-      [{
-        label: 'Product Description',
-        name: 'description',
-      }],
-      _.isEqual,
-    );
-    return _.map(inputFields, ({ label, name }) => (
+    return _.map(Fields, ({ label, name }) => (
       <Field
         key={name}
-        component={InputComponent}
+        multi={name === 'category' ? true : ''}
+        options={name === 'category' ? scaryAnimals : ''}
+        component={name === 'category' ? CategoryReactSelect : InputComponent}
         type="text"
         label={label}
         name={name}
@@ -71,26 +69,18 @@ class AddItemForm extends Component {
       >
         <ImageBar />
         {this.renderInputFields()}
-        <Field
-          key="description"
-          name="description"
-          component={DescriptionField}
-        />
         <button
           className="btn btn-success submit"
           type="submit"
         >
-Submit
-
+          Add Item
         </button>
       </form>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return { weight: state.weight };
-}
+const mapStateToProps = state => ({ weight: state.weight });
 
 export default reduxForm({
   form: 'simple',
