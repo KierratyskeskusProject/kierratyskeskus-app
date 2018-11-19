@@ -10,27 +10,28 @@ body {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 }
 
-.logo {
+.headerLeft {
   /* Part of Header; replace with logo */
   color: rgb(255, 255, 255);
 }
 
-.heading {
+.headerRight {
   /* Part of Header */
   color: rgb(255, 255, 255);
 }
 
 .trunk {
   /* Includes everything underneath Header, such as form */
-  margin-left: 12.5%;
-  margin-right: 12.5%;
-  width: 75%;
+  margin-left: 15%;
+  margin-right: 15%;
+  width: 70%;
   padding-bottom: 2em; 
 }
 
 .imageBar {
   /* Collects new images and houses a button for adding new ones */
   margin-bottom: 2em;
+  /* width: 200%; */
   display: inline-flex;
   width: auto;
   height: auto;
@@ -389,30 +390,30 @@ body {
   opacity: 1;
 }
 
-input, textarea {
-  /* Form inputs */
+/* input, textarea {
+
   border: 2px rgb(0, 167, 126) solid !important;
-}
+} */
 
-input:focus, textarea:focus {
+/*input:focus, textarea:focus {
   box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2) !important;
-}
+}*/
 
-#weight {
+.weight {
   /* Button for refreshing the item weight */
   color: rgb(255, 255, 255);
   background-color: rgb(0, 167, 126);
   border: rgb(0, 167, 126);
-  border-top-right-radius: .25rem;
-  border-bottom-right-radius: .25rem;
+  border-top-right-radius: .25rem !important;
+  border-bottom-right-radius: .25rem !important;
 }
 
-#weight:hover, #weight:active {
+.weight:hover, .weight:active {
   background-color: rgb(0, 117, 88);
   border: rgb(0, 167, 126);
 }
 
-#weight:focus {
+.weight:focus {
   box-shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
 }
 
@@ -425,6 +426,8 @@ input:focus, textarea:focus {
 
 .submit {
   /* onSubmit button of the form */
+  width: 100%;
+  height: 50px;
   margin: auto;
   padding-left: 2em;
   padding-right: 2em;
@@ -447,10 +450,68 @@ input:focus, textarea:focus {
 
 .input-group {
   margin-bottom: 1rem;
+  z-index: 0;
 }
 
+.contentFrame {
+  height: 100%;
+}
+
+.formFrame {
+  padding-right: 39px;
+  border-right: 1px dashed rgb(200, 200, 200);
+}
+
+.categoryTreeFrame {
+  height: inherit;
+  border-left: 1px dashed rgb(200, 200, 200);
+  padding-left: 39px;
+  padding-bottom: 2rem;
+}
+
+.categoryTree {
+  height: 100%;
+  background-color: rgb(255, 255, 255);
+  border: 2px rgb(0, 167, 126) solid !important;
+  border-radius: 5px;
+  overflow: auto;
+}
 
 /*  
   rgb(0, 167, 126)
   rgb(241, 209, 184)  
 */
+
+.autosuggestionStyle {
+  position: absolute;
+  width: 33%;
+  right: 7%;
+  top: 318px;
+}
+
+.react-autosuggest__suggestions-container {
+  margin-top: 1rem;
+}
+
+.react-autosuggest__suggestions-list {
+  list-style-type: none;
+}
+
+.suggestionLabel:hover {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.suggestionLabelStyle {
+  width: 80%;
+  margin-left: 5px;
+}
+
+.suggestionCheckbox {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.css-10nd86i {
+  margin-bottom: 1rem;
+}
