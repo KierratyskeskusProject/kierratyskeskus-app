@@ -10,7 +10,7 @@ const db = new sqlite3.Database(':memory:', (err) => {
 
 // create a table called products in the database
 db.serialize(() => {
-  const sql = 'CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(30), description VARCHAR(255), condition VARCHAR(50), price VARCHAR(30), category VARCHAR(20), weight VARCHAR(30));';
+  const sql = 'CREATE TABLE IF NOT EXISTS products (id INTEGER PRIMARY KEY AUTOINCREMENT, title VARCHAR(30), description VARCHAR(255), condition VARCHAR(50), price VARCHAR(30), categories VARCHAR(200), weight VARCHAR(30));';
   db.run(sql);
   db.run('INSERT INTO products(title) values("title")');
 });

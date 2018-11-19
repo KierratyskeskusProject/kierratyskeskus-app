@@ -2,8 +2,8 @@ const Products = require('../controllers/products.controller');
 
 const ProductRoutes = (app) => {
   app.get('/products', (req, res) => {
-    Products.getAll((err, products, next) => {
-      if (err) return next(err);
+    Products.getAll((err, products) => {
+      if (err) return res.send(500);
       res.send(products);
       return null;
     });
