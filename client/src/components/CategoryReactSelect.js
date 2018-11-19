@@ -1,13 +1,13 @@
 import React from 'react';
 import Select from 'react-select';
 
-const scaryAnimals = [
-  { label: 'Alligators', value: 1 },
-  { label: 'Crocodiles', value: 2 },
-  { label: 'Sharks', value: 3 },
-  { label: 'Small crocodiles', value: 4 },
-  { label: 'Smallest crocodiles', value: 5 },
-  { label: 'Snakes', value: 6 },
+const categoryList = [
+  { label: 'Kitchenware', value: 1 },
+  { label: 'Bicycles', value: 2 },
+  { label: 'Books', value: 3 },
+  { label: 'Electronics', value: 4 },
+  { label: 'Furniture', value: 5 },
+  { label: 'Clothes', value: 6 },
 ];
 
 const CategoryReactSelect = (props) => {
@@ -21,7 +21,7 @@ const CategoryReactSelect = (props) => {
         onChange={valueToChange => props.input.onChange(valueToChange)}
         onBlur={() => props.input.onBlur(props.input.value)}
         options={options}
-        placeholder="Select a scary animal"
+        placeholder="Select a category"
         isMulti
         blurInputOnSelect={false}
       />
@@ -30,4 +30,4 @@ const CategoryReactSelect = (props) => {
 };
 
 export default CategoryReactSelect;
-export { scaryAnimals };
+export { categoryList };

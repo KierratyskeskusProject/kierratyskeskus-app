@@ -8,7 +8,7 @@ import InputComponent from './InputComponent';
 import { postForm } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
-import CategoryReactSelect, { scaryAnimals } from './CategoryReactSelect';
+import CategoryReactSelect, { categoryList } from './CategoryReactSelect';
 
 class AddItemForm extends Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class AddItemForm extends Component {
     this.setState({
       conditionRating: newRating,
     });
-  }
+  };
 
   handleValueSubmit = (values) => {
     const { conditionRating } = this.state;
@@ -37,7 +37,7 @@ class AddItemForm extends Component {
       return null;
     });
     postForm(newValues);
-  }
+  };
 
   renderInputFields() {
     const { changeConditionRating } = this;
@@ -48,7 +48,7 @@ class AddItemForm extends Component {
       <Field
         key={name}
         multi={name === 'category' ? true : ''}
-        options={name === 'category' ? scaryAnimals : ''}
+        options={name === 'category' ? categoryList : ''}
         component={name === 'category' ? CategoryReactSelect : InputComponent}
         type="text"
         label={label}
