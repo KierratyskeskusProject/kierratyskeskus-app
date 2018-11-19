@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import Webcam from 'react-webcam';
 import { connect } from 'react-redux';
 import Modal from './Modal';
@@ -22,7 +22,7 @@ export class ImageButton extends Component {
     const { isModalActive } = this.state;
     const { handleModalToggle } = this;
     return (
-      <React.Fragment>
+      <Fragment>
         <button
           className="btn addImage"
           type="button"
@@ -40,7 +40,7 @@ export class ImageButton extends Component {
           <i className="fa fa-camera" aria-hidden="true" />
         </button>
         <Modal isModalActive={isModalActive} handleModalToggle={handleModalToggle} />
-      </React.Fragment>
+      </Fragment>
     );
   }
 }
