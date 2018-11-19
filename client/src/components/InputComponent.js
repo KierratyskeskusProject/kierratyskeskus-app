@@ -16,7 +16,7 @@ class InputComponent extends Component {
     return (
       <div>
         {<label>{label}</label>}
-        <div className={`${label === 'Product weight'
+        <div className={`${input.name === 'weight'
           ? 'input-group'
           : 'form-group'}`}
         >
@@ -35,12 +35,12 @@ class InputComponent extends Component {
                 className={`form-control ${meta.touched && meta.error
                   ? 'is-invalid'
                   : ''}`}
-                value={label === 'Product weight'
+                value={input.name === 'weight'
                   ? actualValue
-                  : null}
+                  : undefined}
               />
             )}
-          {label === 'Product weight' ? <UpdateWeightButton /> : null}
+          {input.name === 'weight' ? <UpdateWeightButton /> : null}
           <div className="invalid-feedback">{meta.touched ? meta.error : ''}</div>
         </div>
 
