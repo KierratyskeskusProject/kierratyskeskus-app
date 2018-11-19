@@ -12,8 +12,8 @@
 
     #Windows:
     https://github.com/JoFrhwld/FAVE/wiki/Sox-on-Windows
-### ImageSnap
-    It is required to install imagesnap in order to take photos trough web cam (Mac OS)
+### ImageSnap/ FSWebcam
+    It is required to install Imagesnap (MAC) or FSWebcam(Linux) in order to take photos trough web cam.
 ### Key
 If you don't have Google Credentials, you can go to [cloud.google.com](https://cloud.google.com). Go to console and enable `Cloud Speech API` and `Cloud Vision API`.
 
@@ -25,7 +25,7 @@ If you don't have Google Credentials, you can go to [cloud.google.com](https://c
     To run server in dev mode: yarn run server
     To run clinet side: yarn run client
     To run both: yarn run dev
-## Workflow with git and lint
+## Workflow with Git and Lint
     Start with creating your own branch with task related name:
     git checkout -b <Your branch name>
 
