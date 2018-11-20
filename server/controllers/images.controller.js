@@ -51,6 +51,7 @@ const transformData = (values, imageInBase64) => {
 const Capture = (res) => {
   image = createImageName();
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
+  // Use another device
   const anotherCam = nodeWebcam.create();
 
   anotherCam.capture(image, async (err) => {
