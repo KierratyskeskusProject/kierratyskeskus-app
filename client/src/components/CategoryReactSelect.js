@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Select from 'react-select';
 
 const categoryList = [
@@ -13,7 +13,7 @@ const categoryList = [
 const CategoryReactSelect = (props) => {
   const { options, label, input: { value } } = props;
   return (
-    <React.Fragment>
+    <Fragment>
       <label>{label}</label>
       <Select
         {...props}
@@ -25,7 +25,7 @@ const CategoryReactSelect = (props) => {
         isMulti
         blurInputOnSelect={false}
       />
-    </React.Fragment>
+    </Fragment>
   );
 };
 
