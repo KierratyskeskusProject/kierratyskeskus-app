@@ -39,6 +39,8 @@ const InputComponent = ({
           <StarRating
             rating={conditionRating}
             numberOfStars={3}
+            starRatedColor="green"
+            starHoverColor="green"
             changeRating={changeConditionRating}
           />
         ) : null}
