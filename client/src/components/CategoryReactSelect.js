@@ -1,15 +1,6 @@
 import React, { Fragment } from 'react';
 import Select from 'react-select';
 
-const categoryList = [
-  { label: 'Kitchenware', value: 1 },
-  { label: 'Bicycles', value: 2 },
-  { label: 'Books', value: 3 },
-  { label: 'Electronics', value: 4 },
-  { label: 'Furniture', value: 5 },
-  { label: 'Clothes', value: 6 },
-];
-
 /* const categoryList = [
   {
     label: 'Kitchenware',
@@ -65,4 +56,3 @@ const CategoryReactSelect = (props) => {
 };
 
 export default CategoryReactSelect;
-export { categoryList };
