@@ -8,7 +8,18 @@ export const DELETE_IMAGE_FAILURE = 'DELETE_IMAGE_FAILURE';
 export const FETCH_WEIGHT_BEGIN = 'FETCH_WEIGTH_BEGIN';
 export const FETCH_WEIGHT_SUCCESS = 'FETCH_WEIGHT_SUCCESS';
 export const FETCH_WEIGHT_FAILURE = 'FETCH_WEIGHT_FAILURE';
+export const BOOK_SUCCESS = 'BOOK_SUCCESS';
+export const BOOK_FAILURE = 'BOOK_FAILURE';
 
+export const bookSuccess = book => ({
+  type: BOOK_SUCCESS,
+  payload: { book },
+});
+
+export const bookFailure = error => ({
+  type: BOOK_FAILURE,
+  payload: { error },
+});
 export const fetchWeightBegin = () => ({
   type: FETCH_WEIGHT_BEGIN,
 });
