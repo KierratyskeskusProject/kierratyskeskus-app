@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import {
+  Field, reduxForm, reset, initialize,
+} from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
@@ -11,20 +13,13 @@ import validate from './Validation';
 import CategoryReactSelect, { categoryList } from './CategoryReactSelect';
 
 class AddItemForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      conditionRating: 0,
-    };
-  }
+    state = { conditionRating: 0 };
 
   changeConditionRating = (newRating) => {
-    this.setState({
-      conditionRating: newRating,
-    });
+    this.setState({ conditionRating: newRating });
   };
 
-  handleValueSubmit = (values) => {
+  handleValueSubmit = (values, dispatch) => {
     const { conditionRating } = this.state;
     const { weight } = this.props;
     const newValues = {
@@ -37,6 +32,8 @@ class AddItemForm extends Component {
       return null;
     });
     postForm(newValues);
+    this.setState({ conditionRating: 0 });
+    dispatch(reset('simple'));
   };
 
   renderInputFields() {
