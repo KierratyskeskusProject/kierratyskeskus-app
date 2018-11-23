@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Select from 'react-select';
 
 const categoryList = [
@@ -11,21 +11,25 @@ const categoryList = [
 ];
 
 const CategoryReactSelect = (props) => {
-  const { options, label, input: { value } } = props;
+  const {
+    options, label, inputClass, input: { value },
+  } = props;
   return (
-    <Fragment>
-      <label>{label}</label>
-      <Select
-        {...props}
-        value={value}
-        onChange={valueToChange => props.input.onChange(valueToChange)}
-        onBlur={() => props.input.onBlur(props.input.value)}
-        options={options}
-        placeholder="Select a category"
-        isMulti
-        blurInputOnSelect={false}
-      />
-    </Fragment>
+    <div className="row">
+      <label className="col-3">{label}</label>
+      <div className={inputClass}>
+        <Select
+          {...props}
+          value={value}
+          onChange={valueToChange => props.input.onChange(valueToChange)}
+          onBlur={() => props.input.onBlur(props.input.value)}
+          options={options}
+          placeholder="Select a category"
+          isMulti
+          blurInputOnSelect={false}
+        />
+      </div>
+    </div>
   );
 };
 

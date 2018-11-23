@@ -9,18 +9,19 @@ import CategoryReactSelect from './CategoryReactSelect';
 const InputComponent = ({
   input,
   label,
+  inputClass,
   meta,
   changeConditionRating,
   conditionRating,
   actualValue,
 }) => (
-  <div>
-    <label>{label}</label>
+  <div className="row">
+    <label className="col-3">{label}</label>
     <div
-      className={`${input.name === 'weight' ? 'input-group' : 'form-group'}`}
+      className={`${input.name === 'weight' ? 'input-group' : 'form-group'} ${inputClass}`}
     >
 
-      {label !== 'Product Description' && label !== 'Category' && label !== 'Condition'
+      {label !== 'Description' && label !== 'Category' && label !== 'Condition'
         ? (
           <input
             {...input}
@@ -44,7 +45,7 @@ const InputComponent = ({
             changeRating={changeConditionRating}
           />
         ) : null}
-      {label === 'Product Description'
+      {label === 'Description'
         ? (
           <textarea
             className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}

@@ -44,13 +44,14 @@ class AddItemForm extends Component {
     const { conditionRating } = this.state;
     const { weight } = this.props;
 
-    return _.map(Fields, ({ label, name }) => (
+    return _.map(Fields, ({ label, name, inputClass }) => (
       <Field
         key={name}
         multi={name === 'category' ? true : ''}
         options={name === 'category' ? categoryList : ''}
         component={name === 'category' ? CategoryReactSelect : InputComponent}
         type="text"
+        inputClass={inputClass}
         label={label}
         name={name}
         conditionRating={conditionRating}
