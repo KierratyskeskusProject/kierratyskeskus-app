@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {
-  Field, reduxForm, reset, initialize,
+  Field,
+  reduxForm,
+  reset,
 } from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
