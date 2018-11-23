@@ -14,11 +14,12 @@ const InputComponent = ({
   changeConditionRating,
   conditionRating,
   actualValue,
+  isSmallResolution,
 }) => (
-  <div className="row">
-    <label className="col-3">{label}</label>
+  <div className={`${isSmallResolution ? null : 'row'} `}>
+    <label className={`${isSmallResolution ? null : 'col-3'} `}>{label}</label>
     <div
-      className={`${input.name === 'weight' ? 'input-group' : 'form-group'} ${inputClass}`}
+      className={`${input.name === 'weight' ? 'input-group' : 'form-group'} ${isSmallResolution ? null : inputClass}`}
     >
 
       {label !== 'Description' && label !== 'Category' && label !== 'Condition'

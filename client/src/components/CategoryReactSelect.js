@@ -12,12 +12,12 @@ const categoryList = [
 
 const CategoryReactSelect = (props) => {
   const {
-    options, label, inputClass, input: { value },
+    options, label, inputClass, isSmallResolution, input: { value },
   } = props;
   return (
-    <div className="row">
-      <label className="col-3">{label}</label>
-      <div className={inputClass}>
+    <div className={`${isSmallResolution ? null : 'row'} `}>
+      <label className={`${isSmallResolution ? null : 'col-3'} `}>{label}</label>
+      <div className={`${isSmallResolution ? null : inputClass} `}>
         <Select
           {...props}
           value={value}
