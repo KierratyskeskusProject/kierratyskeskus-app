@@ -8,10 +8,18 @@ const CategoryReactSelect = (props) => {
 
   const className = `form-group ${meta.touched && meta.error ? 'is-invalid' : ''}`;
 
-  const onInputChange = (valueToChange) => {
-    console.log('valuetochange', valueToChange);
+  const onInputChange = valueToChange => props.input.onChange(valueToChange.length === 0 ? '' : valueToChange);
 
-    return props.input.onChange(valueToChange.length === 0 ? '' : valueToChange);
+  const customStyles = {
+    control: base => ({
+      ...base,
+      boxShadow: 'none',
+      // You can also use state.isFocused to conditionally style based on the focus state
+      borderColor: meta.error && meta.touched ? 'red' : 'lightgrey',
+      ':hover': {
+        borderColor: meta.error && meta.touched ? 'red' : 'lightgrey',
+      },
+    }),
   };
 
   return (
@@ -25,6 +33,7 @@ const CategoryReactSelect = (props) => {
         options={options}
         placeholder="Select a category"
         isMulti
+        styles={customStyles}
         blurInputOnSelect={false}
       />
       <div className={className}>
