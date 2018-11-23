@@ -14,7 +14,6 @@ const CategoryReactSelect = (props) => {
     control: base => ({
       ...base,
       boxShadow: 'none',
-      // You can also use state.isFocused to conditionally style based on the focus state
       borderColor: meta.error && meta.touched ? 'red' : 'lightgrey',
       ':hover': {
         borderColor: meta.error && meta.touched ? 'red' : 'lightgrey',
