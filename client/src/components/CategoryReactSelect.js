@@ -3,14 +3,17 @@ import Select from 'react-select';
 
 const CategoryReactSelect = (props) => {
   const {
-    options, label, input: { value },
+    options, label, input: { value }, meta,
   } = props;
   console.log('Category', props);
 
-  function onInputChange(valueToChange) {
-    console.log('kekke');
-    return props.input.onChange(valueToChange);
-  }
+  const className = `form-group ${meta.touched && meta.error ? 'is-invalid' : ''}`;
+
+  const onInputChange = (valueToChange) => {
+    console.log('valuetochange', valueToChange);
+
+    return props.input.onChange(valueToChange.length === 0 ? '' : valueToChange);
+  };
 
   return (
     <Fragment>
@@ -24,8 +27,12 @@ const CategoryReactSelect = (props) => {
         placeholder="Select a category"
         isMulti
         blurInputOnSelect={false}
-        classNamePrefix="form-control"
       />
+      <div className={className}>
+        <div className="text-help">
+          {meta.touched ? meta.error : ''}
+        </div>
+      </div>
     </Fragment>
   );
 };
