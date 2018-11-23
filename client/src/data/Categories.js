@@ -18,6 +18,7 @@ const Categories = [
   },
   {
     label: 'Kirjat',
+    value: 4,
     options: [
       { label: 'Scifi, Fantasia ja Jännitys', value: 4.1 },
       { label: 'Kaunokirjat', value: 4.2 },
