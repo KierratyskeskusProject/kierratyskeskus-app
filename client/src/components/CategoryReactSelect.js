@@ -5,7 +5,6 @@ const CategoryReactSelect = (props) => {
   const {
     options, label, input: { value }, meta,
   } = props;
-  console.log('Category', props);
 
   const className = `form-group ${meta.touched && meta.error ? 'is-invalid' : ''}`;
 
