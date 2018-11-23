@@ -3,7 +3,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 
 import App from '../App';
-import AddItemForm from '../components/AddItemForm';
+import Main from '../components/Main';
 
 let wrapped;
 
@@ -12,5 +12,5 @@ beforeEach(() => {
 });
 
 it('shows an item form', () => {
-  expect(wrapped.find(AddItemForm).length).toEqual(1);
+  expect(wrapped.find(Main).length).toEqual(1);
 });
