@@ -8,7 +8,6 @@ class TemplateManager extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      template: '<h3>Template preview</h3>',
       editorState: EditorState.createEmpty(),
     };
   }
@@ -21,7 +20,7 @@ class TemplateManager extends Component {
 
 
   render() {
-    const { template, editorState } = this.state;
+    const { editorState } = this.state;
     console.log(editorState.getCurrentContent());
     return (
       <div className="App">
