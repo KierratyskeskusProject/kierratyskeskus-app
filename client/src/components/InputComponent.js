@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import StarRating from 'react-star-ratings';
 import UpdateWeightButton from './UpdateWeightButton';
 import CategoryReactSelect from './CategoryReactSelect';
@@ -16,10 +16,7 @@ const InputComponent = ({
 }) => (
   <div>
     <label>{label}</label>
-    <div
-      className={`${input.name === 'weight' ? 'input-group' : 'form-group'}`}
-    >
-
+    <div className={`${input.name === 'weight' ? 'input-group' : 'form-group'}`}>
       {input.name === 'title' || input.name === 'price'
         ? (
           <input
@@ -27,8 +24,7 @@ const InputComponent = ({
             type="text"
             className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
           />
-        )
-        : null}
+        ) : null}
       {input.name === 'condition'
         ? (
           <StarRating
@@ -40,12 +36,15 @@ const InputComponent = ({
           />
         ) : null}
       {input.name === 'weight' ? (
-        <input
-          {...input}
-          type="text"
-          className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
-          value={input.name === 'weight' ? actualValue : undefined}
-        />
+        <Fragment>
+          <input
+            {...input}
+            type="text"
+            className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
+            value={input.name === 'weight' ? actualValue : undefined}
+          />
+          <UpdateWeightButton />
+        </Fragment>
       ) : null}
       {input.name === 'description'
         ? (
@@ -54,17 +53,9 @@ const InputComponent = ({
             rows="5"
             {...input}
           />
-        )
-        : null}
-      {input.name === 'weight'
-        ? <UpdateWeightButton />
-        : null}
-      {label === 'Category'
-        ? <CategoryReactSelect />
-        : null}
-      <div
-        className="invalid-feedback"
-      >
+        ) : null}
+      {input.name === 'category' ? <CategoryReactSelect /> : null}
+      <div className="invalid-feedback">
         {meta.touched ? meta.error : ''}
       </div>
     </div>
