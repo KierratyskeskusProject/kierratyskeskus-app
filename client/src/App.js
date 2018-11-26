@@ -16,7 +16,7 @@ class App extends Component {
     this.setState({
       templateManagerActive: !templateManagerActive,
     });
-  }
+  };
 
   render() {
     const { templateManagerActive } = this.state;

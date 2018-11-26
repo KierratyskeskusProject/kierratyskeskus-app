@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import StarRating from 'react-star-ratings';
 import UpdateWeightButton from './UpdateWeightButton';
 import CategoryReactSelect from './CategoryReactSelect';
@@ -21,22 +21,15 @@ const InputComponent = ({
     <div
       className={`${input.name === 'weight' ? 'input-group' : 'form-group'} ${isSmallResolution ? null : inputClass}`}
     >
-
-      {label !== 'Description' && label !== 'Category' && label !== 'Condition'
+      {input.name === 'title' || input.name === 'price'
         ? (
           <input
             {...input}
             type="text"
-            className={`form-control ${meta.touched && meta.error
-              ? 'is-invalid'
-              : ''}`}
-            value={input.name === 'weight'
-              ? actualValue
-              : undefined}
+            className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
           />
-        )
-        : null}
-      {label === 'Condition'
+        ) : null}
+      {input.name === 'condition'
         ? (
           <StarRating
             rating={conditionRating}
@@ -46,24 +39,27 @@ const InputComponent = ({
             changeRating={changeConditionRating}
           />
         ) : null}
-      {label === 'Description'
+      {input.name === 'weight' ? (
+        <Fragment>
+          <input
+            {...input}
+            type="text"
+            className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
+            value={input.name === 'weight' ? actualValue : undefined}
+          />
+          <UpdateWeightButton />
+        </Fragment>
+      ) : null}
+      {input.name === 'description'
         ? (
           <textarea
             className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
             rows="5"
             {...input}
           />
-        )
-        : null}
-      {input.name === 'weight'
-        ? <UpdateWeightButton />
-        : null}
-      {label === 'Category'
-        ? <CategoryReactSelect />
-        : null}
-      <div
-        className="invalid-feedback"
-      >
+        ) : null}
+      {input.name === 'category' ? <CategoryReactSelect /> : null}
+      <div className="invalid-feedback">
         {meta.touched ? meta.error : ''}
       </div>
     </div>
