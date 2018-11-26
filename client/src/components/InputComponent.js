@@ -9,14 +9,18 @@ import CategoryReactSelect from './CategoryReactSelect';
 const InputComponent = ({
   input,
   label,
+  inputClass,
   meta,
   changeConditionRating,
   conditionRating,
   actualValue,
+  isSmallResolution,
 }) => (
-  <div>
-    <label>{label}</label>
-    <div className={`${input.name === 'weight' ? 'input-group' : 'form-group'}`}>
+  <div className={`${isSmallResolution ? null : 'row'} `}>
+    <label className={`${isSmallResolution ? null : 'col-3'} `}>{label}</label>
+    <div
+      className={`${input.name === 'weight' ? 'input-group' : 'form-group'} ${isSmallResolution ? null : inputClass}`}
+    >
       {input.name === 'title' || input.name === 'price'
         ? (
           <input
