@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, reset } from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
@@ -24,7 +24,7 @@ class AddItemForm extends Component {
     });
   };
 
-  handleValueSubmit = (values) => {
+  handleValueSubmit = async (values, dispatch) => {
     const { conditionRating } = this.state;
     const { weight } = this.props;
     const newValues = {
@@ -36,7 +36,9 @@ class AddItemForm extends Component {
       newValues.category[key] = item.value;
       return null;
     });
-    postForm(newValues);
+    await postForm(newValues);
+    dispatch(reset('simple'));
+    this.setState({ conditionRating: 0 });
   };
 
   renderInputFields() {

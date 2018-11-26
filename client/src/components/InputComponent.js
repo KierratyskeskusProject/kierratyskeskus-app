@@ -20,21 +20,16 @@ const InputComponent = ({
       className={`${input.name === 'weight' ? 'input-group' : 'form-group'}`}
     >
 
-      {label !== 'Product Description' && label !== 'Category' && label !== 'Condition'
+      {input.name === 'title' || input.name === 'price'
         ? (
           <input
             {...input}
             type="text"
-            className={`form-control ${meta.touched && meta.error
-              ? 'is-invalid'
-              : ''}`}
-            value={input.name === 'weight'
-              ? actualValue
-              : undefined}
+            className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
           />
         )
         : null}
-      {label === 'Condition'
+      {input.name === 'condition'
         ? (
           <StarRating
             rating={conditionRating}
@@ -44,7 +39,15 @@ const InputComponent = ({
             changeRating={changeConditionRating}
           />
         ) : null}
-      {label === 'Product Description'
+      {input.name === 'weight' ? (
+        <input
+          {...input}
+          type="text"
+          className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
+          value={input.name === 'weight' ? actualValue : undefined}
+        />
+      ) : null}
+      {input.name === 'description'
         ? (
           <textarea
             className={`form-control ${meta.touched && meta.error ? 'is-invalid' : ''}`}
