@@ -7,6 +7,7 @@ import {
   deleteImageBegin,
   deleteImageFailure,
   deleteImageSuccess,
+  clearImages,
 } from '../types';
 
 
@@ -42,5 +43,4 @@ const deleteImage = (imageName) => {
   return action;
 };
 
-
-export { fetchImage, deleteImage };
+export { fetchImage, deleteImage, clearImages };

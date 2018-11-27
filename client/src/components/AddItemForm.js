@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-import { postForm } from '../redux/actions/index';
+import { postForm, clearImages } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
 import CategoryReactSelect, { categoryList } from './CategoryReactSelect';
@@ -48,12 +48,12 @@ class AddItemForm extends Component {
     await postForm(newValues);
     dispatch(reset('simple'));
     this.setState({ conditionRating: 0 });
+    dispatch(clearImages());
   };
 
   renderInputFields() {
     const { changeConditionRating } = this;
-    const { conditionRating } = this.state;
-    const { isSmallResolution } = this.state;
+    const { conditionRating, isSmallResolution } = this.state;
     const { weight } = this.props;
 
     return _.map(Fields, ({ label, name, inputClass }) => (

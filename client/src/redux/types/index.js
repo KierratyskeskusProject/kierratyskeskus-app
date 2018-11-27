@@ -8,6 +8,8 @@ export const DELETE_IMAGE_FAILURE = 'DELETE_IMAGE_FAILURE';
 export const FETCH_WEIGHT_BEGIN = 'FETCH_WEIGTH_BEGIN';
 export const FETCH_WEIGHT_SUCCESS = 'FETCH_WEIGHT_SUCCESS';
 export const FETCH_WEIGHT_FAILURE = 'FETCH_WEIGHT_FAILURE';
+export const CLEAR_IMAGES = 'CLEAR_IMAGES';
+
 
 export const fetchWeightBegin = () => ({
   type: FETCH_WEIGHT_BEGIN,
@@ -54,4 +56,9 @@ export const deleteImageSuccess = (response, image) => ({
 export const deleteImageFailure = error => ({
   type: DELETE_IMAGE_FAILURE,
   payload: { error },
+});
+
+export const clearImages = images => ({
+  type: CLEAR_IMAGES,
+  payload: { images },
 });
