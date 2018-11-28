@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Select from 'react-select';
+import _ from 'lodash';
 
 const CategoryReactSelect = (props) => {
   const {
@@ -8,8 +9,28 @@ const CategoryReactSelect = (props) => {
   console.log('Category', props);
 
   function onInputChange(valueToChange) {
-    console.log('kekke');
-    return props.input.onChange(valueToChange);
+    const optionsLength = props.options.length;
+    const newOptions = [];
+    const labels = [];
+
+    _.forEach(valueToChange, (values) => {
+      const optionValue = values.value.toString().split('.');
+      for (let i = 0; i < optionsLength; i += 1) {
+        if (Number(optionValue[0]) === props.options[i].value) {
+          labels.push(props.options[i].label);
+        }
+      }
+    });
+
+    for (let j = 0; j < labels.length; j += 1) {
+      if (valueToChange[j].label.toString().search(labels[j]) !== 0) {
+        newOptions.push({ label: `${labels[j]} | ${valueToChange[j].label}`, value: valueToChange[j].value });
+      } else {
+        newOptions.push({ label: `${valueToChange[j].label}`, value: valueToChange[j].value });
+      }
+    }
+
+    return props.input.onChange(newOptions);
   }
 
   return (
