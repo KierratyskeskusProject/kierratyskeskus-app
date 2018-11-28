@@ -6,11 +6,11 @@ const CategoryReactSelect = (props) => {
     options, label, input: { value }, meta,
   } = props;
 
-  const className = `form-group ${meta.touched && meta.error ? 'is-invalid' : ''}`;
+  // const className = `form-group ${meta.touched && meta.error ? 'is-invalid' : ''}`;
 
   const onInputChange = valueToChange => props.input.onChange(valueToChange.length === 0 ? '' : valueToChange);
 
-  const customStyles = {
+  /* const customStyles = {
     control: base => ({
       ...base,
       boxShadow: 'none',
@@ -20,7 +20,7 @@ const CategoryReactSelect = (props) => {
       },
     }),
   };
-
+  */
   return (
     <Fragment>
       <label>{label}</label>
@@ -32,10 +32,9 @@ const CategoryReactSelect = (props) => {
         options={options}
         placeholder="Select a category"
         isMulti
-        styles={customStyles}
         blurInputOnSelect={false}
       />
-      <div className={className}>
+      <div>
         <div className="text-help">
           {meta.touched ? meta.error : ''}
         </div>
