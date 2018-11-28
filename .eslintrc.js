@@ -15,6 +15,7 @@ module.exports = {
         "jsx-a11y/label-has-for": "off",
         "class-methods-use-this": "off",
         "no-console": 0,
+        'no-plusplus': 'off',
         "mocha/no-exclusive-tests": "error",
         "no-unused-expressions": 0,
         "chai-friendly/no-unused-expressions": 2,
@@ -25,6 +26,6 @@ module.exports = {
         "react", "import","react-redux", "mocha", "chai-friendly", "chai-expect"
     ],
     "parser": "babel-eslint",
-    
+
 
 };
