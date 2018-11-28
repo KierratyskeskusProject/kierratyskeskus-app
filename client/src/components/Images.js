@@ -7,20 +7,25 @@ import { bookSuccess } from '../redux/types';
 
 
 class ImageBar extends Component {
+  storeBook = (bookData) => {
+    const { book } = this.props;
+    const newBook = { ...book };
+
+    newBook.title = bookData.title;
+    newBook.description = bookData.description;
+    newBook.pageCount = bookData.pageCount;
+    newBook.publisher = bookData.publisher;
+    newBook.publishedDate = bookData.publishedDate;
+    newBook.authors = bookData.authors;
+    console.log(newBook);
+    this.props.bookDispatch(newBook);
+  }
+
   renderImages() {
     const { images } = this.props;
     if (images.images.length !== 0) {
       if (images.images[0].book !== null) {
-        const bookData = images.images[0].book;
-        const { book } = this.props;
-        const newBook = { ...book };
-        newBook.title = bookData.title;
-        newBook.description = bookData.description;
-        newBook.pageCount = bookData.pageCount;
-        newBook.publisher = bookData.publisher;
-        newBook.publishedDate = bookData.publishedDate;
-        newBook.authors = bookData.authors;
-        console.log(newBook);
+        this.storeBook(images.images[0].book);
       }
       return images.images.map(item => (
         <Image
@@ -31,7 +36,6 @@ class ImageBar extends Component {
     }
     return null;
   }
-
 
   render() {
     return (

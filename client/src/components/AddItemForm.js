@@ -43,9 +43,6 @@ class AddItemForm extends Component {
     const { changeConditionRating } = this;
     const { conditionRating } = this.state;
     const { weight } = this.props;
-    const { book } = this.props;
-    console.log(book);
-
 
     return _.map(Fields, ({ label, name }) => (
       <Field
@@ -59,6 +56,7 @@ class AddItemForm extends Component {
         conditionRating={conditionRating}
         changeConditionRating={changeConditionRating}
         actualValue={name === 'weight' ? weight.weight.value : '0'}
+
 
       />
     ));
