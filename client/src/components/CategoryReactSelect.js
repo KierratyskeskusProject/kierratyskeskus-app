@@ -14,16 +14,16 @@ const CategoryReactSelect = (props) => {
     const labels = [];
 
     _.forEach(valueToChange, (values) => {
-      const optionValue = values.value.toString().split('.');
+      const optionValue = values.value.split('.');
       for (let i = 0; i < optionsLength; i += 1) {
-        if (Number(optionValue[0]) === props.options[i].value) {
+        if (optionValue[0] === props.options[i].value) {
           labels.push(props.options[i].label);
         }
       }
     });
 
     for (let j = 0; j < labels.length; j += 1) {
-      if (valueToChange[j].label.toString().search(labels[j]) !== 0) {
+      if (valueToChange[j].label.search(labels[j]) !== 0) {
         newOptions.push({ label: `${labels[j]} | ${valueToChange[j].label}`, value: valueToChange[j].value });
       } else {
         newOptions.push({ label: `${valueToChange[j].label}`, value: valueToChange[j].value });
