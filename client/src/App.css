@@ -477,26 +477,6 @@ body {
   overflow: auto;
 }
 
-/*  
-  rgb(0, 167, 126)
-  rgb(241, 209, 184)  
-*/
-
-.autosuggestionStyle {
-  position: absolute;
-  width: 33%;
-  right: 7%;
-  top: 318px;
-}
-
-.react-autosuggest__suggestions-container {
-  margin-top: 1rem;
-}
-
-.react-autosuggest__suggestions-list {
-  list-style-type: none;
-}
-
 .suggestionLabel:hover {
   cursor: pointer;
   font-weight: bold;
@@ -512,10 +492,7 @@ body {
   margin-right: 5px;
 }
 
-.css-10nd86i {
-  margin-bottom: 1rem;
-}
-
+/* Category validation styling */
 .text-help {
   width: 100%;
   margin-top: .25rem;
