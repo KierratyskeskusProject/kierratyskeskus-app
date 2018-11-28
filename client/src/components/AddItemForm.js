@@ -35,11 +35,16 @@ class AddItemForm extends Component {
 
   handleValueSubmit = async (values, dispatch) => {
     const { conditionRating } = this.state;
-    const { weight } = this.props;
+    const { weight, images } = this.props;
+    console.log(images.images.map(image => image.imageName));
+
+    const imageNames = images.images.map(image => image.imageName);
+
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
       weight: weight.weight.value,
+      images: imageNames,
     };
     values.category.map((item, key) => {
       newValues.category[key] = item.value;
@@ -96,7 +101,7 @@ class AddItemForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ weight: state.weight });
+const mapStateToProps = state => ({ weight: state.weight, images: state.images });
 
 export default reduxForm({
   form: 'simple',
