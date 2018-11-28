@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Select from 'react-select';
 
 const CategoryReactSelect = (props) => {

@@ -395,8 +395,8 @@ input, textarea {
   border: 2px rgb(0, 167, 126) solid !important;
 }
 
+/* Input on failed validation */
 .is-invalid {
-  /* Input on failed validation */
   border: 2px rgb(220, 53, 69) solid !important;
 }
 
