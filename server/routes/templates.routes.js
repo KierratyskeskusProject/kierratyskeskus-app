@@ -26,7 +26,6 @@ const TemplateRoutes = (app) => {
         const template = JSON.parse(data);
         const needle = id.toString();
 
-        console.log(needle);
         for (let i = 0; i < template.length; i++) {
           if (template[i].temp_id === needle) {
             result = template[i];
