@@ -1,4 +1,5 @@
 body {
+  min-height: 100vh;
   background-color: rgba(241, 209, 184, 0.15);
 }
 
@@ -18,6 +19,15 @@ body {
 .headerRight {
   /* Part of Header */
   color: rgb(255, 255, 255);
+}
+
+.headerButton {
+  position: relative;
+  float: right;
+  margin-top: 10px;
+  background-color:rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  border: none;
 }
 
 .trunk {
