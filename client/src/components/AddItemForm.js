@@ -36,21 +36,18 @@ class AddItemForm extends Component {
   handleValueSubmit = async (values, dispatch) => {
     const { conditionRating } = this.state;
     const { weight, images } = this.props;
-    console.log(images.images.map(image => image.imageName));
-
-    const imageNames = images.images.map(image => image.imageName);
-
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
       weight: weight.weight.value,
-      images: imageNames,
+      images: images.images.map(image => image.imageName),
     };
     values.category.map((item, key) => {
       newValues.category[key] = item.value;
       return null;
     });
     await postForm(newValues);
+
     dispatch(reset('simple'));
     this.setState({ conditionRating: 0 });
     dispatch(clearImages());
