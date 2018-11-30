@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-import { postForm } from '../redux/actions/index';
+import { postForm, fetchTemplates } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
 import { Categories } from '../data';
@@ -21,12 +21,15 @@ class AddItemForm extends Component {
   }
 
   componentDidMount() {
+    const { getTemplates, dispatch } = this.props;
     window.addEventListener('resize', () => {
       this.setState({
         isSmallResolution: window.innerWidth < 1000,
       });
     }, false);
+    dispatch(getTemplates());
   }
+
 
   changeConditionRating = (newRating) => {
     this.setState({
@@ -56,6 +59,7 @@ class AddItemForm extends Component {
     const { conditionRating } = this.state;
     const { isSmallResolution } = this.state;
     const { weight } = this.props;
+
 
     return _.map(Fields, ({ label, name, inputClass }) => (
       <Field
@@ -97,7 +101,12 @@ class AddItemForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ weight: state.weight });
+const mapStateToProps = state => ({ weight: state.weight, templates: state.templates });
+
+const mapDispatchToProps = () => ({
+  postForm,
+  getTemplates: fetchTemplates,
+});
 
 export default reduxForm({
   form: 'simple',
@@ -105,6 +114,6 @@ export default reduxForm({
 })(
   connect(
     mapStateToProps,
-    { postForm },
+    mapDispatchToProps,
   )(AddItemForm),
 );
