@@ -390,7 +390,7 @@ body {
   opacity: 1;
 }
 
-input, textarea {
+input, textarea, .css-vj8t7z {
   /* Form inputs */
   border: 2px rgb(0, 167, 126) solid !important;
 }
