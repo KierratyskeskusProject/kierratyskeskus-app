@@ -6,9 +6,8 @@ import Select from '../CategoryReactSelect';
 let wrapped;
 let component;
 const props = {
-  options: [{ label: 'Uutuudet', value: '1' }],
   label: 'test',
-  input: { value: 'test' },
+  input: { value: '' },
 };
 
 beforeEach(() => {
@@ -37,7 +36,7 @@ describe('CategoryReactSelect Input', () => {
   beforeEach(() => {
     component = wrapped.find(Select);
   });
-  it('should have an input', () => {
+  it('should have one input', () => {
     expect(component.find('input').length).toEqual(1);
   });
 });
