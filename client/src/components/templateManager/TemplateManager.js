@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { EditorState, convertToRaw } from 'draft-js';
+import {
+  EditorState, convertToRaw, convertFromRaw,
+} from 'draft-js';
+import _ from 'lodash';
 import { Editor } from 'react-draft-wysiwyg';
 import { Template } from './Template';
 import './template.css';
@@ -11,6 +14,8 @@ class TemplateManager extends Component {
     this.state = {
       editorState: EditorState.createEmpty(),
       templates: [],
+      isEditing: false,
+      templateInEdit: null,
     };
   }
 
@@ -27,24 +32,44 @@ class TemplateManager extends Component {
     });
   };
 
-  saveContent = (content) => {
-    const { templates } = this.state;
-    window.localStorage.setItem('templates', JSON.stringify([...templates, content]));
+  handleClearEditor = () => {
+    this.setState({
+      editorState: EditorState.createEmpty(),
+    });
   }
 
-  handleSaveClick = (editorState) => {
-    const { templates } = this.state;
+  handleSaveClick = () => {
+    const { templates, editorState } = this.state;
     const contentState = convertToRaw(editorState.getCurrentContent());
     contentState.id = templates.length === 0 ? 1 : templates.slice(-1)[0].id + 1;
-    this.saveContent(contentState);
+    window.localStorage.setItem('templates', JSON.stringify([...templates, contentState]));
     this.setState({
       templates: [...templates, contentState],
+      editorState: EditorState.createEmpty(),
+      isEditing: false,
+    });
+  }
+
+  handleSaveEdit = () => {
+    const { templateInEdit, templates, editorState } = this.state;
+    templates.map((template, key) => {
+      if (template.id === templateInEdit) {
+        templates[key] = convertToRaw(editorState.getCurrentContent());
+        templates[key].id = template.id;
+        console.log('modified!', templates);
+        window.localStorage.setItem('templates', JSON.stringify(templates));
+      }
+      return null;
+    });
+    this.setState({
+      isEditing: false,
+      editorState: EditorState.createEmpty(),
     });
   }
 
   handleTemplateDelete = (id) => {
-    const templatesInStorage = JSON.parse(localStorage.getItem('templates'));
-    const removedTemplates = templatesInStorage.filter(template => template.id !== id);
+    const { templates } = this.state;
+    const removedTemplates = templates.filter(template => template.id !== id);
     this.setState({
       templates: removedTemplates,
     });
@@ -52,11 +77,33 @@ class TemplateManager extends Component {
   }
 
   handleTemplateEdit = (id) => {
-    console.log('Edit template with id', id);
+    const { isEditing } = this.state;
+    const templates = JSON.parse(window.localStorage.getItem('templates'));
+    templates.map((template) => {
+      if (template.id === id) {
+        const templateWithoutId = _.omit(template, 'id');
+        const convertedTemplateWithoutId = convertFromRaw(templateWithoutId);
+        this.setState({
+          editorState: EditorState.createWithContent(
+            convertedTemplateWithoutId,
+          ),
+          isEditing: !isEditing,
+          templateInEdit: id,
+        });
+      }
+      return null;
+    });
+  }
+
+  toggleEditing() {
+    const { isEditing } = this.state;
+    this.setState({
+      isEditing: !isEditing,
+    });
   }
 
   render() {
-    const { templates, editorState } = this.state;
+    const { templates, editorState, isEditing } = this.state;
     return (
       <div className="App">
         <div className="aside" />
@@ -73,13 +120,13 @@ class TemplateManager extends Component {
           <div className="split--narrow">
             <div className="resultCon">
               {templates.length === 0 ? '' : templates.map(
-                (item) => {
-                  console.log('a template', item);
+                (template) => {
+                  console.log('a template', template);
                   return (
                     <Template
-                      template={item}
-                      key={item.id}
-                      id={item.id}
+                      template={template}
+                      key={template.id}
+                      id={template.id}
                       handleDeleteClick={this.handleTemplateDelete}
                       handleEditClick={this.handleTemplateEdit}
                     />
@@ -90,14 +137,43 @@ class TemplateManager extends Component {
           </div>
         </div>
         <div className="settingsCon">
-          <div className="split--half" />
           <div className="split--half">
             <button
               type="submit"
               className="saveBtn"
-              onClick={() => this.handleSaveClick(editorState)}
+              onClick={() => this.handleClearEditor()}
             >
-              Save template
+                Clear Editor
+            </button>
+          </div>
+          <div className="split--half">
+            {isEditing
+              ? (
+                <React.Fragment>
+                  <button
+                    type="submit"
+                    className="saveBtn"
+                    onClick={() => { this.toggleEditing(); this.handleClearEditor(); }}
+                  >
+                    Stop editing without saving
+                  </button>
+                  {' '}
+                  <button
+                    type="submit"
+                    className="saveBtn"
+                    onClick={() => this.handleSaveEdit()}
+                  >
+                  Save Edit
+                  </button>
+                </React.Fragment>
+              ) : ''}
+            {' '}
+            <button
+              type="submit"
+              className="saveBtn"
+              onClick={() => this.handleSaveClick()}
+            >
+              {isEditing ? 'Save New' : 'Save template'}
             </button>
           </div>
           <div className="clear" />
