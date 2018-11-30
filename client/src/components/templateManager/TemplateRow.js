@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TemplateRow = ({ text, styles }) => {
-  const generateStyle = () => {
+  const generateClassNames = () => {
     const style = ['template__item'];
     if (styles !== undefined) {
       styles.map((row) => {
@@ -25,8 +25,8 @@ const TemplateRow = ({ text, styles }) => {
   };
 
   return (
-    <div className={styles.length !== 0 ? `${generateStyle().join(' ')}` : 'template__item'}>
-      {text}
+    <div className={styles.length !== 0 ? `${generateClassNames().join(' ')}` : 'template__item'}>
+      {text === '' ? <br /> : text}
     </div>
   );
 };
