@@ -109,7 +109,7 @@ class AddItemForm extends Component {
   }
 }
 
-AddItemForm = reduxForm({
+const Form = reduxForm({
   form: 'simple',
   validate, // a unique identifier for this form
 })(AddItemForm);
@@ -125,4 +125,4 @@ const mapDispatchToProps = () => ({
   getTemplates: fetchTemplates,
   load: loadData,
 });
-export default connect(mapStateToProps, mapDispatchToProps)(AddItemForm);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
