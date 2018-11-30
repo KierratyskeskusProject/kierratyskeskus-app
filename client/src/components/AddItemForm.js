@@ -9,6 +9,7 @@ import { postForm, fetchTemplates } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
 import CategoryReactSelect, { categoryList } from './CategoryReactSelect';
+import { load as loadData } from '../redux/reducers/initialDescReducer';
 
 class AddItemForm extends Component {
   constructor(props) {
@@ -20,13 +21,17 @@ class AddItemForm extends Component {
   }
 
   componentDidMount() {
-    const { getTemplates, dispatch } = this.props;
+    const { getTemplates, dispatch, load } = this.props;
+    const dataX = {
+      description: '',
+    };
     window.addEventListener('resize', () => {
       this.setState({
         isSmallResolution: window.innerWidth < 1000,
       });
     }, false);
     dispatch(getTemplates());
+    load(dataX);
   }
 
 
@@ -111,8 +116,9 @@ export default reduxForm({
   form: 'simple',
   validate,
 })(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(AddItemForm),
+  connect(state => ({
+    initialValues: state.initialDescReducer.data,
+  }), { load: loadData },
+  mapStateToProps,
+  mapDispatchToProps)(AddItemForm),
 );
