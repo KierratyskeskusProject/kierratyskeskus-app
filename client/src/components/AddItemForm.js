@@ -21,9 +21,13 @@ class AddItemForm extends Component {
   }
 
   componentDidMount() {
-    const { getTemplates, dispatch, load } = this.props;
-    const dataX = {
-      description: 'yo yo yo we load that desc',
+    const {
+      getTemplates, dispatch, load,
+    } = this.props;
+
+    const defaultValues = {
+      title: '',
+      description: '',
     };
     window.addEventListener('resize', () => {
       this.setState({
@@ -31,7 +35,7 @@ class AddItemForm extends Component {
       });
     }, false);
     dispatch(getTemplates());
-    dispatch(load(dataX));
+    dispatch(load(defaultValues));
   }
 
 
@@ -105,12 +109,20 @@ class AddItemForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ weight: state.weight, templates: state.templates });
+AddItemForm = reduxForm({
+  form: 'simple',
+  validate, // a unique identifier for this form
+})(AddItemForm);
+
+const mapStateToProps = state => ({
+  weight: state.weight,
+  templates: state.templates,
+  initialValues: state.initial.data,
+});
 
 const mapDispatchToProps = () => ({
   postForm,
   getTemplates: fetchTemplates,
   load: loadData,
 });
-
-export default reduxForm({ form: 'simple', validate })(connect(mapStateToProps, mapDispatchToProps)(AddItemForm));
+export default connect(mapStateToProps, mapDispatchToProps)(AddItemForm);
