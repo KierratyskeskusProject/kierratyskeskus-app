@@ -2,30 +2,24 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const TemplateRow = ({ text, styles }) => {
-  const generateClassNames = () => {
-    const style = ['template__item'];
-    if (styles !== undefined) {
-      styles.map((row) => {
-        console.log('a row', row);
-        switch (row.style) {
-          case 'ITALIC':
-            style.push('italic');
-            break;
-          case 'BOLD':
-            style.push('bold');
-            break;
-          default:
-            return style;
-        }
-        console.log('style', style);
+  const style = ['template__item'];
+
+  styles.map((row) => {
+    switch (row.style) {
+      case 'ITALIC':
+        style.push('italic');
+        break;
+      case 'BOLD':
+        style.push('bold');
+        break;
+      default:
         return style;
-      });
     }
     return style;
-  };
+  });
 
   return (
-    <div className={styles.length !== 0 ? `${generateClassNames().join(' ')}` : 'template__item'}>
+    <div className={style.join(' ')}>
       {text === '' ? <br /> : text}
     </div>
   );

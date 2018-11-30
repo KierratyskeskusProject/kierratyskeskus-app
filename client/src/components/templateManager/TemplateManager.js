@@ -74,7 +74,7 @@ class TemplateManager extends Component {
             <div className="resultCon">
               {templates.length === 0 ? '' : templates.map(
                 (item) => {
-                  console.log(item);
+                  console.log('a template', item);
                   return (
                     <Template
                       template={item}
