@@ -1,11 +1,11 @@
-const fs = require('fs');
+const fs = require("fs");
 
-const TemplateRoutes = (app) => {
+const TemplateRoutes = app => {
   // all templates
-  app.get('/allTemplates', (req, res) => {
+  app.get("/allTemplates", (req, res) => {
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
-        res.status(500).send('something went wrong');
+        res.status(500).send("something went wrong");
       } else {
         const templates = JSON.parse(data);
         res.status(200).send(templates);
@@ -15,12 +15,12 @@ const TemplateRoutes = (app) => {
 
   // template by id
   // return default template if id doesen't exist
-  app.get('/templateById/:id', (req, res) => {
+  app.get("/templateById/:id", (req, res) => {
     const { id } = req.params;
 
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
-        res.status(200).send('something went wrong');
+        res.status(200).send("something went wrong");
       } else {
         const template = JSON.parse(data);
         const needle = id.toString();
@@ -38,15 +38,14 @@ const TemplateRoutes = (app) => {
     });
   });
 
-
   // All templates with category id
   // return default template if id doesen't exist
-  app.get('/templatesByCategory/:catId', (req, res) => {
+  app.get("/templatesByCategory/:catId", (req, res) => {
     const { catId } = req.params;
-    const templateRes = [];
+    let templateRes = [];
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
-        res.status(500).send('something went wrong');
+        res.status(500).send("something went wrong");
       } else {
         const templates = JSON.parse(data);
         const needle = catId;
@@ -63,22 +62,21 @@ const TemplateRoutes = (app) => {
     });
   });
 
-
   // template by sub_category id
-  app.get('/templateBySubCategory/:subCatId', (req, res) => {
+  app.get("/templateBySubCategory/:subCatId", (req, res) => {
     const { subCatId } = req.params;
 
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
-        res.status(200).send('something went wrong');
+        res.status(200).send("something went wrong");
       } else {
         const template = JSON.parse(data);
         const needle = subCatId.toString();
         let result = template[0];
 
         for (let i = 0; i < template.length; i++) {
-          console.log('needle- ', needle);
-          console.log('sub cat ', template[i].sub_category);
+          console.log("needle- ", needle);
+          console.log("sub cat ", template[i].sub_category);
           if (template[i].sub_category === needle) {
             result = template[i];
             i = template.length;
@@ -89,22 +87,41 @@ const TemplateRoutes = (app) => {
     });
   });
 
-  app.post('/createTemplate', (req, res) => {
+  app.post("/createTemplate", (req, res) => {
     const { template } = req.body;
 
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
-        res.status(200).send('something went wrong');
+        res.status(200).send("something went wrong");
       } else {
         const templates = JSON.parse(data);
 
         templates.push(template);
 
-        fs.writeFile(`${__dirname}/data.json`, JSON.stringify(templates), (error) => {
-          if (error) res.status(500).send('error ');
-          console.log('Data written to file');
-          res.status(200).send('New template is added');
-        });
+        fs.writeFile(`${__dirname}/data.json`, JSON.stringify(templates), error => {
+            if (error) res.status(200).send("error ");
+            console.log("Data written to file");
+            res.status(200).send("New template is added");
+          }
+        );
+      }
+    });
+  });
+
+  app.put("/updateTemplate", (req, res) => {
+    const { updatedtemplate } = req.body;
+    let upTemp = [];
+    fs.readFile(`${__dirname}/data.json`, (err, data) => {
+      if (err) {
+        res.status(200).send('something went wrong');
+      } else {
+        const template = JSON.parse(data);
+        const needle = updatedtemplate.temp_id;
+        //needle = old template
+
+        //get template with that
+
+        //update template with new values content, category, subcategory
       }
     });
   });
