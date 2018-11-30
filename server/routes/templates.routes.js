@@ -16,7 +16,9 @@ const TemplateRoutes = app => {
   // template by id
   // return default template if id doesen't exist
   app.get("/templateById/:id", (req, res) => {
-    const { id } = req.params;
+    const {
+      id
+    } = req.params;
 
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
@@ -41,7 +43,9 @@ const TemplateRoutes = app => {
   // All templates with category id
   // return default template if id doesen't exist
   app.get("/templatesByCategory/:catId", (req, res) => {
-    const { catId } = req.params;
+    const {
+      catId
+    } = req.params;
     let templateRes = [];
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
@@ -64,7 +68,9 @@ const TemplateRoutes = app => {
 
   // template by sub_category id
   app.get("/templateBySubCategory/:subCatId", (req, res) => {
-    const { subCatId } = req.params;
+    const {
+      subCatId
+    } = req.params;
 
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
@@ -88,7 +94,9 @@ const TemplateRoutes = app => {
   });
 
   app.post("/createTemplate", (req, res) => {
-    const { template } = req.body;
+    const {
+      template
+    } = req.body;
 
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
@@ -99,29 +107,39 @@ const TemplateRoutes = app => {
         templates.push(template);
 
         fs.writeFile(`${__dirname}/data.json`, JSON.stringify(templates), error => {
-            if (error) res.status(200).send("error ");
-            console.log("Data written to file");
-            res.status(200).send("New template is added");
-          }
-        );
+          if (error) res.status(200).send("error ");
+          console.log("Data written to file");
+          res.status(200).send("New template is added");
+        });
       }
     });
   });
 
   app.put("/updateTemplate", (req, res) => {
-    const { updatedtemplate } = req.body;
+    const {
+      updatedTemplate
+    } = req.body;
     let upTemp = [];
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
         res.status(200).send('something went wrong');
       } else {
         const template = JSON.parse(data);
-        const needle = updatedtemplate.temp_id;
-        //needle = old template
 
-        //get template with that
+        for (let i = 0; i < template.length; i++) {
+          if (template[i].temp_id === updatedTemplate.temp_id) {
+            upTemp.push(updatedTemplate);
+          } else {
+            upTemp.push(template[i]);
+          }
+        }
 
-        //update template with new values content, category, subcategory
+        fs.writeFile(`${__dirname}/data.json`, JSON.stringify(upTemp), (err) => {
+          if (err) {
+            throw err;
+          }
+          console.log('File saved!');
+        });
       }
     });
   });
