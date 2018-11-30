@@ -20,12 +20,23 @@ export class CaptureModal extends Component {
       );
   }
 
+  addOnn = () => {
+    const {
+      imageKey,
+      images,
+      weight,
+    } = this.props;
+    console.log(images.images.length);
+    if (images.images.length < 1) {
+      return [weight(), imageKey()];
+    }
+    return [imageKey()];
+  }
+
   render() {
     const {
       isModalActive,
       loading,
-      image,
-      weight,
       handleModalToggle,
     } = this.props;
     return (
@@ -45,7 +56,7 @@ export class CaptureModal extends Component {
               ? 'capture__loading'
               : 'btn capture'}
             type="submit"
-            onClick={() => [weight(), image()]}
+            onClick={this.addOnn}
             disabled={loading}
           >
             {loading ? '' : <i className="fa fa-camera fa-camera-modal" />}
@@ -59,9 +70,10 @@ export class CaptureModal extends Component {
 const mapStateToProps = state => ({
   loading: state.images.loading,
   weight: state.weight,
+  images: state.images,
 });
 
 export default connect(
   mapStateToProps,
-  { image: fetchImage, weight: fetchWeight },
+  { imageKey: fetchImage, weight: fetchWeight },
 )(CaptureModal);
