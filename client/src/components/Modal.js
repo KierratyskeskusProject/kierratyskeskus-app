@@ -26,7 +26,6 @@ export class CaptureModal extends Component {
       images,
       weight,
     } = this.props;
-    console.log(images.images.length);
     if (images.images.length < 1) {
       return [weight(), imageKey()];
     }
