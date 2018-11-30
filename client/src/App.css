@@ -475,7 +475,6 @@ input:focus, textarea:focus {
 
 .css-xwjg1b {
   /* Tag in React-Select */
-  padding-top: 0;
   border: 1px solid rgb(0, 153, 115);
   border-radius: 1em !important;
   overflow: hidden !important;
@@ -483,6 +482,7 @@ input:focus, textarea:focus {
 
 .css-12jo7m5 {
   /* Text inside a tag */
+  padding-top: 0 !important;
   background-color: rgb(240, 240, 240) !important;
   padding-right: 0.5rem !important;
 }
