@@ -155,9 +155,8 @@ class TemplateManager extends Component {
                     className="saveBtn"
                     onClick={() => { this.toggleEditing(); this.handleClearEditor(); }}
                   >
-                    Stop editing without saving
+                    Discard changes
                   </button>
-                  {' '}
                   <button
                     type="submit"
                     className="saveBtn"
@@ -167,7 +166,6 @@ class TemplateManager extends Component {
                   </button>
                 </React.Fragment>
               ) : ''}
-            {' '}
             <button
               type="submit"
               className="saveBtn"
