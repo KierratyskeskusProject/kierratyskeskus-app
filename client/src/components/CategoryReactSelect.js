@@ -1,10 +1,10 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import _ from 'lodash';
 
 const CategoryReactSelect = (props) => {
   const {
-    options, label, input: { value },
+    options, label, inputClass, isSmallResolution, input: { value }, meta,
   } = props;
   console.log('Category', props);
 
@@ -34,20 +34,27 @@ const CategoryReactSelect = (props) => {
   }
 
   return (
-    <Fragment>
-      <label>{label}</label>
-      <Select
-        {...props}
-        value={value}
-        onChange={onInputChange}
-        onBlur={() => props.input.onBlur(props.input.value)}
-        options={options}
-        placeholder="Select a category"
-        isMulti
-        blurInputOnSelect={false}
-        classNamePrefix="form-control"
-      />
-    </Fragment>
+    <div className={`${isSmallResolution ? null : 'row'} `}>
+      <label className={`${isSmallResolution ? null : 'col-3'} `}>{label}</label>
+      <div className={`${isSmallResolution ? null : inputClass} `}>
+        <Select
+          {...props}
+          value={value}
+          className="esimerkki"
+          onChange={onInputChange}
+          onBlur={() => props.input.onBlur(props.input.value)}
+          options={options}
+          placeholder="Select a category"
+          isMulti
+          blurInputOnSelect={false}
+        />
+        <div>
+          <div className="invalid-category">
+            {meta.touched ? meta.error : ''}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 
