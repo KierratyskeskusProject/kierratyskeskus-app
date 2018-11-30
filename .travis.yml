@@ -18,7 +18,7 @@ before_install:
 - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 install:
 - npm install
-- cd client && npm install --ignore-scripts
+- cd client && npm install
 script:
 - npm run test
 - cd .. && npm run lint
