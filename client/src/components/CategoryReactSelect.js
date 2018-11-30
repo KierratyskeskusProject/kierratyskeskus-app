@@ -19,6 +19,7 @@ const CategoryReactSelect = (props) => {
     }),
     option: (base, state) => ({
       ...base,
+      // Make me into a Switch function
       backgroundColor: meta.error && meta.touched
         ? state.isFocused ? 'rgba(220, 53, 69, 0.15)' : 'rgb(255, 255, 255)'
         : state.isFocused ? 'rgba(0, 167, 126, 0.15)' : 'rgb(255, 255, 255)',
