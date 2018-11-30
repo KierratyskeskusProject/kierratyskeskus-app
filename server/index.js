@@ -4,6 +4,7 @@ const cors = require('cors');
 const ProductRoutes = require('./routes/products.routes');
 const ImagesRoutes = require('./routes/images.routes');
 const WeightRoutes = require('./routes/weight.routes');
+const TemplateRoutes = require('./routes/templates.routes');
 
 const app = express();
 
@@ -25,5 +26,6 @@ app.get('/', (req, res) => {
 ProductRoutes(app);
 ImagesRoutes(app);
 WeightRoutes(app);
+TemplateRoutes(app);
 
 module.exports = app;
