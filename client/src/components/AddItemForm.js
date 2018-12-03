@@ -8,8 +8,9 @@ import InputComponent from './InputComponent';
 import { postForm, fetchTemplates } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
-import CategoryReactSelect, { categoryList } from './CategoryReactSelect';
 import { load as loadData } from '../redux/reducers/initialDescReducer';
+import { Categories } from '../data';
+import CategoryReactSelect from './CategoryReactSelect';
 
 class AddItemForm extends Component {
   constructor(props) {
@@ -73,7 +74,7 @@ class AddItemForm extends Component {
       <Field
         key={name}
         multi={name === 'category' ? true : ''}
-        options={name === 'category' ? categoryList : ''}
+        options={name === 'category' ? Categories : ''}
         component={name === 'category' ? CategoryReactSelect : InputComponent}
         type="text"
         inputClass={inputClass}
