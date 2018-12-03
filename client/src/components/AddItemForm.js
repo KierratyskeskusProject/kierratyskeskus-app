@@ -8,6 +8,7 @@ import InputComponent from './InputComponent';
 import { postForm, fetchTemplates } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
+import { load as loadData } from '../redux/reducers/initialDescReducer';
 import { Categories } from '../data';
 import CategoryReactSelect from './CategoryReactSelect';
 
@@ -21,13 +22,21 @@ class AddItemForm extends Component {
   }
 
   componentDidMount() {
-    const { getTemplates, dispatch } = this.props;
+    const {
+      getTemplates, dispatch, load,
+    } = this.props;
+
+    const defaultValues = {
+      title: '',
+      description: '',
+    };
     window.addEventListener('resize', () => {
       this.setState({
         isSmallResolution: window.innerWidth < 1000,
       });
     }, false);
     dispatch(getTemplates());
+    dispatch(load(defaultValues));
   }
 
 
@@ -101,19 +110,20 @@ class AddItemForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ weight: state.weight, templates: state.templates });
+const Form = reduxForm({
+  form: 'simple',
+  validate, // a unique identifier for this form
+})(AddItemForm);
+
+const mapStateToProps = state => ({
+  weight: state.weight,
+  templates: state.templates,
+  initialValues: state.initial.data,
+});
 
 const mapDispatchToProps = () => ({
   postForm,
   getTemplates: fetchTemplates,
+  load: loadData,
 });
-
-export default reduxForm({
-  form: 'simple',
-  validate,
-})(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(AddItemForm),
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

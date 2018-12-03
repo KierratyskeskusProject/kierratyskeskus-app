@@ -6,9 +6,30 @@ import Image from './Image';
 
 
 class ImageBar extends Component {
+  ifBook = (images) => {
+    let aBook;
+    images.map((item) => {
+      if (item.book !== null) {
+        aBook = {
+          title: item.book.title,
+          authors: [...item.book.authors],
+          description: item.book.description,
+          pageCount: item.book.pageCount,
+          publisher: item.book.publisher,
+          publishedDate: item.book.publishedDate,
+        };
+      }
+      return console.log('no books');
+    });
+    return aBook;
+  }
+
   renderImages() {
     const { images } = this.props;
     if (images.images.length !== 0) {
+      const bookData = this.ifBook(images.images);
+      console.log('render image func', bookData);
+
       return images.images.map(item => (
         <Image
           src={`data:image/png;base64,${item.imageInBase64}`}
@@ -18,7 +39,6 @@ class ImageBar extends Component {
     }
     return null;
   }
-
 
   render() {
     return (
@@ -35,6 +55,7 @@ class ImageBar extends Component {
 function mapStateToProps(state) {
   return {
     images: state.images,
+    book: state.book,
   };
 }
 
