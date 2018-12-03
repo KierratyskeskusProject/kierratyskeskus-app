@@ -5,10 +5,15 @@ const fs = require('fs');
 const detectBook = require('./BookDetection/handleDetectionData');
 const fetchData = require('./BookDetection/bookDetection');
 
+const automl = require('@google-cloud/automl').v1beta1;
+const prediction = require('../../visiontest');
+
 const client = new vision.ImageAnnotatorClient({
   keyFilename: `${__dirname}/../../googleKey.json`,
 });
-
+const clientX = new automl.PredictionServiceClient({
+  keyFilename: `${__dirname}/../../googleKey.json`,
+});
 const createImageName = () => {
   const dir = path.join(__dirname, '../images/');
   const newName = Date.now();
@@ -23,12 +28,14 @@ const imageToBase64 = (file) => {
 let image = createImageName();
 
 const transformData = (values, imageInBase64) => {
+
   const collection = {
     labels: [],
     text: [],
     imageName: '',
     imageInBase64: '',
     book: '',
+    category: 1,
   };
   const labelsArray = [];
   const textArray = [];
@@ -45,10 +52,12 @@ const transformData = (values, imageInBase64) => {
   collection.imageInBase64 = imageInBase64;
   collection.labels = labelsArray;
   collection.book = null;
+  collection.category = 2;
   return collection;
 };
 
 const Capture = (res) => {
+
   image = createImageName();
   // to take picture from external web cam add name of device  as parameter to nodeWebcam.create({})
   // Use another device
@@ -60,15 +69,21 @@ const Capture = (res) => {
     } else {
       try {
         const promises = [
+          prediction.predict(image),
           client.labelDetection(image),
           client.textDetection(image),
         ];
+
         const values = await Promise.all(promises);
+
         const imageInBase64 = imageToBase64(image);
+        console.log(values);
         const responseData = transformData(values, imageInBase64);
 
         const responseText = responseData.text;
         const bookData = detectBook.filter(responseText);
+
+        console.log(predict);
 
         if (bookData) {
           responseData.book = await fetchData(bookData);
