@@ -96,3 +96,58 @@ h3{
 
 .right{align-items:right}
 .clear{clear:left}
+
+.template {
+  margin: 5px;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.71);
+  -moz-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.71);
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.71); 
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.template__body {
+  border-radius: 5px;
+  margin: 2px 0 2px 0;
+  padding: 7px;
+  background-color: rgb(240, 238, 238)
+}
+
+.template__head {
+  width: 100%;
+  text-align: center;
+  background-color: #00a87d;
+  color: #fff;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+.template__footer {
+  padding: 2px;
+  width: 100%;
+  text-align: center;
+}
+
+.italic {
+  font-style: italic;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.danger {
+  background-color: rgb(241, 62, 62);
+  color: #fff;
+}
+
+.success {
+  background-color: #00a87d;
+  color: #fff;
+}
+
+.DraftEditor-editorContainer {
+  background-color: #fff !important;
+  padding: 10px; 
+  min-height: 300px;
+}
