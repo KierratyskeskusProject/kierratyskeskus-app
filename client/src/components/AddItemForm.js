@@ -5,7 +5,9 @@ import { connect } from 'react-redux';
 
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-import { postForm, fetchTemplates, clearImages } from '../redux/actions/index';
+import {
+  postForm, fetchTemplates, clearImages, clearWeight,
+} from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
 import { Categories } from '../data';
@@ -51,9 +53,11 @@ class AddItemForm extends Component {
       return null;
     });
     await postForm(newValues);
+    // clear input fields
     dispatch(reset('simple'));
     this.setState({ conditionRating: 0 });
     dispatch(clearImages());
+    dispatch(clearWeight());
   };
 
   renderInputFields() {

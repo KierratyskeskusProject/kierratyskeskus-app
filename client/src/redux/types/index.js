@@ -12,6 +12,7 @@ export const FETCH_TEMPLATES_BEGIN = 'FETCH_TEMPLATES_BEGIN';
 export const FETCH_TEMPLATES_SUCCESS = 'FETCH_TEMPLATES_SUCCESS';
 export const FETCH_TEMPLATES_FAILURE = 'FETCH_TEMPLATES_FAILURE';
 export const CLEAR_IMAGES = 'CLEAR_IMAGES';
+export const CLEAR_WEIGHT = 'CLEAR_WEIGHT';
 
 
 export const fetchWeightBegin = () => ({
@@ -26,6 +27,10 @@ export const fetchWeightSuccess = weight => ({
 export const fetchWeightFailure = error => ({
   type: FETCH_WEIGHT_FAILURE,
   payload: { error },
+});
+
+export const clearWeight = () => ({
+  type: CLEAR_WEIGHT,
 });
 
 export const postFormSuccess = formData => ({
@@ -61,9 +66,9 @@ export const deleteImageFailure = error => ({
   payload: { error },
 });
 
-export const clearImages = images => ({
+export const clearImages = () => ({
   type: CLEAR_IMAGES,
-  payload: { images },
+
 });
 
 export const fetchTemplatesBegin = () => ({
