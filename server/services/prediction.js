@@ -5,15 +5,10 @@ const prediction = (image) => {
   const clientX = new automl.PredictionServiceClient({
     keyFilename: `${__dirname}/../../googleKey.json`,
   });
-  /*
-  const projectId = 'visiontest-219510';
-  const computeRegion = 'us-central1';
-  const modelId = 'ICN2103541711431110787';
-*/
+
   const projectId = 'kierratyskeskus-214110';
   const computeRegion = 'us-central1';
   const modelId = 'ICN6202573478500245615';
-
 
   const modelFullId = clientX.modelPath(projectId, computeRegion, modelId);
 
@@ -23,7 +18,7 @@ const prediction = (image) => {
 
   const payload = {};
   payload.image = { imageBytes: content };
-
+  const res = null;
   return clientX
     .predict({ name: modelFullId, payload, params })
     .then((responses) => {
