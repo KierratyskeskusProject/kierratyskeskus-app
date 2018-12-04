@@ -18,7 +18,7 @@ const Header = ({
       <Link to={route}>
         <button
           type="submit"
-          className="btn"
+          className="btn headerButton"
           onClick={handleClick}
         >
           {routeTitle}

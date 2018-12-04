@@ -5,10 +5,12 @@ import { connect } from 'react-redux';
 
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-import { postForm, clearImages } from '../redux/actions/index';
+import { postForm, fetchTemplates, clearImages } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
-import CategoryReactSelect, { categoryList } from './CategoryReactSelect';
+import { load as loadData } from '../redux/reducers/initialDescReducer';
+import { Categories } from '../data';
+import CategoryReactSelect from './CategoryReactSelect';
 
 class AddItemForm extends Component {
   constructor(props) {
@@ -20,11 +22,21 @@ class AddItemForm extends Component {
   }
 
   componentDidMount() {
+    const {
+      getTemplates, dispatch, load,
+    } = this.props;
+
+    const defaultValues = {
+      title: '',
+      description: '',
+    };
     window.addEventListener('resize', () => {
       this.setState({
         isSmallResolution: window.innerWidth < 1000,
       });
     }, false);
+    dispatch(getTemplates());
+    dispatch(load(defaultValues));
   }
 
   changeConditionRating = (newRating) => {
@@ -47,7 +59,6 @@ class AddItemForm extends Component {
       return null;
     });
     await postForm(newValues);
-
     dispatch(reset('simple'));
     this.setState({ conditionRating: 0 });
     dispatch(clearImages());
@@ -62,7 +73,7 @@ class AddItemForm extends Component {
       <Field
         key={name}
         multi={name === 'category' ? true : ''}
-        options={name === 'category' ? categoryList : ''}
+        options={name === 'category' ? Categories : ''}
         component={name === 'category' ? CategoryReactSelect : InputComponent}
         type="text"
         inputClass={inputClass}
@@ -98,14 +109,22 @@ class AddItemForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ weight: state.weight, images: state.images });
 
-export default reduxForm({
+const Form = reduxForm({
   form: 'simple',
-  validate,
-})(
-  connect(
-    mapStateToProps,
-    { postForm },
-  )(AddItemForm),
-);
+  validate, // a unique identifier for this form
+})(AddItemForm);
+
+const mapStateToProps = state => ({
+  weight: state.weight,
+  templates: state.templates,
+  initialValues: state.initial.data,
+  images: state.images,
+});
+
+const mapDispatchToProps = () => ({
+  postForm,
+  getTemplates: fetchTemplates,
+  load: loadData,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Form);
