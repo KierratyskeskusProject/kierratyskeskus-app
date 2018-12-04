@@ -18,7 +18,6 @@ const prediction = (image) => {
 
   const payload = {};
   payload.image = { imageBytes: content };
-  const res = null;
   return clientX
     .predict({ name: modelFullId, payload, params })
     .then((responses) => {

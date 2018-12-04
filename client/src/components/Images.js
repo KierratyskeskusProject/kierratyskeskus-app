@@ -5,6 +5,7 @@ import { postForm } from '../redux/actions/index';
 import { load as loadData } from '../redux/reducers/initialDescReducer';
 import AddImageButton from './AddImageButton';
 import Image from './Image';
+import getTemplateCategory from '../functions/getTempCat';
 
 import { Categories } from '../data/Categories';
 
@@ -34,30 +35,13 @@ class ImageBar extends Component {
 
     if (images.images.length !== 0) {
       const bookData = this.ifBook(images.images);
-      // console.log('render image func', bookData);
+      console.log('render image func', bookData);
 
-      const category = images.images[0].category;
+      const { category } = images.images[0];
 
-      const newData = init;
-      console.log(newData);
-      let cat = null;
-      for (let i = 0; i < Categories.length; i++) {
-        if (Categories[i].name === category) {
-          cat = Categories[i];
-          // dispatch(load(cat));
-          i = Categories.length;
-        }
-        console.log(cat);
-      }
-      // compare with categorirs (payload)
-      /* const cat = {'label': category};
-      const defaultValues = {
-        title: '',
-        description: template.templates[0][2].content,
-        category: [cat],
-      };
-      dispatch(load(defaultValues));
-      */
+      const getTemp = getTemplateCategory(category, Categories, template, init);
+      dispatch(load(getTemp));
+
 
       return images.images.map(item => (
         <Image

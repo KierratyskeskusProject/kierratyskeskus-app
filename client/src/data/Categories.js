@@ -44,6 +44,11 @@ const Categories = [
       { label: 'Kirja lahjaksi', value: '4.18' },
     ],
   },
+  {
+    name: 'kitchenware',
+    label: 'kitchen in finnish',
+    value: '5',
+  },
 ];
 
 // eslint-disable-next-line import/prefer-default-export
