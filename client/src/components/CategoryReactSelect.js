@@ -6,7 +6,7 @@ const CategoryReactSelect = (props) => {
   const {
     options, label, inputClass, isSmallResolution, input: { value }, meta,
   } = props;
-  console.log('Category', props);
+
 
   function onInputChange(valueToChange) {
     const optionsLength = props.options.length;
