@@ -1,13 +1,16 @@
 const Categories = [
   {
+    name: 'new',
     label: 'Uutuudet',
     value: '1',
   },
   {
-    label: 'Joulun huumaa',
+    name: 'electronics',
+    label: 'Elektroniikka',
     value: '2',
   },
   {
+    name: 'bike',
     label: 'Polkupyörät',
     value: '3',
     options: [
@@ -17,6 +20,7 @@ const Categories = [
     ],
   },
   {
+    name: 'book',
     label: 'Kirjat',
     value: '4',
     options: [
@@ -39,6 +43,11 @@ const Categories = [
       { label: 'Sarjakuvat', value: '4.17' },
       { label: 'Kirja lahjaksi', value: '4.18' },
     ],
+  },
+  {
+    name: 'kitchenware',
+    label: 'kitchen in finnish',
+    value: '5',
   },
 ];
 

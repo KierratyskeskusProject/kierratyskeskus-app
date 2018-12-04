@@ -1,6 +1,12 @@
 const LOAD = 'LOAD';
 
-const reducer = (state = {}, action) => {
+const initialState = {
+  title: null,
+  description: null,
+  category: null,
+};
+
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case LOAD:
       return {

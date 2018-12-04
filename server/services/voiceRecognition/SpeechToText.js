@@ -6,7 +6,6 @@ const client = new speech.SpeechClient({
   keyFilename: `${__dirname}/../../googleKey.json`,
 });
 
-
 const encoding = 'LINEAR16';
 const sampleRateHertz = 16000;
 const languageCode = 'fi-FI';

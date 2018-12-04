@@ -14,6 +14,7 @@
   "author": "Chilicorn",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/automl": "^0.1.2",
     "@google-cloud/speech": "^2.0.0",
     "@google-cloud/vision": "^0.22.0",
     "@tinymce/tinymce-react": "^2.4.0",
