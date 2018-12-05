@@ -418,7 +418,7 @@ body {
   opacity: 1;
 }
 
-input, textarea, .css-vj8t7z {
+input, textarea {
   /* Form inputs */
   border: 2px rgb(0, 167, 126) solid !important;
 }
@@ -501,36 +501,30 @@ input:focus, textarea:focus {
   z-index: 0;
 }
 
-.autosuggestionStyle {
-  position: absolute;
-  width: 33%;
-  right: 7%;
-  top: 318px;
+.css-xwjg1b {
+  /* Tag in React-Select */
+  border: 1px solid rgb(0, 153, 115);
+  border-radius: 1em !important;
+  overflow: hidden !important;
 }
 
-.react-autosuggest__suggestions-container {
-  margin-top: 1rem;
+.css-12jo7m5 {
+  /* Text inside a tag */
+  padding-top: 0 !important;
+  background-color: rgb(240, 240, 240) !important;
+  padding-right: 0.5rem !important;
 }
 
-.react-autosuggest__suggestions-list {
-  list-style-type: none;
+.css-1alnv5e {
+  /* Remove button inside a tag */
+  padding-left: 0.2 !important;
+  background-color: rgb(0, 167, 126);
+  border-radius: 0 !important;
+  border-left: 1px solid rgb(0, 153, 115);
+  color: rgb(255, 255, 255);
 }
 
-.suggestionLabel:hover {
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.suggestionLabelStyle {
-  width: 80%;
-  margin-left: 5px;
-}
-
-.suggestionCheckbox {
-  margin-top: 10px;
-  margin-right: 5px;
-}
-
-.css-10nd86i {
-  margin-bottom: 1rem;
+.css-1alnv5e:hover {
+  background-color: rgb(0, 117, 88) !important;
+  color: rgb(255, 255, 255) !important;
 }
