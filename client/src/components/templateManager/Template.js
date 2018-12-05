@@ -7,13 +7,14 @@ const Template = ({
   handleEditClick,
   handleDeleteClick,
   id,
+  name,
 }) => (
   <div className="template">
     <div className="template__head">
-      {`Template ${id}`}
+      {`Template ${name}`}
     </div>
     <div className="template__body">
-      {template.length === 0 ? '' : template.blocks.map(item => (
+      {template.length === 0 ? '' : template.content.blocks.map(item => (
         <TemplateRow
           key={item.key}
           text={item.text.toString()}
@@ -40,13 +41,20 @@ const Template = ({
   </div>
 );
 
+Template.defaultProps = {
+  name: 'Default',
+};
+
 Template.propTypes = {
   template: PropTypes.shape({
-    blocks: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
+    content: PropTypes.shape({
+      blocks: PropTypes.array.isRequired,
+    }).isRequired,
   }).isRequired,
   handleEditClick: PropTypes.func.isRequired,
   handleDeleteClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string,
 };
 
 // eslint-disable-next-line import/prefer-default-export

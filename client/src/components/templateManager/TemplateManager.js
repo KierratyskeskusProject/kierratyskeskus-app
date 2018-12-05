@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import {
-  EditorState, convertToRaw, convertFromRaw,
+  EditorState,
+  convertToRaw,
+  convertFromRaw,
 } from 'draft-js';
 import _ from 'lodash';
 import { Editor } from 'react-draft-wysiwyg';
+import Select from 'react-select';
+
+import { saveTemplates } from '../../redux/actions';
 import { Template } from './Template';
+import { Categories } from '../../data';
 import './template.css';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
@@ -16,6 +23,7 @@ class TemplateManager extends Component {
       templates: [],
       isEditing: false,
       templateInEdit: null,
+      selectedCategory: '',
     };
   }
 
@@ -35,27 +43,51 @@ class TemplateManager extends Component {
   handleClearEditor = () => {
     this.setState({
       editorState: EditorState.createEmpty(),
+      selectedCategory: '',
     });
   }
 
-  handleSaveClick = () => {
-    const { templates, editorState } = this.state;
+  handleSaveNew = () => {
+    const {
+      templates,
+      editorState,
+      selectedCategory,
+    } = this.state;
+    const { save, dispatch } = this.props;
+
     const contentState = convertToRaw(editorState.getCurrentContent());
-    contentState.id = templates.length === 0 ? 1 : templates.slice(-1)[0].id + 1;
-    window.localStorage.setItem('templates', JSON.stringify([...templates, contentState]));
+    const id = templates.length === 0 ? 1 : templates.slice(-1)[0].id + 1;
+    const categoryId = selectedCategory === '' ? 0 : selectedCategory.value.split('');
+    const newTemplate = {
+      name: selectedCategory.label,
+      id,
+      content: contentState,
+      category: categoryId[0],
+      subCategory: selectedCategory.value,
+    };
+    console.log('newtemplate', newTemplate);
+    window.localStorage.setItem('templates', JSON.stringify([...templates, newTemplate]));
+    dispatch(save(newTemplate));
     this.setState({
-      templates: [...templates, contentState],
+      templates: [...templates, newTemplate],
       editorState: EditorState.createEmpty(),
+      selectedCategory: '',
       isEditing: false,
     });
   }
 
   handleSaveEdit = () => {
-    const { templateInEdit, templates, editorState } = this.state;
+    const {
+      templateInEdit,
+      templates,
+      editorState,
+      selectedCategory,
+    } = this.state;
     templates.map((template, key) => {
       if (template.id === templateInEdit) {
-        templates[key] = convertToRaw(editorState.getCurrentContent());
+        templates[key].content = convertToRaw(editorState.getCurrentContent());
         templates[key].id = template.id;
+        templates[key].name = selectedCategory.label;
         console.log('modified!', templates);
         window.localStorage.setItem('templates', JSON.stringify(templates));
       }
@@ -64,6 +96,7 @@ class TemplateManager extends Component {
     this.setState({
       isEditing: false,
       editorState: EditorState.createEmpty(),
+      selectedCategory: '',
     });
   }
 
@@ -82,16 +115,28 @@ class TemplateManager extends Component {
     templates.map((template) => {
       if (template.id === id) {
         const templateWithoutId = _.omit(template, 'id');
-        const convertedTemplateWithoutId = convertFromRaw(templateWithoutId);
+        const convertedTemplateWithoutId = convertFromRaw(templateWithoutId.content);
         this.setState({
           editorState: EditorState.createWithContent(
             convertedTemplateWithoutId,
           ),
           isEditing: !isEditing,
           templateInEdit: id,
+          selectedCategory: {
+            name: template.name,
+            value: template.subCategory.includes('.')
+              ? template.subCategory
+              : template.category,
+          },
         });
       }
       return null;
+    });
+  }
+
+  handleCategoryChange = (selectedCategory) => {
+    this.setState({
+      selectedCategory,
     });
   }
 
@@ -103,12 +148,23 @@ class TemplateManager extends Component {
   }
 
   render() {
-    const { templates, editorState, isEditing } = this.state;
+    const {
+      templates,
+      editorState,
+      isEditing,
+      selectedCategory,
+    } = this.state;
     return (
       <div className="App">
         <div className="aside" />
         <div className="content">
           <div className="split--wide">
+            <Select
+              value={selectedCategory}
+              onChange={this.handleCategoryChange}
+              options={Categories}
+              placeholder="Select a category"
+            />
             <Editor
               editorState={editorState}
               wrapperClassName="wrapper-class"
@@ -129,6 +185,7 @@ class TemplateManager extends Component {
                       id={template.id}
                       handleDeleteClick={this.handleTemplateDelete}
                       handleEditClick={this.handleTemplateEdit}
+                      name={template.name}
                     />
                   );
                 },
@@ -153,7 +210,10 @@ class TemplateManager extends Component {
                   <button
                     type="submit"
                     className="saveBtn"
-                    onClick={() => { this.toggleEditing(); this.handleClearEditor(); }}
+                    onClick={() => {
+                      this.toggleEditing();
+                      this.handleClearEditor();
+                    }}
                   >
                     Discard changes
                   </button>
@@ -162,14 +222,14 @@ class TemplateManager extends Component {
                     className="saveBtn"
                     onClick={() => this.handleSaveEdit()}
                   >
-                  Save Edit
+                    Save Edit
                   </button>
                 </React.Fragment>
               ) : ''}
             <button
               type="submit"
               className="saveBtn"
-              onClick={() => this.handleSaveClick()}
+              onClick={() => this.handleSaveNew()}
             >
               {isEditing ? 'Save New' : 'Save template'}
             </button>
@@ -181,5 +241,13 @@ class TemplateManager extends Component {
   }
 }
 
-// eslint-disable-next-line import/prefer-default-export
-export { TemplateManager };
+const mapStateToProps = state => ({
+  templates: state.templates,
+});
+
+const mapDispatchToProps = dispatch => ({
+  save: saveTemplates,
+  dispatch,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(TemplateManager);
