@@ -26,7 +26,7 @@ class ImageBar extends Component {
       return console.log('no books');
     });
     return aBook;
-  }
+  };
 
   renderImages() {
     const {

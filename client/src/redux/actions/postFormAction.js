@@ -7,7 +7,6 @@ const postForm = (values, callback) => {
       () => callback(),
     )
     .catch((error) => {
-      // handle error
       console.log(error);
     });
 

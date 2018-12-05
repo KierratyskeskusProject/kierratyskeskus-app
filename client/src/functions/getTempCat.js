@@ -19,13 +19,11 @@ const getTemplateCategory = (category, Categories, template, init) => {
 
   console.log(newState);
   // template.templates[0][cat.value].content
-  const defaultValues = {
+  return {
     title: newState.title,
     description: newState.description,
     category: [newState.category],
   };
-
-  return defaultValues;
 };
 
 export default getTemplateCategory;

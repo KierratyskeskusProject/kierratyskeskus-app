@@ -20,10 +20,7 @@ const prediction = (image) => {
   payload.image = { imageBytes: content };
   return clientX
     .predict({ name: modelFullId, payload, params })
-    .then((responses) => {
-      const res = responses[0].payload[0].displayName;
-      return res;
-    })
+    .then(responses => responses[0].payload[0].displayName)
     .catch((err) => {
       console.error(err);
     });

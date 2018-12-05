@@ -5,6 +5,7 @@ import {
   DELETE_IMAGE_BEGIN,
   DELETE_IMAGE_SUCCESS,
   DELETE_IMAGE_FAILURE,
+  CLEAR_IMAGES,
 } from '../types';
 
 const initialState = {
@@ -51,6 +52,8 @@ const fetchImageReducer = (state = initialState, action) => {
         loading: false,
         images: [...state.images.filter(({ imageName }) => imageName !== action.payload.image)],
       };
+    case CLEAR_IMAGES:
+      return initialState;
 
     default:
       return state;

@@ -30,7 +30,6 @@
     "node-record-lpcm16": "^0.3.1",
     "node-webcam": "^0.4.4",
     "nodemon": "^1.18.4",
-    "react-toastify": "^4.4.3",
     "sqlite3": "^4.0.2",
     "tinymce": "^4.8.5",
     "usb": "latest"
