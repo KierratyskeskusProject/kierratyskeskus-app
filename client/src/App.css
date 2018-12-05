@@ -442,7 +442,7 @@ input:focus, textarea:focus {
   border: 2px rgb(0, 167, 126) solid !important;
 }
 
-#react-select-2-input, #react-select-2-input:focus {
+.css-1g6gooi input {
   border: 0 !important;
   box-shadow: 0 0 0 0 !important;
 }

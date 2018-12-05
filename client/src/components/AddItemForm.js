@@ -81,6 +81,7 @@ class AddItemForm extends Component {
         changeConditionRating={changeConditionRating}
         actualValue={name === 'weight' ? weight.weight.value : '0'}
         isSmallResolution={isSmallResolution}
+        data={Categories}
       />
     ));
   }
