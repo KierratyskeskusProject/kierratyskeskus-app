@@ -3,6 +3,8 @@ import { Field, reduxForm, reset } from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
+import { ToastContainer, toast, Slide } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import Fields from './Fields';
 import InputComponent from './InputComponent';
 import { postForm, fetchTemplates } from '../redux/actions/index';
@@ -31,6 +33,9 @@ class AddItemForm extends Component {
     dispatch(getTemplates());
   }
 
+  notify = () => toast.success('Item added successfully', {
+    position: toast.POSITION.TOP_CENTER,
+  });
 
   changeConditionRating = (newRating) => {
     this.setState({
@@ -50,7 +55,9 @@ class AddItemForm extends Component {
       newValues.category[key] = item.value;
       return null;
     });
-    await postForm(newValues);
+    await postForm(newValues, () => {
+      this.notify();
+    });
     dispatch(reset('simple'));
     this.setState({ conditionRating: 0 });
   };
@@ -96,6 +103,7 @@ class AddItemForm extends Component {
           >
           Add Item
           </button>
+          <ToastContainer autoClose={3000} transition={Slide} hideProgressBar />
         </form>
       </div>
     );
