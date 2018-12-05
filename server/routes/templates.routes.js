@@ -119,6 +119,7 @@ const TemplateRoutes = app => {
     const {
       updatedTemplate
     } = req.body;
+    console.log(updatedTemplate);
     let upTemp = [];
     fs.readFile(`${__dirname}/data.json`, (err, data) => {
       if (err) {
@@ -139,10 +140,42 @@ const TemplateRoutes = app => {
             throw err;
           }
           console.log('File saved!');
+          res.status(200).send("Template updated successfully");
         });
       }
     });
   });
+
+app.delete("/deleteTemplate", (req, res) => {
+  const {
+    deletedTemplate
+  } = req.body;
+  console.log(deletedTemplate);
+  let upTemp = [];
+  fs.readFile(`${__dirname}/data.json`, (err, data) => {
+    if (err) {
+      res.status(200).send('something went wrong');
+    } else {
+      const template = JSON.parse(data);
+      
+      for (let i = 0; i < template.length; i++) {
+        if (template[i].temp_id === deletedTemplate.temp_id) {
+          // nothing to push
+        } else {
+          upTemp.push(template[i]);
+        }
+      }
+
+      fs.writeFile(`${__dirname}/data.json`, JSON.stringify(upTemp), (err) => {
+        if (err) {
+          throw err;
+        }
+        console.log('File saved!');
+        res.status(200).send("Template deleted successfully");
+      });
+    }
+  });
+});
 };
 
 module.exports = TemplateRoutes;
