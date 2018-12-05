@@ -19,6 +19,7 @@ const CategoryReactSelect = (props) => {
   }
 
   const customStyles = {
+    // Adds styles to category select
     control: base => ({
       ...base,
       marginBottom: meta.error && meta.touched ? '0' : '1rem',
@@ -43,6 +44,7 @@ const CategoryReactSelect = (props) => {
     const labels = [];
 
     _.forEach(valueToChange, (values) => {
+      // Searches for parent category
       const optionValue = values.value.split('.');
       for (let i = 0; i < optionsLength; i += 1) {
         if (optionValue[0] === props.options[i].value) {
@@ -50,7 +52,7 @@ const CategoryReactSelect = (props) => {
         }
       }
     });
-
+    // Adds parent category to sub category
     for (let j = 0; j < labels.length; j += 1) {
       if (valueToChange[j].label.search(labels[j]) !== 0) {
         newOptions.push({ label: `${labels[j]} | ${valueToChange[j].label}`, value: valueToChange[j].value });
@@ -58,7 +60,7 @@ const CategoryReactSelect = (props) => {
         newOptions.push({ label: `${valueToChange[j].label}`, value: valueToChange[j].value });
       }
     }
-
+    // Gives validation error when field is cleared
     return props.input.onChange(newOptions.length === 0 ? '' : newOptions);
   }
 
