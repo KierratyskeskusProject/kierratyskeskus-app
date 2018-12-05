@@ -3,7 +3,7 @@ import { Field, reduxForm, reset } from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Fields from './Fields';
 import InputComponent from './InputComponent';
@@ -87,7 +87,7 @@ class AddItemForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    console.log('Props are here', this.props);
+    console.log('Props', this.props);
     return (
       <div className="trunk" id="trunk">
         <form
@@ -102,7 +102,7 @@ class AddItemForm extends Component {
           >
           Add Item
           </button>
-          <ToastContainer autoClose={3000} />
+          <ToastContainer autoClose={3000} transition={Slide} hideProgressBar />
         </form>
       </div>
     );
