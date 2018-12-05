@@ -12,6 +12,8 @@ export default combineReducers({
   weight: fetchWeightReducer,
   templates: fetchTemplatesReducer,
 });
+
+
 /*
   combineReducers allowes for more reducers.
   reducers are imported from the reducers folder and added to the default export.
