@@ -22,6 +22,7 @@ class AddItemForm extends Component {
 
   componentDidMount() {
     const { getTemplates, dispatch } = this.props;
+
     window.addEventListener('resize', () => {
       this.setState({
         isSmallResolution: window.innerWidth < 1000,
@@ -101,19 +102,18 @@ class AddItemForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ weight: state.weight, templates: state.templates });
+const Form = reduxForm({
+  form: 'simple',
+  validate, // a unique identifier for this form
+})(AddItemForm);
+
+const mapStateToProps = state => ({
+  weight: state.weight,
+  templates: state.templates,
+});
 
 const mapDispatchToProps = () => ({
   postForm,
   getTemplates: fetchTemplates,
 });
-
-export default reduxForm({
-  form: 'simple',
-  validate,
-})(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps,
-  )(AddItemForm),
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

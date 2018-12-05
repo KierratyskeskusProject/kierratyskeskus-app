@@ -59,7 +59,7 @@ const CategoryReactSelect = (props) => {
       }
     }
 
-    return props.input.onChange(newOptions.length === 0 ? '' : valueToChange);
+    return props.input.onChange(newOptions.length === 0 ? '' : newOptions);
   }
 
   return (

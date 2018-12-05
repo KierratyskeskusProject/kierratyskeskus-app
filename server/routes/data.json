@@ -1,37 +1,37 @@
 [
   {
-    "name": "default",
+    "name": "new",
     "temp_id": "1",
     "content": "<p></p>",
     "category": "1",
     "sub_category": "1.1"
   },
   {
-    "name": "Book",
+    "name": "electronics",
     "temp_id": "2",
-    "content": "<i>Year</i><p>Release:</p>",
+    "content": "<p>Manifacture:<p> <strong>Model:</strong><p>Year:</p>",
     "category": "2",
     "sub_category": "2.1"
   },
   {
-    "name": "Kitchen",
+    "name": "bike",
     "temp_id": "3",
-    "content": "<p>Color:<p> <strong>Size</strong>",
+    "content": "<p>Color:<p><br/><strong>Wheel size</strong>",
     "category": "3",
     "sub_category": "3.1"
   },
   {
-    "name": "Phones",
+    "name": "book",
     "temp_id": "4",
-    "content": "<p>Manifacture:<p> <strong>Model:</strong><p>Year:</p>",
+    "content": "<p>Author:<p> <strong>Total pages:</strong><p>Release year:</p>",
     "category": "4",
     "sub_category": "4.1"
   },
   {
-    "name": "Computer",
+    "name": "kitchenware",
     "temp_id": "5",
-    "content": "<p>Manifacture:<p> <strong>Model:</strong><p>Year:</p><p>Ram:</p><p>GB:</p>",
-    "category": "4",
-    "sub_category": "4.2"
+    "content": "<p>Stuff 'n stuff'</p>",
+    "category": "5",
+    "sub_category": "5.1"
   }
 ]
