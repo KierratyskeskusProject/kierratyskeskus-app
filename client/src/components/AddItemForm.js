@@ -5,10 +5,11 @@ import { connect } from 'react-redux';
 
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-import { postForm } from '../redux/actions/index';
+import { postForm, fetchTemplates } from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
-import CategoryReactSelect, { categoryList } from './CategoryReactSelect';
+import { Categories } from '../data';
+import CategoryReactSelect from './CategoryReactSelect';
 
 class AddItemForm extends Component {
   constructor(props) {
@@ -20,12 +21,16 @@ class AddItemForm extends Component {
   }
 
   componentDidMount() {
+    const { getTemplates, dispatch } = this.props;
+
     window.addEventListener('resize', () => {
       this.setState({
         isSmallResolution: window.innerWidth < 1000,
       });
     }, false);
+    dispatch(getTemplates());
   }
+
 
   changeConditionRating = (newRating) => {
     this.setState({
@@ -56,11 +61,12 @@ class AddItemForm extends Component {
     const { isSmallResolution } = this.state;
     const { weight } = this.props;
 
+
     return _.map(Fields, ({ label, name, inputClass }) => (
       <Field
         key={name}
         multi={name === 'category' ? true : ''}
-        options={name === 'category' ? categoryList : ''}
+        options={name === 'category' ? Categories : ''}
         component={name === 'category' ? CategoryReactSelect : InputComponent}
         type="text"
         inputClass={inputClass}
@@ -96,14 +102,18 @@ class AddItemForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({ weight: state.weight });
-
-export default reduxForm({
+const Form = reduxForm({
   form: 'simple',
-  validate,
-})(
-  connect(
-    mapStateToProps,
-    { postForm },
-  )(AddItemForm),
-);
+  validate, // a unique identifier for this form
+})(AddItemForm);
+
+const mapStateToProps = state => ({
+  weight: state.weight,
+  templates: state.templates,
+});
+
+const mapDispatchToProps = () => ({
+  postForm,
+  getTemplates: fetchTemplates,
+});
+export default connect(mapStateToProps, mapDispatchToProps)(Form);

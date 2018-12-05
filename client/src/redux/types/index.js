@@ -8,6 +8,12 @@ export const DELETE_IMAGE_FAILURE = 'DELETE_IMAGE_FAILURE';
 export const FETCH_WEIGHT_BEGIN = 'FETCH_WEIGTH_BEGIN';
 export const FETCH_WEIGHT_SUCCESS = 'FETCH_WEIGHT_SUCCESS';
 export const FETCH_WEIGHT_FAILURE = 'FETCH_WEIGHT_FAILURE';
+export const FETCH_TEMPLATES_BEGIN = 'FETCH_TEMPLATES_BEGIN';
+export const FETCH_TEMPLATES_SUCCESS = 'FETCH_TEMPLATES_SUCCESS';
+export const FETCH_TEMPLATES_FAILURE = 'FETCH_TEMPLATES_FAILURE';
+export const SAVE_TEMPLATES_BEGIN = 'SAVE_TEMPLATES_BEGIN';
+export const SAVE_TEMPLATES_SUCCESS = 'SAVE_TEMPLATES_SUCCESS';
+export const SAVE_TEMPLATES_FAILURE = 'SAVE_TEMPLATES_FAILURE';
 
 export const fetchWeightBegin = () => ({
   type: FETCH_WEIGHT_BEGIN,
@@ -53,5 +59,33 @@ export const deleteImageSuccess = (response, image) => ({
 
 export const deleteImageFailure = error => ({
   type: DELETE_IMAGE_FAILURE,
+  payload: { error },
+});
+
+export const fetchTemplatesBegin = () => ({
+  type: FETCH_TEMPLATES_BEGIN,
+});
+
+export const fetchTemplatesSuccess = templates => ({
+  type: FETCH_TEMPLATES_SUCCESS,
+  payload: { templates },
+});
+
+export const fetchTemplatesFailure = error => ({
+  type: FETCH_TEMPLATES_FAILURE,
+  payload: { error },
+});
+
+export const saveTemplatesBegin = () => ({
+  type: SAVE_TEMPLATES_BEGIN,
+});
+
+export const saveTemplatesSuccess = templates => ({
+  type: SAVE_TEMPLATES_SUCCESS,
+  payload: { templates },
+});
+
+export const saveTemplatesFailure = error => ({
+  type: SAVE_TEMPLATES_FAILURE,
   payload: { error },
 });

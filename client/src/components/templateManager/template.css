@@ -150,4 +150,5 @@ h3{
   background-color: #fff !important;
   padding: 10px; 
   min-height: 300px;
+  z-index: -1;
 }
