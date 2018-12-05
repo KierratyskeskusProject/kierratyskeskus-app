@@ -30,16 +30,15 @@ class ImageBar extends Component {
 
   renderImages() {
     const {
-      dispatch, load, images, template, init,
+      dispatch, load, images, template, init, formFields,
     } = this.props;
 
     if (images.images.length !== 0) {
       const bookData = this.ifBook(images.images);
       const { category } = images.images[0];
+      const getTemp = getTemplateCategory(category, Categories, template, init, bookData, formFields);
 
-      const getTemp = getTemplateCategory(category, Categories, template, init, bookData);
       dispatch(load(getTemp));
-
 
       return images.images.map(item => (
         <Image
@@ -72,6 +71,7 @@ const mapStateToProps = state => ({
   template: state.templates,
   initialValues: state.initial.data,
   init: state.initial,
+  formFields: state.form,
 });
 
 const mapDispatchToProps = () => ({
