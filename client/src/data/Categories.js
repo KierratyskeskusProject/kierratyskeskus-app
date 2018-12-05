@@ -10,7 +10,7 @@ const Categories = [
     value: '2',
   },
   {
-    name: 'bike',
+    name: 'bicycle',
     label: 'Polkupyörät',
     value: '3',
     options: [
