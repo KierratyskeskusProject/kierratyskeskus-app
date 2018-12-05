@@ -53,7 +53,9 @@ class AddItemForm extends Component {
       newValues.category[key] = item.value;
       return null;
     });
-    await postForm(newValues);
+    await postForm(newValues, () => {
+      this.notify();
+    });
     dispatch(reset('simple'));
     this.setState({ conditionRating: 0 });
   };
@@ -95,7 +97,6 @@ class AddItemForm extends Component {
           <ImageBar />
           {this.renderInputFields()}
           <button
-            onClick={this.props.submitSucceeded ? null : this.notify}
             className="btn btn-success submit"
             type="submit"
           >

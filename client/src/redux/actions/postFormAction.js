@@ -1,8 +1,16 @@
 import axios from 'axios';
 import { postFormSuccess } from '../types';
 
-const postForm = (values) => {
-  const request = axios.post('http://localhost:5000/products', values);
+const postForm = (values, callback) => {
+  const request = axios.post('http://localhost:5000/products', values)
+    .then(
+      () => callback(),
+    )
+    .catch((error) => {
+      // handle error
+      console.log(error);
+    });
+
   return postFormSuccess(request);
 };
 
