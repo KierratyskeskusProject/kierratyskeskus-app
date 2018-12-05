@@ -15,13 +15,7 @@ import CategoryReactSelect from './CategoryReactSelect';
 import { clear as clearData } from '../redux/reducers/initialDescReducer';
 
 class AddItemForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      conditionRating: 0,
-      isSmallResolution: null,
-    };
-  }
+  state = { conditionRating: 0, isSmallResolution: null };
 
   componentDidMount() {
     const { getTemplates, dispatch } = this.props;
@@ -42,7 +36,9 @@ class AddItemForm extends Component {
 
   handleValueSubmit = async (values, dispatch) => {
     const { conditionRating } = this.state;
-    const { weight, images, clear } = this.props;
+    const {
+      weight, images, clear,
+    } = this.props;
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
@@ -54,7 +50,7 @@ class AddItemForm extends Component {
       return null;
     });
     await postForm(newValues);
-    // clear input fields
+    // clear input fields need to refactor
     this.setState({ conditionRating: 0 });
     dispatch(clearImages());
     dispatch(clearWeight());
