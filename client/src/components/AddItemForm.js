@@ -87,7 +87,6 @@ class AddItemForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
-    console.log('Props', this.props);
     return (
       <div className="trunk" id="trunk">
         <form
