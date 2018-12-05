@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, reset } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 
@@ -36,9 +36,7 @@ class AddItemForm extends Component {
 
   handleValueSubmit = async (values, dispatch) => {
     const { conditionRating } = this.state;
-    const {
-      weight, images, clear,
-    } = this.props;
+    const { weight, images, clear } = this.props;
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
@@ -55,7 +53,6 @@ class AddItemForm extends Component {
     dispatch(clearImages());
     dispatch(clearWeight());
     dispatch(clear());
-    dispatch(reset('simple'));
   };
 
   renderInputFields() {
@@ -107,12 +104,14 @@ class AddItemForm extends Component {
 const Form = reduxForm({
   form: 'simple',
   validate, // a unique identifier for this form
+  enableReinitialize: true,
 })(AddItemForm);
 
 const mapStateToProps = state => ({
   weight: state.weight,
   templates: state.templates,
   images: state.images,
+  initialValues: state.initial.data,
 });
 
 const mapDispatchToProps = () => ({
