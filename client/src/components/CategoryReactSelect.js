@@ -7,6 +7,17 @@ const CategoryReactSelect = (props) => {
     options, label, inputClass, isSmallResolution, input: { value }, meta,
   } = props;
 
+  function isItValid(state) {
+    // Picks background color of options
+    if (meta.error && meta.touched && state.isFocused) {
+      return 'rgba(220, 53, 69, 0.15)';
+    }
+    if (state.isFocused) {
+      return 'rgba(0, 167, 126, 0.15)';
+    }
+    return 'rgb(255, 255, 255)';
+  }
+
   const customStyles = {
     control: base => ({
       ...base,
@@ -19,10 +30,7 @@ const CategoryReactSelect = (props) => {
     }),
     option: (base, state) => ({
       ...base,
-      // Make me into a Switch function
-      backgroundColor: meta.error && meta.touched
-        ? state.isFocused ? 'rgba(220, 53, 69, 0.15)' : 'rgb(255, 255, 255)'
-        : state.isFocused ? 'rgba(0, 167, 126, 0.15)' : 'rgb(255, 255, 255)',
+      backgroundColor: isItValid(state),
       ':hover': {
         backgroundColor: meta.error && meta.touched ? 'rgba(220, 53, 69, 0.15)' : 'rgba(0, 167, 126, 0.15)',
       },
@@ -51,7 +59,7 @@ const CategoryReactSelect = (props) => {
       }
     }
 
-    return props.input.onChange(newOptions);
+    return props.input.onChange(newOptions.length === 0 ? '' : valueToChange);
   }
 
   return (
