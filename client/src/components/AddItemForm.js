@@ -85,6 +85,7 @@ class AddItemForm extends Component {
 
   render() {
     const { handleSubmit } = this.props;
+    console.log('Props are here', this.props);
     return (
       <div className="trunk" id="trunk">
         <form
@@ -94,7 +95,7 @@ class AddItemForm extends Component {
           <ImageBar />
           {this.renderInputFields()}
           <button
-            onClick={this.notify}
+            onClick={this.props.submitSucceeded ? null : this.notify}
             className="btn btn-success submit"
             type="submit"
           >
