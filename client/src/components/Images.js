@@ -23,7 +23,7 @@ class ImageBar extends Component {
           publishedDate: item.book.publishedDate,
         };
       }
-      return console.log('no books');
+      return null;
     });
     return aBook;
   }
@@ -35,11 +35,9 @@ class ImageBar extends Component {
 
     if (images.images.length !== 0) {
       const bookData = this.ifBook(images.images);
-      console.log('render image func', bookData);
-
       const { category } = images.images[0];
 
-      const getTemp = getTemplateCategory(category, Categories, template, init);
+      const getTemp = getTemplateCategory(category, Categories, template, init, bookData);
       dispatch(load(getTemp));
 
 

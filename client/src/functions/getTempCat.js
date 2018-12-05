@@ -1,4 +1,4 @@
-const getTemplateCategory = (category, Categories, template, init) => {
+const getTemplateCategory = (category, Categories, template, init, bookData) => {
   const newState = { ...init };
 
   const cat = { label: null, value: null };
@@ -10,14 +10,28 @@ const getTemplateCategory = (category, Categories, template, init) => {
     }
   }
 
-  for (let i = 0; i < template.templates[0].length; i++) {
-    if (template.templates[0][i].temp_id === cat.value) {
-      console.log(template.templates[0][i].name);
-      newState.description = template.templates[0][i].content;
+  if (!bookData) {
+    for (let i = 0; i < template.templates[0].length; i++) {
+      if (template.templates[0][i].temp_id === cat.value) {
+        newState.description = template.templates[0][i].content;
+      }
     }
+  } else {
+    const bd = {
+      title: bookData.title,
+      text: bookData.description,
+      pageCount: bookData.pageCount,
+      publisher: bookData.publisher,
+      publishedDate: bookData.publishedDate.slice(0, 4),
+    };
+    const lineBreak = '\n';
+    const desc = `${bd.text}${lineBreak}${lineBreak}${bd.publisher}, ${bd.publishedDate}${lineBreak}${bd.pageCount} pages`;
+
+    newState.title = bookData.title;
+    newState.description = desc;
   }
 
-  console.log(newState);
+
   // template.templates[0][cat.value].content
   const defaultValues = {
     title: newState.title,
