@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm } from 'redux-form';
+import { reduxForm, change } from 'redux-form';
 import { postForm } from '../redux/actions/index';
 import { load as loadData } from '../redux/reducers/initialDescReducer';
 import AddImageButton from './AddImageButton';
@@ -23,25 +23,33 @@ class ImageBar extends Component {
           publishedDate: item.book.publishedDate,
         };
       }
-      return console.log('no books');
+      return null; // console.log('no books');
     });
     return aBook;
   }
 
   renderImages() {
     const {
-      dispatch, load, images, template, init,
+      dispatch, load, images, template, init, formFields,
     } = this.props;
+    dispatch(load({ title: '', description: '', category: [] }));
 
     if (images.images.length !== 0) {
       const bookData = this.ifBook(images.images);
-      console.log('render image func', bookData);
-
+      // console.log('render image func', bookData);
       const { category } = images.images[0];
 
-      const getTemp = getTemplateCategory(category, Categories, template, init);
-      dispatch(load(getTemp));
+      const getTemp = getTemplateCategory(category, Categories, template, init, formFields);
 
+
+      const fields = formFields.simple.values;
+      // fields.title
+      // fields.description
+      // fields.category
+
+      dispatch(change('simple', 'title', getTemp.title));
+      dispatch(change('simple', 'description', getTemp.description));
+      dispatch(change('simple', 'category', getTemp.category[0]));
 
       return images.images.map(item => (
         <Image
@@ -74,6 +82,8 @@ const mapStateToProps = state => ({
   template: state.templates,
   initialValues: state.initial.data,
   init: state.initial,
+  postForm,
+  formFields: state.form,
 });
 
 const mapDispatchToProps = () => ({

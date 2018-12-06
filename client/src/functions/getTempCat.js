@@ -1,5 +1,7 @@
-const getTemplateCategory = (category, Categories, template, init) => {
+const getTemplateCategory = (category, Categories, template, init, formFields) => {
   const newState = { ...init };
+
+  // const { value } = formFields.simple.fields;
 
   const cat = { label: null, value: null };
   for (let i = 0; i < Categories.length; i++) {
@@ -7,6 +9,7 @@ const getTemplateCategory = (category, Categories, template, init) => {
       cat.label = Categories[i].name;
       cat.value = Categories[i].value;
       newState.category = cat;
+      newState.title = '';
     }
   }
 
@@ -17,8 +20,6 @@ const getTemplateCategory = (category, Categories, template, init) => {
     }
   }
 
-  console.log(newState);
-  // template.templates[0][cat.value].content
   const defaultValues = {
     title: newState.title,
     description: newState.description,
