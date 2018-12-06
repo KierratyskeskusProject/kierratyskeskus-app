@@ -20,13 +20,17 @@ const getTemplateCategory = (category, Categories, template, init, formFields) =
     }
   }
 
+<<<<<<< HEAD
   const defaultValues = {
+=======
+  console.log(newState);
+  // template.templates[0][cat.value].content
+  return {
+>>>>>>> origin/master
     title: newState.title,
     description: newState.description,
     category: [newState.category],
   };
-
-  return defaultValues;
 };
 
 export default getTemplateCategory;

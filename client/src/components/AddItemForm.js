@@ -1,26 +1,22 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, reset } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
-
 import { ToastContainer, toast, Slide } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Fields from './Fields';
 import InputComponent from './InputComponent';
-import { postForm, fetchTemplates } from '../redux/actions/index';
+import {
+  postForm, fetchTemplates, clearImages, clearWeight,
+} from '../redux/actions/index';
 import ImageBar from './Images';
 import validate from './Validation';
 import { Categories } from '../data';
 import CategoryReactSelect from './CategoryReactSelect';
+import { clear as clearData } from '../redux/reducers/initialDescReducer';
 
 class AddItemForm extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      conditionRating: 0,
-      isSmallResolution: null,
-    };
-  }
+  state = { conditionRating: 0, isSmallResolution: null };
 
   componentDidMount() {
     const { getTemplates, dispatch } = this.props;
@@ -45,11 +41,12 @@ class AddItemForm extends Component {
 
   handleValueSubmit = async (values, dispatch) => {
     const { conditionRating } = this.state;
-    const { weight } = this.props;
+    const { weight, images, clear } = this.props;
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
       weight: weight.weight.value,
+      images: images.images.map(image => image.imageName),
     };
     values.category.map((item, key) => {
       newValues.category[key] = item.value;
@@ -58,14 +55,15 @@ class AddItemForm extends Component {
     await postForm(newValues, () => {
       this.notify();
     });
-    dispatch(reset('simple'));
     this.setState({ conditionRating: 0 });
+    dispatch(clearImages());
+    dispatch(clearWeight());
+    dispatch(clear());
   };
 
   renderInputFields() {
     const { changeConditionRating } = this;
-    const { conditionRating } = this.state;
-    const { isSmallResolution } = this.state;
+    const { conditionRating, isSmallResolution } = this.state;
     const { weight } = this.props;
 
 
@@ -113,15 +111,19 @@ class AddItemForm extends Component {
 const Form = reduxForm({
   form: 'simple',
   validate, // a unique identifier for this form
+  enableReinitialize: true,
 })(AddItemForm);
 
 const mapStateToProps = state => ({
   weight: state.weight,
   templates: state.templates,
+  images: state.images,
+  initialValues: state.initial.data,
 });
 
 const mapDispatchToProps = () => ({
   postForm,
   getTemplates: fetchTemplates,
+  clear: clearData,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

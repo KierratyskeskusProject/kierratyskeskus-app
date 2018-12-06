@@ -26,7 +26,7 @@ class ImageBar extends Component {
       return null; // console.log('no books');
     });
     return aBook;
-  }
+  };
 
   renderImages() {
     const {
@@ -36,16 +36,10 @@ class ImageBar extends Component {
 
     if (images.images.length !== 0) {
       const bookData = this.ifBook(images.images);
-      // console.log('render image func', bookData);
+      console.log('render image func', bookData);
       const { category } = images.images[0];
 
       const getTemp = getTemplateCategory(category, Categories, template, init, formFields);
-
-
-      const fields = formFields.simple.values;
-      // fields.title
-      // fields.description
-      // fields.category
 
       dispatch(change('simple', 'title', getTemp.title));
       dispatch(change('simple', 'description', getTemp.description));
