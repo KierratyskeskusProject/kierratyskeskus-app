@@ -6,7 +6,7 @@ cache:
   directories:
   - node_modules
   - client/node_modules
-  - $HOME/client/.yarn-cache
+  - $HOME/.yarn-cache
 # Encrypt googleKey file and allow usb connection
 before_install:
 - openssl aes-256-cbc -K $encrypted_98a29f15986b_key -iv $encrypted_98a29f15986b_iv
