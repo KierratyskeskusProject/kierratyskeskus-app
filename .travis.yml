@@ -28,6 +28,6 @@ install:
 - npm install
 - cd client && yarn
 script:
-- yarn run CI=true react-scripts test --env=jsdom
+- yarn test --coverage
 - cd .. && npm run lint
 - npm run test
