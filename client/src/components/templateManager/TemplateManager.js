@@ -243,6 +243,7 @@ class TemplateManager extends Component {
 
 const mapStateToProps = state => ({
   templates: state.templates,
+
 });
 
 const mapDispatchToProps = dispatch => ({
