@@ -1,10 +1,13 @@
 import React from 'react';
 import Select from 'react-select';
+import { connect } from 'react-redux';
+import { reduxForm, change } from 'redux-form';
 import _ from 'lodash';
+import { postForm } from '../redux/actions/index';
 
 const CategoryReactSelect = (props) => {
   const {
-    options, label, inputClass, isSmallResolution, input: { value }, meta,
+    options, label, inputClass, isSmallResolution, input: { value }, meta, dispatch,
   } = props;
 
   function isItValid(state) {
@@ -42,6 +45,8 @@ const CategoryReactSelect = (props) => {
     const optionsLength = props.options.length;
     const newOptions = [];
     const labels = [];
+
+    dispatch(change('simple', 'description', 'Testing'));
 
     _.forEach(valueToChange, (values) => {
       // Searches for parent category
@@ -90,4 +95,19 @@ const CategoryReactSelect = (props) => {
   );
 };
 
-export default CategoryReactSelect;
+const CategorySelect = reduxForm({
+  form: 'simple',
+})(CategoryReactSelect);
+
+const mapStateToProps = state => ({
+  template: state.templates,
+  initialValues: state.initial.data,
+  init: state.initial,
+});
+
+const mapDispatchToProps = () => ({
+  postForm,
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategorySelect);
