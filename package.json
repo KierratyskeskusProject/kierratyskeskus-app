@@ -14,9 +14,9 @@
   "author": "Chilicorn",
   "license": "ISC",
   "dependencies": {
+    "@google-cloud/automl": "^0.1.2",
     "@google-cloud/speech": "^2.0.0",
     "@google-cloud/vision": "^0.22.0",
-    "@tinymce/tinymce-react": "^2.4.0",
     "axios": "^0.18.0",
     "babel-eslint": "^9.0.0",
     "body-parser": "^1.18.3",
@@ -30,7 +30,6 @@
     "node-webcam": "^0.4.4",
     "nodemon": "^1.18.4",
     "sqlite3": "^4.0.2",
-    "tinymce": "^4.8.5",
     "usb": "latest"
   },
   "devDependencies": {

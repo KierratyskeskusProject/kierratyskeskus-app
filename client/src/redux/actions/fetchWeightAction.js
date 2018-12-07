@@ -1,6 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 
-import { fetchWeightBegin, fetchWeightSuccess, fetchWeightFailure } from '../types';
+import {
+  fetchWeightBegin, fetchWeightSuccess, fetchWeightFailure, clearWeight,
+} from '../types';
 
 const fetchWeight = () => {
   const action = (dispatch) => {
@@ -20,4 +22,4 @@ const fetchWeight = () => {
 };
 
 
-export { fetchWeight };
+export { fetchWeight, clearWeight };
