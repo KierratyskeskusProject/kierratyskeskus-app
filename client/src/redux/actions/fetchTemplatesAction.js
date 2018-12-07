@@ -15,7 +15,7 @@ const fetchTemplates = () => async (dispatch) => {
   const request = await axios.get(url);
   const templates = request.data;
   try {
-    dispatch(fetchTemplatesSuccess(templates));
+    dispatch(fetchTemplatesSuccess(JSON.parse(templates)));
   } catch (e) {
     dispatch(fetchTemplatesFailure(e));
   }

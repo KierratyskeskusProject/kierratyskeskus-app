@@ -18,7 +18,6 @@ import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 class TemplateManager extends Component {
   state = {
     editorState: EditorState.createEmpty(),
-    templates: [],
     isEditing: false,
     templateInEdit: null,
     selectedCategory: '',
@@ -39,15 +38,17 @@ class TemplateManager extends Component {
 
   handleSaveNew = () => {
     const {
-      templates,
       editorState,
       selectedCategory,
     } = this.state;
-    const { save, dispatch } = this.props;
-
+    const { save, dispatch, templates: { templates } } = this.props;
+    console.log(templates);
     const contentState = convertToRaw(editorState.getCurrentContent());
     const id = templates.length === 0 ? 1 : templates.slice(-1)[0].id + 1;
-    const categoryId = selectedCategory === '' ? 0 : selectedCategory.value.split('');
+    const categoryId = selectedCategory === ''
+     || selectedCategory.value === undefined
+      ? 0
+      : selectedCategory.value.split('');
     const newTemplate = {
       name: selectedCategory.label,
       id,
@@ -55,11 +56,8 @@ class TemplateManager extends Component {
       category: categoryId[0],
       subCategory: selectedCategory.value,
     };
-    console.log('newtemplate', newTemplate);
-    window.localStorage.setItem('templates', JSON.stringify([...templates, newTemplate]));
     dispatch(save(newTemplate));
     this.setState({
-      templates: [...templates, newTemplate],
       editorState: EditorState.createEmpty(),
       selectedCategory: '',
       isEditing: false,
@@ -69,10 +67,11 @@ class TemplateManager extends Component {
   handleSaveEdit = () => {
     const {
       templateInEdit,
-      templates,
       editorState,
       selectedCategory,
     } = this.state;
+    const { templates: { templates } } = this.props;
+
     templates.map((template, key) => {
       if (template.id === templateInEdit) {
         templates[key].content = convertToRaw(editorState.getCurrentContent());
@@ -91,17 +90,15 @@ class TemplateManager extends Component {
   }
 
   handleTemplateDelete = (id) => {
-    const { templates } = this.state;
+    const { templates: { templates } } = this.props;
     const removedTemplates = templates.filter(template => template.id !== id);
-    this.setState({
-      templates: removedTemplates,
-    });
-    window.localStorage.setItem('templates', JSON.stringify(removedTemplates));
+    console.log('removed', removedTemplates);
   }
 
   handleTemplateEdit = (id) => {
     const { isEditing } = this.state;
-    const templates = JSON.parse(window.localStorage.getItem('templates'));
+    const { templates: { templates } } = this.props;
+
     templates.map((template) => {
       if (template.id === id) {
         const templateWithoutId = _.omit(template, 'id');
@@ -114,7 +111,7 @@ class TemplateManager extends Component {
           templateInEdit: id,
           selectedCategory: {
             name: template.name,
-            value: template.subCategory.includes('.')
+            value: template.subCategory && template.subCategory.includes('.')
               ? template.subCategory
               : template.category,
           },
@@ -139,11 +136,11 @@ class TemplateManager extends Component {
 
   render() {
     const {
-      templates,
       editorState,
       isEditing,
       selectedCategory,
     } = this.state;
+    const { templates: { templates } } = this.props;
     return (
       <div className="App">
         <div className="aside" />
