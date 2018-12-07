@@ -9,11 +9,6 @@ import getTemplateCategory from '../functions/getTempCat';
 import { Categories } from '../data/Categories';
 
 class ImageBar extends Component {
-  componentDidMount() {
-    const { dispatch } = this.props;
-    dispatch(change('simple', 'content', 0));
-  }
-
   ifBook = (images) => {
     let aBook;
     images.map((item) => {

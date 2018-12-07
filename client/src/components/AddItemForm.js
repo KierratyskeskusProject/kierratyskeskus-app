@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Field, reduxForm, reset } from 'redux-form';
+import {
+  Field, reduxForm, reset, change,
+} from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { ToastContainer, toast, Slide } from 'react-toastify';
@@ -19,7 +21,7 @@ class AddItemForm extends Component {
 
   componentDidMount() {
     const { getTemplates, dispatch } = this.props;
-
+    dispatch(change('simple', 'content', 0));
     window.addEventListener('resize', () => {
       this.setState({
         isSmallResolution: window.innerWidth < 1000,
@@ -58,6 +60,7 @@ class AddItemForm extends Component {
     dispatch(clearImages());
     dispatch(clearWeight());
     dispatch(reset('simple'));
+    dispatch(change('simple', 'content', 0));
   };
 
   renderInputFields() {
