@@ -46,7 +46,7 @@ const Categories = [
   },
   {
     name: 'kitchenware',
-    label: 'kitchen in finnish',
+    label: 'keittiö',
     value: '5',
   },
 ];

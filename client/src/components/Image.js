@@ -25,6 +25,7 @@ class Image extends Component {
       src,
     } = this.props;
     const { show } = this.state;
+
     const { handleModalToggle } = this;
     return (
       <div className="imageFrame">

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
-import { Field, reduxForm } from 'redux-form';
+import {
+  Field, reduxForm, reset, change,
+} from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { ToastContainer, toast, Slide } from 'react-toastify';
@@ -13,14 +15,13 @@ import ImageBar from './Images';
 import validate from './Validation';
 import { Categories } from '../data';
 import CategoryReactSelect from './CategoryReactSelect';
-import { clear as clearData } from '../redux/reducers/initialDescReducer';
 
 class AddItemForm extends Component {
   state = { conditionRating: 0, isSmallResolution: null };
 
   componentDidMount() {
     const { getTemplates, dispatch } = this.props;
-
+    dispatch(change('simple', 'content', 0));
     window.addEventListener('resize', () => {
       this.setState({
         isSmallResolution: window.innerWidth < 1000,
@@ -41,7 +42,7 @@ class AddItemForm extends Component {
 
   handleValueSubmit = async (values, dispatch) => {
     const { conditionRating } = this.state;
-    const { weight, images, clear } = this.props;
+    const { weight, images } = this.props;
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
@@ -58,7 +59,8 @@ class AddItemForm extends Component {
     this.setState({ conditionRating: 0 });
     dispatch(clearImages());
     dispatch(clearWeight());
-    dispatch(clear());
+    dispatch(reset('simple'));
+    dispatch(change('simple', 'content', 0));
   };
 
   renderInputFields() {
@@ -113,18 +115,17 @@ const Form = reduxForm({
   form: 'simple',
   validate, // a unique identifier for this form
   enableReinitialize: true,
+  destroyOnUnmount: false,
 })(AddItemForm);
 
 const mapStateToProps = state => ({
   weight: state.weight,
   templates: state.templates,
   images: state.images,
-  initialValues: state.initial.data,
 });
 
 const mapDispatchToProps = () => ({
   postForm,
   getTemplates: fetchTemplates,
-  clear: clearData,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Form);

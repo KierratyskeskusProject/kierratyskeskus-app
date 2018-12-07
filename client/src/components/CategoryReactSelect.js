@@ -57,7 +57,7 @@ const CategoryReactSelect = (props) => {
         }
       }
     });
-    console.log(valueToChange);
+
     const cat = { value: optionValue[0] };
     for (let i = 0; i < template.templates[0].length; i++) {
       if (template.templates[0][i].temp_id === cat.value) {
@@ -111,8 +111,6 @@ const CategorySelect = reduxForm({
 
 const mapStateToProps = state => ({
   template: state.templates,
-  initialValues: state.initial.data,
-  init: state.initial,
 });
 
 const mapDispatchToProps = () => ({
