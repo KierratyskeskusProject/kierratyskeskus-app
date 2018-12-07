@@ -8,7 +8,7 @@ const reducer = (state = {}, action) => {
         data: action.data,
       };
     case CLEAR:
-      return initialState;
+      return state;
     default:
       return state;
   }

@@ -1,18 +1,17 @@
-const getTemplateCategory = (category, Categories, template, init, formFields) => {
+const getTemplateCategory = (category, Categories, template, init) => {
   const newState = { ...init };
 
-  // const { value } = formFields.simple.fields;
-
   const cat = { label: null, value: null };
+
   for (let i = 0; i < Categories.length; i++) {
     if (Categories[i].name === category) {
-      cat.label = Categories[i].name;
+      cat.label = Categories[i].label;
       cat.value = Categories[i].value;
       newState.category = cat;
       newState.title = '';
     }
   }
-
+  console.log(cat);
   for (let i = 0; i < template.templates[0].length; i++) {
     if (template.templates[0][i].temp_id === cat.value) {
       console.log(template.templates[0][i].name);
@@ -20,13 +19,7 @@ const getTemplateCategory = (category, Categories, template, init, formFields) =
     }
   }
 
-<<<<<<< HEAD
-  const defaultValues = {
-=======
-  console.log(newState);
-  // template.templates[0][cat.value].content
   return {
->>>>>>> origin/master
     title: newState.title,
     description: newState.description,
     category: [newState.category],
@@ -34,5 +27,3 @@ const getTemplateCategory = (category, Categories, template, init, formFields) =
 };
 
 export default getTemplateCategory;
-
-// dispatch(load(defaultValues));

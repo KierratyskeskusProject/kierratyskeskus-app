@@ -30,7 +30,7 @@ class ImageBar extends Component {
 
   renderImages() {
     const {
-      dispatch, load, images, template, init, formFields,
+      dispatch, load, images, template, init,
     } = this.props;
     dispatch(load({ title: '', description: '', category: [] }));
 
@@ -39,7 +39,7 @@ class ImageBar extends Component {
       console.log('render image func', bookData);
       const { category } = images.images[0];
 
-      const getTemp = getTemplateCategory(category, Categories, template, init, formFields);
+      const getTemp = getTemplateCategory(category, Categories, template, init);
 
       dispatch(change('simple', 'title', getTemp.title));
       dispatch(change('simple', 'description', getTemp.description));
