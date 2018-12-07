@@ -109,6 +109,7 @@ const CategoryReactSelect = (props) => {
 
 const CategorySelect = reduxForm({
   form: 'simple',
+  destroyOnUnmount: false,
 })(CategoryReactSelect);
 
 const mapStateToProps = state => ({
