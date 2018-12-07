@@ -20,6 +20,6 @@ install:
 - npm install
 - cd client && npm install
 script:
-- npm run test
+- npm run CI=true react-scripts test --env=jsdom
 - cd .. && npm run lint
 - npm run test
