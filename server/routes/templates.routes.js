@@ -1,18 +1,18 @@
-const fs = require("fs");
+const fs = require('fs');
 
 const readFile = () => JSON.parse(fs.readFileSync(`${__dirname}/data.json`, 'utf8'));
 
-const TemplateRoutes = app => {
+const TemplateRoutes = (app) => {
   // all templates
-  app.get("/allTemplates", (req, res) => {
+  app.get('/allTemplates', (req, res) => {
     res.status(200).send(readFile());
   });
 
   // template by id
   // return default template if id doesen't exist
-  app.get("/templateById/:id", (req, res) => {
+  app.get('/templateById/:id', (req, res) => {
     const {
-      id
+      id,
     } = req.params;
 
     const template = readFile();
@@ -30,12 +30,12 @@ const TemplateRoutes = app => {
 
   // All templates with category id
   // return default template if id doesen't exist
-  app.get("/templatesByCategory/:catId", (req, res) => {
+  app.get('/templatesByCategory/:catId', (req, res) => {
     const {
-      catId
+      catId,
     } = req.params;
 
-    let templateRes = [];
+    const templateRes = [];
     const templates = readFile();
     const needle = catId;
 
@@ -51,9 +51,9 @@ const TemplateRoutes = app => {
 
 
   // template by sub_category id
-  app.get("/templateBySubCategory/:subCatId", (req, res) => {
+  app.get('/templateBySubCategory/:subCatId', (req, res) => {
     const {
-      subCatId
+      subCatId,
     } = req.params;
 
     const template = readFile();
@@ -61,8 +61,8 @@ const TemplateRoutes = app => {
     let result = template[0];
 
     for (let i = 0; i < template.length; i++) {
-      console.log("needle- ", needle);
-      console.log("sub cat ", template[i].sub_category);
+      console.log('needle- ', needle);
+      console.log('sub cat ', template[i].sub_category);
       if (template[i].sub_category === needle) {
         result = template[i];
         i = template.length;
@@ -71,27 +71,27 @@ const TemplateRoutes = app => {
     res.status(200).send(result);
   });
 
-  app.post("/createTemplate", (req, res) => {
+  app.post('/createTemplate', (req, res) => {
     const {
-      template
+      template,
     } = req.body;
 
     const templates = readFile();
 
     templates.push(template);
 
-    fs.writeFile(`${__dirname}/data.json`, JSON.stringify(templates), error => {
-      if (error) res.status(200).send("error ");
-      console.log("Data written to file");
-      res.status(200).send("New template is added");
+    fs.writeFile(`${__dirname}/data.json`, JSON.stringify(templates), (error) => {
+      if (error) res.status(200).send('error ');
+      console.log('Data written to file');
+      res.status(200).send('New template is added');
     });
   });
 
-  app.put("/updateTemplate", (req, res) => {
+  app.put('/updateTemplate', (req, res) => {
     const {
-      updatedTemplate
+      updatedTemplate,
     } = req.body;
-    let upTemp = [];
+    const upTemp = [];
 
     const template = readFile();
 
@@ -108,15 +108,15 @@ const TemplateRoutes = app => {
         throw err;
       }
       console.log('File saved!');
-      res.status(200).send("Template updated successfully");
+      res.status(200).send('Template updated successfully');
     });
   });
 
-  app.delete("/deleteTemplate", (req, res) => {
+  app.delete('/deleteTemplate', (req, res) => {
     const {
-      deletedTemplate
+      deletedTemplate,
     } = req.body;
-    let upTemp = [];
+    const upTemp = [];
 
     const template = readFile();
 
@@ -133,7 +133,7 @@ const TemplateRoutes = app => {
         throw err;
       }
       console.log('File saved!');
-      res.status(200).send("Template deleted successfully");
+      res.status(200).send('Template deleted successfully');
     });
   });
 };
