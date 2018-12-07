@@ -8,6 +8,7 @@ let component;
 const props = {
   label: 'test',
   input: { value: '' },
+  meta: { touched: true },
 };
 
 beforeEach(() => {
@@ -21,10 +22,6 @@ afterEach(() => {
 describe('CategoryReactSelect', () => {
   it('should exist', () => {
     expect(wrapped.find(Select).exists()).toEqual(true);
-  });
-
-  it('should have a label', () => {
-    expect(wrapped.find('label').contains(<label>test</label>)).toEqual(true);
   });
 
   it('should have options', () => {
