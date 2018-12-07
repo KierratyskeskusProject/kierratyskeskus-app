@@ -17,7 +17,7 @@ afterEach(() => {
 
 describe('postForm', () => {
   it('has the correct type', () => {
-    const action = postForm();
+    const action = postForm('', () => null);
 
     expect(action.type).toEqual(POST_FORM_SUCCESS);
   });
