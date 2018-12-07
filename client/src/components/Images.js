@@ -69,7 +69,7 @@ class ImageBar extends Component {
 const Images = reduxForm({
   form: 'simple',
   enableReinitialize: true,
-  destroyOnUnmount: false,
+  destroyOnUnmount: false, 
 })(ImageBar);
 
 const mapStateToProps = state => ({
