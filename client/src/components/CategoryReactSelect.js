@@ -1,10 +1,13 @@
 import React from 'react';
 import Select from 'react-select';
+import { connect } from 'react-redux';
+import { reduxForm, change } from 'redux-form';
 import _ from 'lodash';
+import { postForm } from '../redux/actions/index';
 
 const CategoryReactSelect = (props) => {
   const {
-    options, label, inputClass, isSmallResolution, input: { value }, meta,
+    options, label, inputClass, isSmallResolution, input: { value }, meta, dispatch, template, init,
   } = props;
 
   function isItValid(state) {
@@ -42,16 +45,30 @@ const CategoryReactSelect = (props) => {
     const optionsLength = props.options.length;
     const newOptions = [];
     const labels = [];
+    const newState = { ...init };
+    let optionValue = 0;
 
     _.forEach(valueToChange, (values) => {
       // Searches for parent category
-      const optionValue = values.value.split('.');
+      optionValue = values.value.split('.');
       for (let i = 0; i < optionsLength; i += 1) {
         if (optionValue[0] === props.options[i].value) {
           labels.push(props.options[i].label);
         }
       }
     });
+
+    const cat = { value: optionValue[0] };
+    // Compare category to templates
+    for (let i = 0; i < template.templates[0].length; i++) {
+      if (template.templates[0][i].temp_id === cat.value) {
+        newState.description = template.templates[0][i].content;
+      }
+    }
+
+    // Dispatch description from matching template
+    dispatch(change('simple', 'description', newState.description));
+
     // Adds parent category to sub category
     for (let j = 0; j < labels.length; j += 1) {
       if (valueToChange[j].label.search(labels[j]) !== 0) {
@@ -90,4 +107,17 @@ const CategoryReactSelect = (props) => {
   );
 };
 
-export default CategoryReactSelect;
+const CategorySelect = reduxForm({
+  form: 'simple',
+})(CategoryReactSelect);
+
+const mapStateToProps = state => ({
+  template: state.templates,
+});
+
+const mapDispatchToProps = () => ({
+  postForm,
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CategorySelect);
