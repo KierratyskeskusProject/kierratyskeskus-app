@@ -97,6 +97,7 @@ body {
   color: rgb(255, 255, 255);
   border: none;
   border-radius: 90%;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .closeModal:before {
@@ -221,6 +222,7 @@ body {
   background-color:rgb(200, 200, 200);
   color: rgb(255, 255, 255);
   border: none;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   border-radius: 90%;
 }
 
@@ -242,6 +244,7 @@ body {
 
 .modal-body .deleteImage {
   top: 40px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
 }
 
 .fa-trash-alt {
@@ -284,6 +287,7 @@ body {
   width: auto;
   position: absolute;
   border-radius: 25px;
+  background-color: rgb(200, 200, 200);
   box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2);
   justify-content: center;
   margin-top: 5rem;
@@ -351,6 +355,7 @@ body {
   background-color:rgb(200, 200, 200);
   color: rgb(255, 255, 255);
   border: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
   border-radius: 90%;
   z-index: 11;
 }
@@ -402,7 +407,7 @@ body {
   position: absolute;
   top: 5px;
   left: 5px;
-  z-index: 5000;
+  z-index: 1;
 }
 
 .addImage:focus, .addImage:active {
@@ -414,7 +419,7 @@ body {
   /* The camera icon within addImage button */
   font-size: 50px;
   position: relative;
-  z-index: 5000;
+  z-index: 1;
   opacity: 1;
 }
 
@@ -457,12 +462,12 @@ input:focus, textarea:focus {
 }
 
 .weight:hover, .weight:active {
-  background-color: rgb(0, 117, 88);
-  border: rgb(0, 167, 126);
+  background-color: rgb(0, 117, 88) !important;
+  border: rgb(0, 167, 126) !important;
 }
 
 .weight:focus {
-  box-shadow: 6px 6px 20px 0 rgba(0, 0, 0, 0.4) !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2) !important;
 }
 
 .fa-sync-alt {
@@ -488,7 +493,7 @@ input:focus, textarea:focus {
 }
 
 .submit:hover, .submit:active {
-  background-color: rgb(0, 117, 88);
+  background-color: rgb(0, 117, 88) !important;
   border: rgb(0, 153, 115);
 }
 
