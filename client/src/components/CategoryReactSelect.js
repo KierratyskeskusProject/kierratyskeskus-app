@@ -59,12 +59,14 @@ const CategoryReactSelect = (props) => {
     });
 
     const cat = { value: optionValue[0] };
+    // Compare category to templates
     for (let i = 0; i < template.templates[0].length; i++) {
       if (template.templates[0][i].temp_id === cat.value) {
         newState.description = template.templates[0][i].content;
       }
     }
 
+    // Dispatch description from matching template
     dispatch(change('simple', 'description', newState.description));
 
     // Adds parent category to sub category
