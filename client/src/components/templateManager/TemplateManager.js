@@ -16,16 +16,13 @@ import './template.css';
 import '../../../node_modules/react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 
 class TemplateManager extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      editorState: EditorState.createEmpty(),
-      templates: [],
-      isEditing: false,
-      templateInEdit: null,
-      selectedCategory: '',
-    };
-  }
+  state = {
+    editorState: EditorState.createEmpty(),
+    templates: [],
+    isEditing: false,
+    templateInEdit: null,
+    selectedCategory: '',
+  };
 
   componentDidMount() {
     const templatesInStorage = JSON.parse(localStorage.getItem('templates'));

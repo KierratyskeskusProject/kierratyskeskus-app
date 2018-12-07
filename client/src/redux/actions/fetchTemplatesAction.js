@@ -4,6 +4,9 @@ import {
   fetchTemplatesBegin,
   fetchTemplatesFailure,
   fetchTemplatesSuccess,
+  saveTemplatesBegin,
+  saveTemplatesFailure,
+  saveTemplatesSuccess,
 } from '../types';
 
 const fetchTemplates = () => async (dispatch) => {
@@ -17,4 +20,21 @@ const fetchTemplates = () => async (dispatch) => {
     dispatch(fetchTemplatesFailure(e));
   }
 };
-export { fetchTemplates };
+
+
+const saveTemplates = values => async (dispatch) => {
+  console.log('values in action', values);
+  const url = 'http://localhost:5000/createTemplate';
+  dispatch(saveTemplatesBegin());
+  const request = await axios.post(url,
+    {
+      template: JSON.stringify(values),
+    });
+  if (request.status === 200) {
+    dispatch(saveTemplatesSuccess(values));
+  } else {
+    dispatch(saveTemplatesFailure('ERROR', request.error));
+  }
+};
+
+export { fetchTemplates, saveTemplates };
