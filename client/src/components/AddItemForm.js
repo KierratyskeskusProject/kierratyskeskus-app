@@ -114,6 +114,7 @@ const Form = reduxForm({
   form: 'simple',
   validate, // a unique identifier for this form
   enableReinitialize: true,
+  destroyOnUnmount: false,
 })(AddItemForm);
 
 const mapStateToProps = state => ({
