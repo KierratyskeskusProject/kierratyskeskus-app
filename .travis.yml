@@ -26,7 +26,7 @@ before_install:
 - if [[ `npm -v` != 3* ]]; then npm i -g npm@3; fi
 install:
 - npm install
-- cd client && npm install
+- cd client && yarn
 script:
 - yarn run CI=true react-scripts test --env=jsdom
 - cd .. && npm run lint
