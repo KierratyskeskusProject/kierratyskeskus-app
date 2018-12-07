@@ -24,13 +24,6 @@ class TemplateManager extends Component {
     selectedCategory: '',
   };
 
-  componentDidMount() {
-    const templatesInStorage = JSON.parse(localStorage.getItem('templates'));
-    this.setState({
-      templates: templatesInStorage == null ? '' : templatesInStorage,
-    });
-  }
-
   onEditorStateChange = (editorState) => {
     this.setState({
       editorState,
