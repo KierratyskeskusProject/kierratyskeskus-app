@@ -1,19 +1,27 @@
-const getTemplateCategory = (category, Categories, template, init, bookData, formFields) => {
-  const newState = { ...init };
-  const cat = { label: null, value: null };
+const getTemplateCategory = (category, Categories, template, bookData, formFields) => {
+  const newState = {
+    title: '',
+    description: null,
+    category: [],
+  };
+
+  const cat = [{ label: null, value: null }];
+
   for (let i = 0; i < Categories.length; i++) {
     if (Categories[i].name === category) {
-      cat.label = Categories[i].name;
-      cat.value = Categories[i].value;
-      newState.category = cat;
-      newState.title = '';
+      cat[0].label = Categories[i].label;
+      cat[0].value = Categories[i].value;
+      if (!formFields.simple.values.category) {
+        newState.category = cat;
+      }
     }
   }
+
   if (!formFields.simple.fields) {
-    console.log('no data in fields');
     if (!bookData) {
       for (let i = 0; i < template.templates[0].length; i++) {
-        if (template.templates[0][i].temp_id === cat.value) {
+        if (template.templates[0][i].temp_id === cat[0].value) {
+          console.log(template.templates[0][i].name);
           newState.description = template.templates[0][i].content;
         }
       }
@@ -34,17 +42,18 @@ const getTemplateCategory = (category, Categories, template, init, bookData, for
   } else {
     newState.title = formFields.simple.values.title ? formFields.simple.values.title : newState.title;
     newState.description = formFields.simple.values.description ? formFields.simple.values.description : newState.description;
+    if (formFields.simple.values.category.length > 0) {
+      for (let i = 0; formFields.simple.values.category.length > i; i++) {
+        newState.category.push(formFields.simple.values.category[i]);
+      }
+    }
   }
 
-
-  const defaultValues = {
+  return {
     title: newState.title,
     description: newState.description,
     category: [newState.category],
   };
-  return defaultValues;
 };
 
 export default getTemplateCategory;
-
-// dispatch(load(defaultValues));

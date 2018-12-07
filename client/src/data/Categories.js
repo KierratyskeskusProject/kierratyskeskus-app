@@ -10,7 +10,7 @@ const Categories = [
     value: '2',
   },
   {
-    name: 'bike',
+    name: 'bicycle',
     label: 'Polkupyörät',
     value: '3',
     options: [
@@ -46,7 +46,7 @@ const Categories = [
   },
   {
     name: 'kitchenware',
-    label: 'kitchen in finnish',
+    label: 'keittiö',
     value: '5',
   },
 ];
