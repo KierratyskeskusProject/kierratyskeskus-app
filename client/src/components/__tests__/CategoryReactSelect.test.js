@@ -1,3 +1,4 @@
+/*
 import React from 'react';
 import { mount } from 'enzyme';
 
@@ -17,7 +18,8 @@ beforeEach(() => {
 afterEach(() => {
   wrapped.unmount();
 });
-
+*/
+/*
 describe('CategoryReactSelect', () => {
   it('should exist', () => {
     expect(wrapped.find(Select).exists()).toEqual(true);
@@ -40,3 +42,4 @@ describe('CategoryReactSelect Input', () => {
     expect(component.find('input').length).toEqual(1);
   });
 });
+*/
