@@ -16,7 +16,7 @@
   {
     "name": "bike",
     "temp_id": "3",
-    "content": "Color: \nWheel size",
+    "content": "Color: \nWheel size:",
     "category": "3",
     "sub_category": "3.1"
   },
@@ -30,7 +30,7 @@
   {
     "name": "kitchenware",
     "temp_id": "5",
-    "content": "Units: \nBrand: \nMaterial",
+    "content": "Units: \nBrand: \nMaterial:",
     "category": "5",
     "sub_category": "5.1"
   }
