@@ -2,35 +2,35 @@
   {
     "name": "new",
     "temp_id": "1",
-    "content": "<p></p>",
+    "content": "",
     "category": "1",
     "sub_category": "1.1"
   },
   {
     "name": "electronics",
     "temp_id": "2",
-    "content": "<p>Manifacture:<p> <strong>Model:</strong><p>Year:</p>",
+    "content": "Manifacture: \nModel: \nYear:",
     "category": "2",
     "sub_category": "2.1"
   },
   {
     "name": "bike",
     "temp_id": "3",
-    "content": "<p>Color:<p><br/><strong>Wheel size</strong>",
+    "content": "Color: \nWheel size",
     "category": "3",
     "sub_category": "3.1"
   },
   {
     "name": "book",
     "temp_id": "4",
-    "content": "<p>Author:<p> <strong>Total pages:</strong><p>Release year:</p>",
+    "content": "Author: \npublish year: \npublisher: \nTotal pages: ",
     "category": "4",
     "sub_category": "4.1"
   },
   {
     "name": "kitchenware",
     "temp_id": "5",
-    "content": "<p>Stuff 'n stuff'</p>",
+    "content": "Units: \nBrand: \nMaterial",
     "category": "5",
     "sub_category": "5.1"
   }

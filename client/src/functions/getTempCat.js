@@ -5,15 +5,15 @@ const getTemplateCategory = (category, Categories, template, bookData, formField
     category: [],
   };
 
-  const cat = [{ label: null, value: null }];
+  console.log(bookData);
 
+  const cat = [{ label: null, value: null }];
+  // Match category with returned category from google autoML
   Categories.forEach((item) => {
-    if (item === category) {
+    if (item.name === category) {
       cat[0].label = item.label;
       cat[0].value = item.value;
-      if (!formFields.simple.values.category) {
-        newState.category = cat;
-      }
+      newState.category = cat;
     }
   });
 
@@ -27,7 +27,7 @@ const getTemplateCategory = (category, Categories, template, bookData, formField
   } else {
     const bd = {
       title: bookData.title,
-      text: bookData.description,
+      text: bookData.description ? bookData.description : 'DESCRIPTION IS MISSING!!!',
       pageCount: bookData.pageCount,
       publisher: bookData.publisher,
       publishedDate: bookData.publishedDate.slice(0, 4),
@@ -38,7 +38,9 @@ const getTemplateCategory = (category, Categories, template, bookData, formField
     newState.title = bd.title;
   }
 
-
+  // check if fields are empty.
+  // if empty, fill with data, if data is found.
+  // if full, don't fill in any data.
   return {
     title: formFields.simple.values.title
       ? formFields.simple.values.title
