@@ -7,7 +7,7 @@
     "blob-util": "^2.0.2",
     "draft-js": "^0.10.5",
     "enzyme": "^3.7.0",
-    "enzyme-adapter-react-16": "^1.6.0",
+    "enzyme-adapter-react-16": "^1.7.0",
     "lodash": "^4.17.11",
     "moxios": "^0.4.0",
     "prop-types": "^15.6.2",
@@ -35,7 +35,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "CI=true react-scripts test --env=jsdom",
+    "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
