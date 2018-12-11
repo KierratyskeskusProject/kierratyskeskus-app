@@ -9,6 +9,7 @@ const Template = ({
   id,
   name,
   isEditing,
+  loading,
 }) => (
   <div className="template">
     <div className="template__head">
@@ -29,6 +30,7 @@ const Template = ({
           className="btn button__edit success"
           type="submit"
           onClick={() => handleEditClick(id)}
+          disabled={loading}
         >
         Edit
         </button>
@@ -36,6 +38,7 @@ const Template = ({
           className="btn button__delete danger"
           type="submit"
           onClick={() => handleDeleteClick(id)}
+          disabled={loading}
         >
         Delete
         </button>
@@ -58,6 +61,7 @@ Template.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string,
   isEditing: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 // eslint-disable-next-line import/prefer-default-export

@@ -24,6 +24,7 @@ class TemplateManager extends Component {
     isEditing: false,
     templateInEdit: null,
     selectedCategory: '',
+    loading: false,
   };
 
   onEditorStateChange = (editorState) => {
@@ -67,6 +68,7 @@ class TemplateManager extends Component {
       selectedCategory: '',
       isEditing: false,
     });
+    this.toggleLoading();
   }
 
   handleSaveEdit = () => {
@@ -105,6 +107,7 @@ class TemplateManager extends Component {
       editorState: EditorState.createEmpty(),
       selectedCategory: '',
     });
+    this.toggleLoading();
   }
 
   handleTemplateDelete = (id) => {
@@ -113,6 +116,7 @@ class TemplateManager extends Component {
       dispatch,
     } = this.props;
     dispatch(remove(id));
+    this.toggleLoading();
   }
 
   handleTemplateEdit = (id) => {
@@ -122,7 +126,6 @@ class TemplateManager extends Component {
     templates.forEach((template) => {
       const templateJSON = JSON.parse(template);
       if (templateJSON.id === id) {
-        console.log('in handle edit', templateJSON);
         const templateWithoutId = _.omit(templateJSON, 'id');
         const convertedTemplateWithoutId = convertFromRaw(templateWithoutId.content);
         this.setState({
@@ -155,11 +158,23 @@ class TemplateManager extends Component {
     });
   }
 
+  toggleLoading() {
+    this.setState({
+      loading: true,
+    });
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+      });
+    }, 2000);
+  }
+
   render() {
     const {
       editorState,
       isEditing,
       selectedCategory,
+      loading,
     } = this.state;
     const { templates: { templates } } = this.props;
     return (
@@ -195,6 +210,7 @@ class TemplateManager extends Component {
                       handleEditClick={this.handleTemplateEdit}
                       name={templateJSON.name}
                       isEditing={isEditing}
+                      loading={loading}
                     />
                   );
                 },
@@ -208,6 +224,7 @@ class TemplateManager extends Component {
               type="submit"
               className="saveBtn"
               onClick={() => this.handleClearEditor()}
+              disabled={loading}
             >
                 Clear Editor
             </button>
@@ -223,6 +240,7 @@ class TemplateManager extends Component {
                       this.toggleEditing();
                       this.handleClearEditor();
                     }}
+                    disabled={loading}
                   >
                     Discard changes
                   </button>
@@ -230,6 +248,7 @@ class TemplateManager extends Component {
                     type="submit"
                     className="saveBtn"
                     onClick={() => this.handleSaveEdit()}
+                    disabled={loading}
                   >
                     Save Edit
                   </button>
@@ -239,8 +258,9 @@ class TemplateManager extends Component {
               type="submit"
               className="saveBtn"
               onClick={() => this.handleSaveNew()}
+              disabled={loading}
             >
-              {isEditing ? 'Save New' : 'Save template'}
+              {isEditing ? 'Save New' : 'Save Template'}
             </button>
           </div>
           <div className="clear" />
