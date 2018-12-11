@@ -119,26 +119,21 @@ const TemplateRoutes = (app) => {
 
   app.delete('/deleteTemplate', (req, res) => {
     const {
-      deletedTemplate,
+      id,
     } = req.body;
-    const upTemp = [];
+    const templates = JSON.parse(readFile());
 
-    const template = readFile();
+    const newTemplates = templates.filter((item) => {
+      const itemJSON = JSON.parse(item);
+      return (itemJSON.id !== id);
+    });
 
-    for (let i = 0; i < template.length; i++) {
-      if (template[i].temp_id === deletedTemplate.temp_id) {
-        // nothing to push
-      } else {
-        upTemp.push(template[i]);
-      }
-    }
-
-    fs.writeFile(`${__dirname}/data.json`, JSON.stringify(upTemp), (err) => {
+    fs.writeFile(`${__dirname}/data.json`, JSON.stringify(newTemplates), (err) => {
       if (err) {
         throw err;
       }
       console.log('File saved!');
-      res.status(200).send('Template deleted successfully');
+      res.status(200).send({ message: 'Template deleted successfully', newTemplates });
     });
   });
 };
