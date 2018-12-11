@@ -2,6 +2,7 @@ import {
   FETCH_WEIGHT_BEGIN,
   FETCH_WEIGHT_SUCCESS,
   FETCH_WEIGHT_FAILURE,
+  CLEAR_WEIGHT,
 } from '../types';
 
 const initialState = {
@@ -26,6 +27,8 @@ const fetchWeightReducer = (state = initialState, action) => {
         ...state,
         error: action.payload.error,
       };
+    case CLEAR_WEIGHT:
+      return initialState;
     default:
       return state;
   }

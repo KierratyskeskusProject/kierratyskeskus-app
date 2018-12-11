@@ -13,69 +13,6 @@ const TemplateRoutes = (app) => {
     res.status(200).send(readFile().length === 0 ? [] : JSON.parse(readFile()));
   });
 
-  // template by id
-  // return default template if id doesen't exist
-  app.get('/templateById/:id', (req, res) => {
-    const {
-      id,
-    } = req.params;
-
-    const template = readFile();
-    const needle = id.toString();
-    let result = template[0];
-
-    for (let i = 0; i < template.length; i++) {
-      if (template[i].temp_id === needle) {
-        result = template[i];
-        i = template.length;
-      }
-    }
-    res.status(200).send(result);
-  });
-
-  // All templates with category id
-  // return default template if id doesen't exist
-  app.get('/templatesByCategory/:catId', (req, res) => {
-    const {
-      catId,
-    } = req.params;
-
-    const templateRes = [];
-    const templates = readFile();
-    const needle = catId;
-
-    for (let i = 0; i < templates.length; i++) {
-      console.log(templates[i].category);
-      console.log(needle.toString());
-      if (templates[i].category === needle) {
-        templateRes.push(templates[i]);
-      }
-    }
-    res.status(200).send(templateRes);
-  });
-
-
-  // template by sub_category id
-  app.get('/templateBySubCategory/:subCatId', (req, res) => {
-    const {
-      subCatId,
-    } = req.params;
-
-    const template = readFile();
-    const needle = subCatId.toString();
-    let result = template[0];
-
-    for (let i = 0; i < template.length; i++) {
-      console.log('needle- ', needle);
-      console.log('sub cat ', template[i].sub_category);
-      if (template[i].sub_category === needle) {
-        result = template[i];
-        i = template.length;
-      }
-    }
-    res.status(200).send(result);
-  });
-
   app.post('/createTemplate', (req, res) => {
     const {
       template,
