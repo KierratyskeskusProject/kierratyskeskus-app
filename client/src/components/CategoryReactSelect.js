@@ -2,12 +2,21 @@ import React from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import { reduxForm, change } from 'redux-form';
-import _ from 'lodash';
 import { postForm } from '../redux/actions/index';
 
 const CategoryReactSelect = (props) => {
   const {
-    options, label, inputClass, isSmallResolution, input, input: { value }, meta, dispatch, template, init,
+    options,
+    label,
+    inputClass,
+    isSmallResolution,
+    input,
+    input:
+      { value },
+    meta,
+    dispatch,
+    template,
+    init,
   } = props;
 
   function isItValid(state) {
@@ -46,10 +55,10 @@ const CategoryReactSelect = (props) => {
     const newOptions = [];
     const labels = [];
     const newState = { ...init };
-    const optionValue = 0;
+    let optionValue = 0;
 
     valueToChange.forEach((values) => {
-      const optionValue = values.value.split('.');
+      optionValue = values.value.split('.');
       for (let i = 0; i < optionsLength; i += 1) {
         if (optionValue[0] === options[i].value) {
           labels.push(options[i].label);
