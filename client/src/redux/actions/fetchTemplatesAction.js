@@ -14,10 +14,12 @@ const fetchTemplates = () => async (dispatch) => {
   dispatch(fetchTemplatesBegin());
   const request = await axios.get(url);
   const templates = request.data;
-  try {
-    dispatch(fetchTemplatesSuccess(JSON.parse(templates)));
-  } catch (e) {
-    dispatch(fetchTemplatesFailure(e));
+  console.log(request);
+  if (request.status === 200) {
+    console.log('in try', templates);
+    dispatch(fetchTemplatesSuccess(templates));
+  } else {
+    dispatch(fetchTemplatesFailure('ERROR', request.error));
   }
 };
 
@@ -28,7 +30,7 @@ const saveTemplates = values => async (dispatch) => {
   dispatch(saveTemplatesBegin());
   const request = await axios.post(url,
     {
-      template: JSON.stringify(values),
+      template: values,
     });
   if (request.status === 200) {
     dispatch(saveTemplatesSuccess(values));

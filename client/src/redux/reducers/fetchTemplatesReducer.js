@@ -31,7 +31,7 @@ const fetchTemplatesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        templates: [...state.templates, ...action.payload.templates],
+        templates: action.payload.templates,
       };
     case SAVE_TEMPLATES_BEGIN:
       return {

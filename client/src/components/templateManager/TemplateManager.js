@@ -41,10 +41,14 @@ class TemplateManager extends Component {
       editorState,
       selectedCategory,
     } = this.state;
-    const { save, dispatch, templates: { templates } } = this.props;
-    console.log(templates);
+    const {
+      save,
+      dispatch,
+      templates: { templates },
+    } = this.props;
     const contentState = convertToRaw(editorState.getCurrentContent());
-    const id = templates.length === 0 ? 1 : templates.slice(-1)[0].id + 1;
+    console.log('HACK N SLICE', templates.length === 0 ? 1 : templates.slice(-1)[0][6] + 1);
+    const id = Date.now();
     const categoryId = selectedCategory === ''
      || selectedCategory.value === undefined
       ? 0
@@ -56,7 +60,8 @@ class TemplateManager extends Component {
       category: categoryId[0],
       subCategory: selectedCategory.value,
     };
-    dispatch(save(newTemplate));
+    console.log('Hello', newTemplate);
+    dispatch(save(JSON.stringify(newTemplate)));
     this.setState({
       editorState: EditorState.createEmpty(),
       selectedCategory: '',
@@ -164,15 +169,16 @@ class TemplateManager extends Component {
             <div className="resultCon">
               {templates.length === 0 ? '' : templates.map(
                 (template) => {
-                  console.log('a template', template);
+                  console.log(typeof template);
+                  const templateJSON = JSON.parse(template);
                   return (
                     <Template
-                      template={template}
-                      key={template.id}
-                      id={template.id}
+                      template={templateJSON}
+                      key={templateJSON.id}
+                      id={templateJSON.id}
                       handleDeleteClick={this.handleTemplateDelete}
                       handleEditClick={this.handleTemplateEdit}
-                      name={template.name}
+                      name={templateJSON.name}
                     />
                   );
                 },

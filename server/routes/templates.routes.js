@@ -1,11 +1,16 @@
 const fs = require('fs');
 
-const readFile = () => JSON.parse(fs.readFileSync(`${__dirname}/data.json`, 'utf8'));
+const readFile = () => {
+  const templates = fs.readFileSync(`${__dirname}/data.json`, 'utf8');
+  return (
+    templates
+  );
+};
 
 const TemplateRoutes = (app) => {
   // all templates
   app.get('/allTemplates', (req, res) => {
-    res.status(200).send(readFile());
+    res.status(200).send(readFile().length === 0 ? [] : JSON.parse(readFile()));
   });
 
   // template by id
@@ -77,10 +82,10 @@ const TemplateRoutes = (app) => {
     } = req.body;
 
     const templates = readFile();
-
-    templates.push(template);
-
-    fs.writeFile(`${__dirname}/data.json`, JSON.stringify(templates), (error) => {
+    const newTemplates = templates.length === 0
+      ? [template]
+      : [...JSON.parse(templates), template];
+    fs.writeFile(`${__dirname}/data.json`, JSON.stringify(newTemplates), (error) => {
       if (error) res.status(200).send('error ');
       console.log('Data written to file');
       res.status(200).send('New template is added');
