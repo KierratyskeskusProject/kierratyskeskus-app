@@ -8,6 +8,7 @@ const Template = ({
   handleDeleteClick,
   id,
   name,
+  isEditing,
 }) => (
   <div className="template">
     <div className="template__head">
@@ -22,22 +23,23 @@ const Template = ({
         />
       ))}
     </div>
-    <div className="template__footer">
-      <button
-        className="btn button__edit success"
-        type="submit"
-        onClick={() => handleEditClick(id)}
-      >
+    {isEditing ? '' : (
+      <div className="template__footer">
+        <button
+          className="btn button__edit success"
+          type="submit"
+          onClick={() => handleEditClick(id)}
+        >
         Edit
-      </button>
-      <button
-        className="btn button__delete danger"
-        type="submit"
-        onClick={() => handleDeleteClick(id)}
-      >
+        </button>
+        <button
+          className="btn button__delete danger"
+          type="submit"
+          onClick={() => handleDeleteClick(id)}
+        >
         Delete
-      </button>
-    </div>
+        </button>
+      </div>)}
   </div>
 );
 
@@ -55,6 +57,7 @@ Template.propTypes = {
   handleDeleteClick: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string,
+  isEditing: PropTypes.bool.isRequired,
 };
 
 // eslint-disable-next-line import/prefer-default-export

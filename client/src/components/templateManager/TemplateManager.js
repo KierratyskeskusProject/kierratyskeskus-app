@@ -8,8 +8,11 @@ import {
 import _ from 'lodash';
 import { Editor } from 'react-draft-wysiwyg';
 import Select from 'react-select';
-
-import { saveTemplates } from '../../redux/actions';
+import {
+  saveTemplates,
+  deleteTemplate,
+  saveEditedTemplate,
+} from '../../redux/actions';
 import { Template } from './Template';
 import { Categories } from '../../data';
 import './template.css';
@@ -44,10 +47,8 @@ class TemplateManager extends Component {
     const {
       save,
       dispatch,
-      templates: { templates },
     } = this.props;
     const contentState = convertToRaw(editorState.getCurrentContent());
-    console.log('HACK N SLICE', templates.length === 0 ? 1 : templates.slice(-1)[0][6] + 1);
     const id = Date.now();
     const categoryId = selectedCategory === ''
      || selectedCategory.value === undefined
@@ -60,7 +61,6 @@ class TemplateManager extends Component {
       category: categoryId[0],
       subCategory: selectedCategory.value,
     };
-    console.log('Hello', newTemplate);
     dispatch(save(JSON.stringify(newTemplate)));
     this.setState({
       editorState: EditorState.createEmpty(),
@@ -75,17 +75,30 @@ class TemplateManager extends Component {
       editorState,
       selectedCategory,
     } = this.state;
-    const { templates: { templates } } = this.props;
+    const {
+      templates: { templates },
+      update,
+      dispatch,
+    } = this.props;
 
-    templates.map((template, key) => {
+    templates.forEach((templateString) => {
+      const template = JSON.parse(templateString);
+
       if (template.id === templateInEdit) {
-        templates[key].content = convertToRaw(editorState.getCurrentContent());
-        templates[key].id = template.id;
-        templates[key].name = selectedCategory.label;
-        console.log('modified!', templates);
-        window.localStorage.setItem('templates', JSON.stringify(templates));
+        console.log(selectedCategory);
+        const categoryId = selectedCategory === ''
+        || selectedCategory.value === undefined
+          ? 0
+          : selectedCategory.value.split('');
+        const editedTemplate = {
+          content: convertToRaw(editorState.getCurrentContent()),
+          id: template.id,
+          name: selectedCategory.label,
+          category: categoryId[0],
+          subCategory: selectedCategory.value,
+        };
+        dispatch(update(editedTemplate));
       }
-      return null;
     });
     this.setState({
       isEditing: false,
@@ -95,18 +108,22 @@ class TemplateManager extends Component {
   }
 
   handleTemplateDelete = (id) => {
-    const { templates: { templates } } = this.props;
-    const removedTemplates = templates.filter(template => template.id !== id);
-    console.log('removed', removedTemplates);
+    const {
+      remove,
+      dispatch,
+    } = this.props;
+    dispatch(remove(id));
   }
 
   handleTemplateEdit = (id) => {
     const { isEditing } = this.state;
     const { templates: { templates } } = this.props;
 
-    templates.map((template) => {
-      if (template.id === id) {
-        const templateWithoutId = _.omit(template, 'id');
+    templates.forEach((template) => {
+      const templateJSON = JSON.parse(template);
+      if (templateJSON.id === id) {
+        console.log('in handle edit', templateJSON);
+        const templateWithoutId = _.omit(templateJSON, 'id');
         const convertedTemplateWithoutId = convertFromRaw(templateWithoutId.content);
         this.setState({
           editorState: EditorState.createWithContent(
@@ -115,14 +132,13 @@ class TemplateManager extends Component {
           isEditing: !isEditing,
           templateInEdit: id,
           selectedCategory: {
-            name: template.name,
-            value: template.subCategory && template.subCategory.includes('.')
-              ? template.subCategory
-              : template.category,
+            label: templateJSON.name,
+            value: templateJSON.subCategory && templateJSON.subCategory.includes('.')
+              ? templateJSON.subCategory
+              : templateJSON.category,
           },
         });
       }
-      return null;
     });
   }
 
@@ -169,7 +185,6 @@ class TemplateManager extends Component {
             <div className="resultCon">
               {templates.length === 0 ? '' : templates.map(
                 (template) => {
-                  console.log(typeof template);
                   const templateJSON = JSON.parse(template);
                   return (
                     <Template
@@ -179,6 +194,7 @@ class TemplateManager extends Component {
                       handleDeleteClick={this.handleTemplateDelete}
                       handleEditClick={this.handleTemplateEdit}
                       name={templateJSON.name}
+                      isEditing={isEditing}
                     />
                   );
                 },
@@ -241,6 +257,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   save: saveTemplates,
+  remove: deleteTemplate,
+  update: saveEditedTemplate,
   dispatch,
 });
 

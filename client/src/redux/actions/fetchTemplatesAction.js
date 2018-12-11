@@ -7,6 +7,12 @@ import {
   saveTemplatesBegin,
   saveTemplatesFailure,
   saveTemplatesSuccess,
+  deleteTemplateBegin,
+  deleteTemplateFailure,
+  deleteTemplateSuccess,
+  saveEditedTemplateBegin,
+  saveEditedTemplateFailure,
+  saveEditedTemplateSuccess,
 } from '../types';
 
 const fetchTemplates = () => async (dispatch) => {
@@ -14,9 +20,7 @@ const fetchTemplates = () => async (dispatch) => {
   dispatch(fetchTemplatesBegin());
   const request = await axios.get(url);
   const templates = request.data;
-  console.log(request);
   if (request.status === 200) {
-    console.log('in try', templates);
     dispatch(fetchTemplatesSuccess(templates));
   } else {
     dispatch(fetchTemplatesFailure('ERROR', request.error));
@@ -25,7 +29,6 @@ const fetchTemplates = () => async (dispatch) => {
 
 
 const saveTemplates = values => async (dispatch) => {
-  console.log('values in action', values);
   const url = 'http://localhost:5000/createTemplate';
   dispatch(saveTemplatesBegin());
   const request = await axios.post(url,
@@ -39,4 +42,34 @@ const saveTemplates = values => async (dispatch) => {
   }
 };
 
-export { fetchTemplates, saveTemplates };
+const deleteTemplate = templateToBeDeleted => async (dispatch) => {
+  const url = 'http://localhost:5000/deleteTemplate';
+  dispatch(deleteTemplateBegin());
+  const request = await axios.delete(url, { data: { id: templateToBeDeleted } });
+  const templates = request.data.newTemplates;
+  if (request.status === 200) {
+    dispatch(deleteTemplateSuccess(templates));
+  } else {
+    dispatch(deleteTemplateFailure('ERROR', request.error));
+  }
+};
+
+const saveEditedTemplate = editedTemplate => async (dispatch) => {
+  const url = 'http://localhost:5000/updateTemplate';
+  dispatch(saveEditedTemplateBegin());
+  console.log('editedtemplate', editedTemplate);
+  const request = await axios.put(url, editedTemplate);
+  const templates = request.data.updatedTemplates;
+  if (request.status === 200) {
+    dispatch(saveEditedTemplateSuccess(templates));
+  } else {
+    dispatch(saveEditedTemplateFailure('ERROR', request.error));
+  }
+};
+
+export {
+  fetchTemplates,
+  saveTemplates,
+  deleteTemplate,
+  saveEditedTemplate,
+};

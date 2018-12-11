@@ -81,6 +81,8 @@ const TemplateRoutes = (app) => {
       template,
     } = req.body;
 
+    console.log(template);
+
     const templates = readFile();
     const newTemplates = templates.length === 0
       ? [template]
@@ -94,26 +96,23 @@ const TemplateRoutes = (app) => {
 
   app.put('/updateTemplate', (req, res) => {
     const {
-      updatedTemplate,
+      id,
     } = req.body;
-    const upTemp = [];
-
-    const template = readFile();
-
-    for (let i = 0; i < template.length; i++) {
-      if (template[i].temp_id === updatedTemplate.temp_id) {
-        upTemp.push(updatedTemplate);
-      } else {
-        upTemp.push(template[i]);
+    const templates = JSON.parse(readFile());
+    const updatedTemplates = templates.map((template) => {
+      const templateJSON = JSON.parse(template);
+      if (templateJSON.id === id) {
+        return JSON.stringify(req.body);
       }
-    }
+      return template;
+    });
 
-    fs.writeFile(`${__dirname}/data.json`, JSON.stringify(upTemp), (err) => {
+    fs.writeFile(`${__dirname}/data.json`, JSON.stringify(updatedTemplates), (err) => {
       if (err) {
         throw err;
       }
       console.log('File saved!');
-      res.status(200).send('Template updated successfully');
+      res.status(200).send({ message: 'Template updated successfully', updatedTemplates });
     });
   });
 
@@ -122,7 +121,6 @@ const TemplateRoutes = (app) => {
       id,
     } = req.body;
     const templates = JSON.parse(readFile());
-
     const newTemplates = templates.filter((item) => {
       const itemJSON = JSON.parse(item);
       return (itemJSON.id !== id);
