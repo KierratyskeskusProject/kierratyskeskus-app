@@ -25,6 +25,9 @@ const Template = ({
       <button
         className="btn button__edit"
         type="submit"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Edit"
         onClick={() => handleEditClick(id)}
       >
         <i className="fa fa-edit" />
@@ -32,6 +35,9 @@ const Template = ({
       <button
         className="btn button__delete"
         type="submit"
+        data-toggle="tooltip"
+        data-placement="bottom"
+        title="Delete"
         onClick={() => handleDeleteClick(id)}
       >
         <i className="fa fa-trash" />
