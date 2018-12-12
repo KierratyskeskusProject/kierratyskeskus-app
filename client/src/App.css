@@ -26,6 +26,7 @@ body {
   position: relative;
   float: right;
   height: 100%;
+  width: 150px;
   background-color: rgb(0, 167, 126);
   border-radius: 0 !important;
   color: rgb(255, 255, 255);
@@ -33,10 +34,10 @@ body {
 
 .headerButton::before {
   content: "";
-  height: 46px;
+  height: 90%;
   position: absolute;
   border-left: 1px solid rgb(255, 255, 255);
-  top: 4px;
+  top: 5%;
   left: -2px;
 }
 

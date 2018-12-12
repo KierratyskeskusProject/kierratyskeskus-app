@@ -23,18 +23,18 @@ const Template = ({
     </div>
     <div className="template__footer">
       <button
-        className="btn button__edit success"
+        className="btn button__edit"
         type="submit"
         onClick={() => handleEditClick(id)}
       >
-        Edit
+        <i className="fa fa-edit" />
       </button>
       <button
-        className="btn button__delete danger"
+        className="btn button__delete"
         type="submit"
         onClick={() => handleDeleteClick(id)}
       >
-        Delete
+        <i className="fa fa-trash" />
       </button>
     </div>
   </div>
