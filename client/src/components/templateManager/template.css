@@ -6,6 +6,7 @@ html{
 .App{
   max-width: 100vw;
   min-width: 100vh;
+  height: 100vh;
 }
 
 header{
@@ -56,6 +57,36 @@ header{
   float:left;
   padding:1%;
 }
+
+.DraftEditor-editorContainer {
+  background-color: #fff !important;
+  padding: 10px;
+  min-height: 332px;
+}
+
+.rdw-editor-wrapper {
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 #00000033;
+  overflow: hidden;
+}
+
+.rdw-editor-toolbar {
+  position: relative;
+  margin-bottom: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.rdw-editor-toolbar::after {
+  content: "";
+  position: relative;
+  width: 98%;
+  bottom: -1em;
+  left: 1%;
+  z-index: 2;
+  border-bottom: #c8c8c873 solid 1px;
+}
+
 
 .resultCon{
   width:98%;
@@ -205,37 +236,4 @@ h3{
 
 .bold {
   font-weight: bold;
-}
-
-.rdw-editor-main {
-  
-}
-
-.DraftEditor-editorContainer {
-  background-color: #fff !important;
-  padding: 10px;
-  min-height: 332px;
-}
-
-.rdw-editor-wrapper {
-  border-radius: 5px;
-  box-shadow: 0 4px 8px 0 #00000033;
-  overflow: hidden;
-}
-
-.rdw-editor-toolbar {
-  position: relative;
-  margin-bottom: 0 !important;
-  border: none !important;
-  border-radius: 0 !important;
-}
-
-.rdw-editor-toolbar::after {
-  content: "";
-  position: relative;
-  width: 98%;
-  bottom: -1em;
-  left: 1%;
-  z-index: 2;
-  border-bottom: #c8c8c873 solid 1px;
 }
