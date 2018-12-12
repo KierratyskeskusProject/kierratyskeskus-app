@@ -5,6 +5,7 @@ html{
 }
 .App{
   max-width: 100vw;
+  min-width: 100vh;
 }
 
 header{
@@ -149,5 +150,5 @@ h3{
 .DraftEditor-editorContainer {
   background-color: #fff !important;
   padding: 10px; 
-  min-height: 300px;
+  min-height: 425px;
 }
