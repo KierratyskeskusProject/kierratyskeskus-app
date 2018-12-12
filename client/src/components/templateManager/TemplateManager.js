@@ -246,6 +246,14 @@ class TemplateManager extends Component {
                     <React.Fragment>
                       <button
                         type="submit"
+                        className="btn editorButton saveEdit"
+                        onClick={() => this.handleSaveEdit()}
+                        disabled={loading}
+                      >
+                    Save Changes
+                      </button>
+                      <button
+                        type="submit"
                         className="btn editorButton discardEdit"
                         onClick={() => {
                           this.toggleEditing();
