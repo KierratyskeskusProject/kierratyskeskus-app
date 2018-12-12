@@ -24,8 +24,11 @@ class Image extends Component {
       imageName,
       src,
     } = this.props;
+
     const { show } = this.state;
+
     const { handleModalToggle } = this;
+
     return (
       <div className="imageFrame">
 
@@ -61,6 +64,4 @@ class Image extends Component {
   }
 }
 
-export default connect(
-  null, { deleteOneImage: deleteImage },
-)(Image);
+export default connect(null, { deleteOneImage: deleteImage })(Image);
