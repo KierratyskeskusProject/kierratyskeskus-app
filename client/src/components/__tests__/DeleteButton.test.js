@@ -16,8 +16,6 @@ it('should render one button', () => {
 });
 
 it('should call onClick with action', () => {
-  console.log(wrapped.debug());
-  // props.action.mockReturnValue('button clicked');
   wrapped.find('button').simulate('click');
   expect(props.action).toHaveBeenCalledTimes(1);
 });
