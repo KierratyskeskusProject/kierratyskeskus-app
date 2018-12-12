@@ -121,6 +121,9 @@ class TemplateManager extends Component {
                 <button
                   type="submit"
                   className="btn clearEditor"
+                  data-toggle="tooltip"
+                  data-placement="bottom"
+                  title="Clear Editor"
                   onClick={() => this.handleClearEditor()}
                 >
                   <i className="fa fa-times" />
