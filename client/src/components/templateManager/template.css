@@ -82,6 +82,15 @@ h3{
   border-radius: 5px;
   font-size: 1.1em;
   font-weight: bold;
+  padding: 10px;
+  margin-right: 0.5rem;
+  box-shadow: 1px 2px 4px 0 #00000033;
+}
+
+.editorButton:hover, .editorButton:active, .editorButton:focus {
+  background-color: #007558 !important;
+  border: rgb(0, 153, 115);
+  box-shadow: 2px 4px 8px 0 #00000033;
 }
 
 .clearEditor {
@@ -91,8 +100,25 @@ h3{
   border: #c8c8c8 solid 2px;
   position: relative;
   top: -60px;
-  left: 200%;
+  left: 201.5%;
   z-index: 3;
+}
+.clearEditor:hover, .clearEditor:active, .clearEditor:focus {
+  color: #dc3545;
+  background-color: #dc354526 !important;
+  border-color: #dc3545;
+  box-shadow: 0 2px 4px 0 #00000033;
+}
+
+.saveNew {
+  position: relative;
+  left: -53px;
+  z-index: 3;
+}
+
+.saveEdit, .discardEdit {
+  position: relative;
+  right: -31%;
 }
 
 .clear{clear:left}
