@@ -7,13 +7,16 @@ const Template = ({
   handleEditClick,
   handleDeleteClick,
   id,
+  name,
+  isEditing,
+  loading,
 }) => (
   <div className="template">
     <div className="template__head">
-      {`Template ${id}`}
+      {`Template ${name}`}
     </div>
     <div className="template__body">
-      {template.length === 0 ? '' : template.blocks.map(item => (
+      {template.length === 0 ? '' : template.content.blocks.map(item => (
         <TemplateRow
           key={item.key}
           text={item.text.toString()}
@@ -21,32 +24,44 @@ const Template = ({
         />
       ))}
     </div>
-    <div className="template__footer">
-      <button
-        className="btn button__edit success"
-        type="submit"
-        onClick={() => handleEditClick(id)}
-      >
+    {isEditing ? '' : (
+      <div className="template__footer">
+        <button
+          className="btn button__edit success"
+          type="submit"
+          onClick={() => handleEditClick(id)}
+          disabled={loading}
+        >
         Edit
-      </button>
-      <button
-        className="btn button__delete danger"
-        type="submit"
-        onClick={() => handleDeleteClick(id)}
-      >
+        </button>
+        <button
+          className="btn button__delete danger"
+          type="submit"
+          onClick={() => handleDeleteClick(id)}
+          disabled={loading}
+        >
         Delete
-      </button>
-    </div>
+        </button>
+      </div>)}
   </div>
 );
 
+Template.defaultProps = {
+  name: 'Default',
+};
+
 Template.propTypes = {
   template: PropTypes.shape({
-    blocks: PropTypes.array.isRequired,
-    id: PropTypes.number.isRequired,
+    content: PropTypes.shape({
+      blocks: PropTypes.array.isRequired,
+    }).isRequired,
   }).isRequired,
   handleEditClick: PropTypes.func.isRequired,
   handleDeleteClick: PropTypes.func.isRequired,
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string,
+  isEditing: PropTypes.bool.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 // eslint-disable-next-line import/prefer-default-export
