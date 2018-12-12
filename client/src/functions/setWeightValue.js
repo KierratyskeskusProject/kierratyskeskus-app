@@ -1,7 +1,5 @@
 const setWeight = (actualValue, inputValue) => {
-  console.log('inputValue', inputValue);
   const actualValueString = actualValue.toString();
-  console.log('actualValue', actualValueString);
   if (actualValueString.valueOf() === '0') {
     return inputValue;
   }
