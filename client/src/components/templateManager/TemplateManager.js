@@ -116,65 +116,65 @@ class TemplateManager extends Component {
               toolbarClassName="toolbar-class"
               onEditorStateChange={this.onEditorStateChange}
             />
-          </div>
-          <div className="split--narrow">
-            <div className="resultCon">
-              {templates.length === 0 ? '' : templates.map(
-                (template) => {
-                  console.log('a template', template);
-                  return (
-                    <Template
-                      template={template}
-                      key={template.id}
-                      id={template.id}
-                      handleDeleteClick={this.handleTemplateDelete}
-                      handleEditClick={this.handleTemplateEdit}
-                    />
-                  );
-                },
-              )}
+            <div className="settingsCon">
+              <div className="split--half">
+                <button
+                  type="submit"
+                  className="saveBtn"
+                  onClick={() => this.handleClearEditor()}
+                >
+                Clear Editor
+                </button>
+              </div>
+              <div className="split--half">
+                {isEditing
+                  ? (
+                    <React.Fragment>
+                      <button
+                        type="submit"
+                        className="saveBtn"
+                        onClick={() => { this.toggleEditing(); this.handleClearEditor(); }}
+                      >
+                    Discard changes
+                      </button>
+                      <button
+                        type="submit"
+                        className="saveBtn"
+                        onClick={() => this.handleSaveEdit()}
+                      >
+                  Save Edit
+                      </button>
+                    </React.Fragment>
+                  ) : ''}
+                <button
+                  type="submit"
+                  className="saveBtn"
+                  onClick={() => this.handleSaveClick()}
+                >
+                  {isEditing ? 'Save New' : 'Save template'}
+                </button>
+              </div>
+              <div className="clear" />
             </div>
           </div>
         </div>
-        <div className="settingsCon">
-          <div className="split--half">
-            <button
-              type="submit"
-              className="saveBtn"
-              onClick={() => this.handleClearEditor()}
-            >
-                Clear Editor
-            </button>
+        <div className="split--narrow">
+          <div className="resultCon">
+            {templates.length === 0 ? '' : templates.map(
+              (template) => {
+                console.log('a template', template);
+                return (
+                  <Template
+                    template={template}
+                    key={template.id}
+                    id={template.id}
+                    handleDeleteClick={this.handleTemplateDelete}
+                    handleEditClick={this.handleTemplateEdit}
+                  />
+                );
+              },
+            )}
           </div>
-          <div className="split--half">
-            {isEditing
-              ? (
-                <React.Fragment>
-                  <button
-                    type="submit"
-                    className="saveBtn"
-                    onClick={() => { this.toggleEditing(); this.handleClearEditor(); }}
-                  >
-                    Discard changes
-                  </button>
-                  <button
-                    type="submit"
-                    className="saveBtn"
-                    onClick={() => this.handleSaveEdit()}
-                  >
-                  Save Edit
-                  </button>
-                </React.Fragment>
-              ) : ''}
-            <button
-              type="submit"
-              className="saveBtn"
-              onClick={() => this.handleSaveClick()}
-            >
-              {isEditing ? 'Save New' : 'Save template'}
-            </button>
-          </div>
-          <div className="clear" />
         </div>
       </div>
     );
