@@ -72,27 +72,27 @@ h3{
 }
 
 .settingsCon{
-  width: 98%;
-  padding: 1%;
+  width: 100%;
 }
 
-.saveBtn{
+.editorButton{
+  background-color: #00a87d;
   color:#FFF;
-  border:none;
+  border: none;
   border-radius: 5px;
-  padding: 10px;
   font-size: 1.1em;
   font-weight: bold;
-  background: #00a87d;
-  float:right;
 }
 
-.saveBtn:active{
-  opacity: 0.7;
-}
-
-.saveBtn:hover{
-  cursor: pointer;
+.clearEditor {
+  background-color: #ffffff;
+  color: #474747;
+  border-radius: 90%;
+  border: #c8c8c8 solid 2px;
+  position: relative;
+  top: -60px;
+  left: 200%;
+  z-index: 3;
 }
 
 .clear{clear:left}
