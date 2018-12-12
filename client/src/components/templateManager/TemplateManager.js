@@ -120,10 +120,17 @@ class TemplateManager extends Component {
               <div className="split--half">
                 <button
                   type="submit"
-                  className="saveBtn"
+                  className="btn clearEditor"
                   onClick={() => this.handleClearEditor()}
                 >
-                Clear Editor
+                  <i className="fa fa-times" />
+                </button>
+                <button
+                  type="submit"
+                  className="btn editorButton saveNew"
+                  onClick={() => this.handleSaveClick()}
+                >
+                  {isEditing ? 'Save as New Template' : 'Save Template'}
                 </button>
               </div>
               <div className="split--half">
@@ -132,27 +139,20 @@ class TemplateManager extends Component {
                     <React.Fragment>
                       <button
                         type="submit"
-                        className="saveBtn"
+                        className="btn editorButton discardEdit"
                         onClick={() => { this.toggleEditing(); this.handleClearEditor(); }}
                       >
-                    Discard changes
+                    Discard Changes
                       </button>
                       <button
                         type="submit"
-                        className="saveBtn"
+                        className="btn editorButton saveEdit"
                         onClick={() => this.handleSaveEdit()}
                       >
-                  Save Edit
+                  Save Changes
                       </button>
                     </React.Fragment>
                   ) : ''}
-                <button
-                  type="submit"
-                  className="saveBtn"
-                  onClick={() => this.handleSaveClick()}
-                >
-                  {isEditing ? 'Save New' : 'Save template'}
-                </button>
               </div>
               <div className="clear" />
             </div>
