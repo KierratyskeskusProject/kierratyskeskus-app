@@ -1,4 +1,4 @@
-const getTemplateCategory = (category, Categories, template, bookData, formFields) => {
+const getTemplateCategory = (category, Categories, templates, bookData, formFields) => {
   const newState = {
     title: null,
     description: null,
@@ -19,8 +19,8 @@ const getTemplateCategory = (category, Categories, template, bookData, formField
 
   // if book data is returned from google books, we don't load a template
   if (!bookData) {
-    template.templates[0].forEach((temp) => {
-      if (temp.temp_id === cat[0].value) {
+    templates.templates.forEach((temp) => {
+      if (temp.id === cat[0].value) {
         newState.description = temp.content;
       }
     });
