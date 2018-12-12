@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import StarRating from 'react-star-ratings';
 import UpdateWeightButton from './UpdateWeightButton';
 import CategoryReactSelect from './CategoryReactSelect';
-import { setWeight } from '../functions/getWeightValue';
+import { setWeight } from '../functions/setWeightValue';
 
 // Responsible for rendering right fields for the form and adding them to redux-form
 // This component also renders errors for the fields if there are any errors in the error object

@@ -41,11 +41,13 @@ class AddItemForm extends Component {
   handleValueSubmit = async (values, dispatch) => {
     const { conditionRating } = this.state;
     const { weight } = this.props;
+    console.log('inputWeight addItemForm', values);
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
-      weight: weight.weight.value,
+      weight: weight.weight.value === 0 ? values.weight : weight.weight.value,
     };
+    console.log('new values', newValues);
     values.category.map((item, key) => {
       newValues.category[key] = item.value;
       return null;
