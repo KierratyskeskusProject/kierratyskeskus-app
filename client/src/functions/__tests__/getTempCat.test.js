@@ -1,41 +1,36 @@
 import getTemplateCategory from '../getTempCat';
 import {
-  category, bookData, formFields, Categories, template,
+  category, bData, formFields, Categories, templates,
 } from '../getTempCatTestData';
+import {
+  cat, bookData, form, Cats, temps,
+} from '../getBookData';
 
 const mockFunc = getTemplateCategory;
 
-it('should receive (category, Categories, template, bookData, formFields) as parameters', () => {
-  // const getTempCat = mockFunc(category, Categories, template, bookData, formFields);
-  console.log(template.templates[0]);
-
-  // expect(getTempCat).toBe(typeof (getTempCat) === 'function');
-
-  /* expect(getTempCat).toBe(typeof (getTempCat) === 'function'); const getTempCat = getTemplateCategory(
-    category, Categories, template, bookData, formFields, */
-});
-
-/* expect(category).to.be.a.string;
-  expect(Categories).to.be.an.Object;
-  expect(template).to.be.an.Object;
-  expect(bookData).to.be.an.Object;
-  expect(formFields).to.be.an.Object; */
-
-
-/* it('should return title, description and category according to bookData');
-  it('should return a template with the category/categories already selected');
-  it('should return category and template according to image'); */
-
-/*
-describe('Test functions for book detection', () => {
-  it('should return a ISBN as a string', () => {
-    const filter = handleDetectionData.filter(responseText);
-    expect(filter).to.be.string;
-    expect(filter).to.be.equal('978-951-31-8193-2');
-  });
-  it('should return null if no ISBN', () => {
-    const filter = handleDetectionData.filter(responseTextFail);
-    expect(filter).to.be.null;
+it('should return an object with a title, description and a category', () => {
+  const getTempCat = mockFunc(category, Categories, templates, bData, formFields);
+  expect(getTempCat).toMatchObject({
+    title: null,
+    description: {
+      blocks: [{
+        key: '9i33j', text: ' can you read the styling herere KITCHEN', type: 'unstyled', depth: 0, inlineStyleRanges: [], entityRanges: [], data: {},
+      }, {
+        key: '6f513', text: 'maybe we gonna crash', type: 'unstyled', depth: 0, inlineStyleRanges: [], entityRanges: [], data: {},
+      }, {
+        key: 'eq5s9', text: 'yo ! new book in a store', type: 'unstyled', depth: 0, inlineStyleRanges: [], entityRanges: [], data: {},
+      }],
+      entityMap: {},
+    },
+    category: [[{ label: 'keittiö', value: '5' }]],
   });
 });
- */
+
+it('should return an object with book data', () => {
+  const getTempCat = mockFunc(cat, Cats, temps, bookData, form);
+  expect(getTempCat).toMatchObject({
+    title: 'Harry Potter ja viisasten kivi',
+    description: { blocks: [{ text: '"Kun Harry käänsi kirjekuoren vapisevin käsin ympäri, hän näki purppuranpunaisen vahasinetin, jossa oli vaakuna: leijona, kotka, mäyrä ja käärme ison T-kirjaimen ympärillä. " Harry Potter ei ole koskaan kuullutkaan Tylypahkasta kun kirjeitä alkaa sadella sisään Likusteritie 4:n postiluukusta. Harryn karmea setä ja täti takavarikoivat pikaisesti kellertävälle pergamenttipaperille vihreällä musteella kirjoitetut kirjeet. Sitten, Harryn 11. syntymäpäivänä, koppakuoriaissilmäinen ja jättikokoinen mies nimeltä Rubeus Hagrid paukahtaa ovesta sisään hämmentävien uutisten kera: Harry Potter on velho, ja hänelle on varattu paikka Tylypahkan noitien ja velhojen koulusta. Uskomaton seikkailu on alkamassa!\n\nPottermore Publishing, 2016\n335 pages' }] },
+    category: [[]],
+  }); // category should be [[{ label: 'Kirjat', value: '4' }]];
+});

@@ -145,8 +145,12 @@ h3{
   color: #fff;
 }
 
-.DraftEditor-editorContainer {
+.editor-class {
   background-color: #fff !important;
   padding: 10px; 
   min-height: 300px;
+}
+
+.css-15k3avv {
+  z-index: 1000;
 }

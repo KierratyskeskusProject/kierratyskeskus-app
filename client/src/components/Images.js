@@ -14,12 +14,12 @@ class ImageBar extends Component {
     images.map((item) => {
       if (item.book !== null) {
         aBook = {
-          title: item.book.title,
-          authors: [...item.book.authors],
-          description: item.book.description,
-          pageCount: item.book.pageCount,
-          publisher: item.book.publisher,
-          publishedDate: item.book.publishedDate,
+          title: item.book.title ? item.book.title : '',
+          authors: item.book.authors !== undefined ? [...item.book.authors] : [],
+          description: item.book.description !== undefined ? item.book.description : '',
+          pageCount: item.book.pageCount !== undefined ? item.book.pageCount : '',
+          publisher: item.book.publisher !== undefined ? item.book.publisher : '',
+          publishedDate: item.book.publishedDate !== undefined ? item.book.publishedDate : '',
         };
       }
       return null;
@@ -32,6 +32,9 @@ class ImageBar extends Component {
       dispatch, images, template, formFields,
     } = this.props;
 
+    const getContentForTextarea = content => content.map(row => `${row.text}\n`);
+
+
     if (images.images.length !== 0) {
       const bookData = this.ifBook(images.images);
       const { category } = images.images[0];
@@ -39,7 +42,7 @@ class ImageBar extends Component {
       if (formFields.simple.values.content === 0) {
         const getTemp = getTemplateCategory(category, Categories, template, bookData, formFields);
         dispatch(change('simple', 'title', getTemp.title));
-        dispatch(change('simple', 'description', getTemp.description));
+        dispatch(change('simple', 'description', getContentForTextarea(getTemp.description.blocks !== undefined ? getTemp.description.blocks : [])));
         dispatch(change('simple', 'category', getTemp.category[0]));
         dispatch(change('simple', 'content', 1));
       }

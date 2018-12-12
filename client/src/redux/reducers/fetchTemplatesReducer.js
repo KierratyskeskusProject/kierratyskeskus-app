@@ -1,4 +1,17 @@
-import { FETCH_TEMPLATES_BEGIN, FETCH_TEMPLATES_FAILURE, FETCH_TEMPLATES_SUCCESS } from '../types';
+import {
+  FETCH_TEMPLATES_BEGIN,
+  FETCH_TEMPLATES_FAILURE,
+  FETCH_TEMPLATES_SUCCESS,
+  SAVE_TEMPLATES_BEGIN,
+  SAVE_TEMPLATES_FAILURE,
+  SAVE_TEMPLATES_SUCCESS,
+  DELETE_TEMPLATES_BEGIN,
+  DELETE_TEMPLATES_FAILURE,
+  DELETE_TEMPLATES_SUCCESS,
+  SAVE_EDITED_TEMPLATES_BEGIN,
+  SAVE_EDITED_TEMPLATES_FAILURE,
+  SAVE_EDITED_TEMPLATES_SUCCESS,
+} from '../types';
 
 const initialState = {
   templates: [],
@@ -24,7 +37,61 @@ const fetchTemplatesReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+        templates: action.payload.templates,
+      };
+    case SAVE_TEMPLATES_BEGIN:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case SAVE_TEMPLATES_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+    case SAVE_TEMPLATES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
         templates: [...state.templates, action.payload.templates],
+      };
+    case DELETE_TEMPLATES_BEGIN:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case DELETE_TEMPLATES_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+    case DELETE_TEMPLATES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        templates: action.payload.templates,
+      };
+    case SAVE_EDITED_TEMPLATES_BEGIN:
+      return {
+        ...state,
+        loading: true,
+        error: false,
+      };
+    case SAVE_EDITED_TEMPLATES_FAILURE:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload.error,
+      };
+    case SAVE_EDITED_TEMPLATES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        templates: action.payload.templates,
       };
     default:
       return state;
