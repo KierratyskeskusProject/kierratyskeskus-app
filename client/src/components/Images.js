@@ -34,11 +34,10 @@ class ImageBar extends Component {
 
     if (images.images.length !== 0) {
       const bookData = this.ifBook(images.images);
-      console.log('render image func', bookData);
       const { category } = images.images[0];
 
       if (formFields.simple.values.content === 0) {
-        const getTemp = getTemplateCategory(category, Categories, template);
+        const getTemp = getTemplateCategory(category, Categories, template, bookData, formFields);
         dispatch(change('simple', 'title', getTemp.title));
         dispatch(change('simple', 'description', getTemp.description));
         dispatch(change('simple', 'category', getTemp.category[0]));

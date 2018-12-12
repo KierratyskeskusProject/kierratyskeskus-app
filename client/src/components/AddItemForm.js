@@ -66,7 +66,12 @@ class AddItemForm extends Component {
   renderInputFields() {
     const { changeConditionRating } = this;
     const { conditionRating, isSmallResolution } = this.state;
-    const { weight } = this.props;
+    const { weight, images, dispatch } = this.props;
+
+    // Enable image detection if all images are deleted.
+    if (images.images.length === 0) {
+      dispatch(change('simple', 'content', 0));
+    }
 
 
     return _.map(Fields, ({ label, name, inputClass }) => (
@@ -83,6 +88,7 @@ class AddItemForm extends Component {
         changeConditionRating={changeConditionRating}
         actualValue={name === 'weight' ? weight.weight.value : '0'}
         isSmallResolution={isSmallResolution}
+        data={Categories}
       />
     ));
   }

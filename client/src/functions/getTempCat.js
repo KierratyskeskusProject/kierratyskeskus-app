@@ -1,31 +1,57 @@
-const getTemplateCategory = (category, Categories, template) => {
+const getTemplateCategory = (category, Categories, template, bookData, formFields) => {
   const newState = {
-    title: '',
+    title: null,
     description: null,
     category: [],
   };
 
-  const cat = [{ label: null, value: null }];
+  console.log(bookData);
 
-  for (let i = 0; i < Categories.length; i++) {
-    if (Categories[i].name === category) {
-      cat[0].label = Categories[i].label;
-      cat[0].value = Categories[i].value;
+  const cat = [{ label: null, value: null }];
+  // Match category with returned category from google autoML
+  Categories.forEach((item) => {
+    if (item.name === category) {
+      cat[0].label = item.label;
+      cat[0].value = item.value;
       newState.category = cat;
     }
+  });
+
+  // if book data is returned from google books, we don't load a template
+  if (!bookData) {
+    template.templates[0].forEach((temp) => {
+      if (temp.temp_id === cat[0].value) {
+        newState.description = temp.content;
+      }
+    });
+  } else {
+    const bd = {
+      title: bookData.title,
+      text: bookData.description ? bookData.description : 'DESCRIPTION IS MISSING!!!',
+      pageCount: bookData.pageCount,
+      publisher: bookData.publisher,
+      publishedDate: bookData.publishedDate.slice(0, 4),
+    };
+    const lineBreak = '\n';
+    const desc = `${bd.text}${lineBreak}${lineBreak}${bd.publisher}, ${bd.publishedDate}${lineBreak}${bd.pageCount} pages`;
+    newState.description = desc;
+    newState.title = bd.title;
   }
 
-  for (let i = 0; i < template.templates[0].length; i++) {
-    if (template.templates[0][i].temp_id === cat[0].value) {
-      console.log(template.templates[0][i].name);
-      newState.description = template.templates[0][i].content;
-    }
-  }
-
+  // check if fields are empty.
+  // if empty, fill with data, if data is found.
+  // if full, don't fill in any data.
   return {
-    title: newState.title,
-    description: newState.description,
-    category: [newState.category],
+    title: formFields.simple.values.title
+      ? formFields.simple.values.title
+      : newState.title,
+    description: formFields.simple.values.description
+      ? formFields.simple.values.description
+      : newState.description,
+    category: [formFields.simple.values.category
+      ? formFields.simple.values.category.forEach((aCategory) => {
+        newState.category.push(aCategory);
+      }) : newState.category],
   };
 };
 

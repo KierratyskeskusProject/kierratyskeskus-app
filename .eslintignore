@@ -1,3 +1,4 @@
 node_modules
 registerServiceWorker.js
 store.js
+coverage/
