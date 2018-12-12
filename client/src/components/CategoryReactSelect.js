@@ -2,12 +2,21 @@ import React from 'react';
 import Select from 'react-select';
 import { connect } from 'react-redux';
 import { reduxForm, change } from 'redux-form';
-import _ from 'lodash';
 import { postForm } from '../redux/actions/index';
 
 const CategoryReactSelect = (props) => {
   const {
-    options, label, inputClass, isSmallResolution, input: { value }, meta, dispatch, template, init,
+    options,
+    label,
+    inputClass,
+    isSmallResolution,
+    input,
+    input:
+      { value },
+    meta,
+    dispatch,
+    template,
+    init,
   } = props;
 
   function isItValid(state) {
@@ -41,30 +50,32 @@ const CategoryReactSelect = (props) => {
     }),
   };
 
-  function onInputChange(valueToChange) {
-    const optionsLength = props.options.length;
+  const onInputChange = (valueToChange) => {
+    const optionsLength = options.length;
     const newOptions = [];
     const labels = [];
     const newState = { ...init };
     let optionValue = 0;
 
-    _.forEach(valueToChange, (values) => {
-      // Searches for parent category
+    valueToChange.forEach((values) => {
       optionValue = values.value.split('.');
       for (let i = 0; i < optionsLength; i += 1) {
-        if (optionValue[0] === props.options[i].value) {
-          labels.push(props.options[i].label);
+        if (optionValue[0] === options[i].value) {
+          labels.push(options[i].label);
         }
       }
     });
 
+    const getContentForTextarea = content => content.map(row => `${row.text}\n`);
+
     const cat = { value: optionValue[0] };
     // Compare category to templates
-    for (let i = 0; i < template.templates[0].length; i++) {
-      if (template.templates[0][i].temp_id === cat.value) {
-        newState.description = template.templates[0][i].content;
+    template.templates.forEach((item) => {
+      const templateJSON = JSON.parse(item);
+      if (templateJSON.category === cat.value) {
+        newState.description = getContentForTextarea(templateJSON.content.blocks);
       }
-    }
+    });
 
     // Dispatch description from matching template
     dispatch(change('simple', 'description', newState.description));
@@ -72,14 +83,20 @@ const CategoryReactSelect = (props) => {
     // Adds parent category to sub category
     for (let j = 0; j < labels.length; j += 1) {
       if (valueToChange[j].label.search(labels[j]) !== 0) {
-        newOptions.push({ label: `${labels[j]} | ${valueToChange[j].label}`, value: valueToChange[j].value });
+        newOptions.push({
+          label: `${labels[j]} | ${valueToChange[j].label}`,
+          value: valueToChange[j].value,
+        });
       } else {
-        newOptions.push({ label: `${valueToChange[j].label}`, value: valueToChange[j].value });
+        newOptions.push({
+          label: valueToChange[j].label,
+          value: valueToChange[j].value,
+        });
       }
     }
-    // Gives validation error when field is cleared
-    return props.input.onChange(newOptions.length === 0 ? '' : newOptions);
-  }
+
+    return input.onChange(newOptions.length === 0 ? '' : valueToChange);
+  };
 
   return (
     <div className={`${isSmallResolution ? null : 'row'} `}>
@@ -90,7 +107,7 @@ const CategoryReactSelect = (props) => {
           value={value}
           className="esimerkki"
           onChange={onInputChange}
-          onBlur={() => props.input.onBlur(props.input.value)}
+          onBlur={() => input.onBlur(input.value)}
           options={options}
           placeholder="Select a category"
           isMulti
