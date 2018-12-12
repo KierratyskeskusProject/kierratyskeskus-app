@@ -5,8 +5,6 @@ const getTemplateCategory = (category, Categories, template, bookData, formField
     category: [],
   };
 
-  console.log(bookData);
-
   const cat = [{ label: null, value: null }];
   // Match category with returned category from google autoML
   Categories.forEach((item) => {
@@ -20,6 +18,7 @@ const getTemplateCategory = (category, Categories, template, bookData, formField
   // if book data is returned from google books, we don't load a template
   if (!bookData) {
     template.templates[0].forEach((temp) => {
+      console.log(template.templates[0]);
       if (temp.temp_id === cat[0].value) {
         newState.description = temp.content;
       }
