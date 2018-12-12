@@ -8,8 +8,6 @@ const Template = ({
   handleDeleteClick,
   id,
   name,
-  isEditing,
-  loading,
 }) => (
   <div className="template">
     <div className="template__head">
@@ -63,8 +61,6 @@ Template.propTypes = {
   handleDeleteClick: PropTypes.func.isRequired,
   id: PropTypes.number.isRequired,
   name: PropTypes.string,
-  isEditing: PropTypes.bool.isRequired,
-  loading: PropTypes.bool.isRequired,
 };
 
 // eslint-disable-next-line import/prefer-default-export
