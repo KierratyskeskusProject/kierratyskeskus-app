@@ -1,5 +1,5 @@
 const filter = (responseText) => {
-  let result = responseText.match(/(ISBN[-]*(1[03])*[ ]*(: ){0,1})*(([0-9Xx][- ]*){13}|([0-9Xx][- ]*){10})/);
+  let result = responseText.match(/ISBN(-1(?:(0)|3))?:?\x20(\s)*[0-9]+[- ][0-9]+[- ][0-9]+[- ][0-9]*[- ]*[xX0-9]/);
   let res = null;
 
   switch (result) {
