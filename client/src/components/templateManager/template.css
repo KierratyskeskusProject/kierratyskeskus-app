@@ -223,8 +223,6 @@ h3{
   box-shadow: -1px 0 4px 0 #00000033;
 }
 
-
-
 .button__delete:hover, .button__delete:active, .button__delete:focus {
   background-color: #dc354526 !important;
   box-shadow: 2px 1px 4px -1px #00000033;
@@ -236,4 +234,18 @@ h3{
 
 .bold {
   font-weight: bold;
+}
+
+.editor-class {
+  background-color: #fff !important;
+  padding: 10px; 
+  min-height: 300px;
+}
+
+.css-10nd86i {
+  margin-bottom: 0.5rem; 
+}
+
+.css-15k3avv {
+  z-index: 1000 !important;
 }

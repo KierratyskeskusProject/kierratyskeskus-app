@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import AddItemForm from './AddItemForm';
-import { TemplateManager } from './templateManager';
+import TemplateManager from './templateManager/TemplateManager';
 
 const Main = () => (
   <main>
