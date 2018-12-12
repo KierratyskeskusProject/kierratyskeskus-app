@@ -22,6 +22,7 @@ install:
 script:
 # CategoryReactSelect is currently ignored because it has issues sometimes
 # not passing in travis
-- npm test --coverage -- --testPathIgnorePatterns CategoryReactSelect.test.js
+#  -- --testPathIgnorePatterns CategoryReactSelect.test.js
+- npm test --coverage
 - cd .. && npm run lint
 - npm run test
