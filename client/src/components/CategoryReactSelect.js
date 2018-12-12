@@ -66,13 +66,16 @@ const CategoryReactSelect = (props) => {
       }
     });
 
+    const getContentForTextarea = content => content.map(row => `${row.text}\n`);
+
     const cat = { value: optionValue[0] };
     // Compare category to templates
-    for (let i = 0; i < template.templates[0].length; i++) {
-      if (template.templates[0][i].temp_id === cat.value) {
-        newState.description = template.templates[0][i].content;
+    template.templates.forEach((item) => {
+      const templateJSON = JSON.parse(item);
+      if (templateJSON.category === cat.value) {
+        newState.description = getContentForTextarea(templateJSON.content.blocks);
       }
-    }
+    });
 
     // Dispatch description from matching template
     dispatch(change('simple', 'description', newState.description));
