@@ -11,5 +11,5 @@ it('has right fields for a form', () => {
     { label: 'Description', name: 'description', inputClass: 'col-6' },
   ];
 
-  expect(currentFields).toEqual(expectedFields);
+  expect(currentFields).toMatchObject(expectedFields);
 });
