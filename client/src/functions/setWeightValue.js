@@ -1,8 +1,8 @@
 const setWeight = (actualValue, inputValue) => {
   console.log('inputValue', inputValue);
-  const actualValueInt = parseInt(actualValue, 10);
-  console.log('actualValue', actualValueInt);
-  if (actualValueInt === 0) {
+  const actualValueString = actualValue.toString();
+  console.log('actualValue', actualValueString);
+  if (actualValueString.valueOf() === '0') {
     return inputValue;
   }
   return actualValue;

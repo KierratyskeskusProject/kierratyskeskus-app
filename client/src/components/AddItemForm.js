@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Field, reduxForm, reset } from 'redux-form';
 import _ from 'lodash';
 import { connect } from 'react-redux';
@@ -45,7 +46,7 @@ class AddItemForm extends Component {
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
-      weight: weight.weight.value === 0 ? values.weight : weight.weight.value,
+      weight: weight.weight.value === '0' ? values.weight : weight.weight.value,
     };
     console.log('new values', newValues);
     values.category.map((item, key) => {
@@ -119,3 +120,10 @@ const mapDispatchToProps = () => ({
   getTemplates: fetchTemplates,
 });
 export default connect(mapStateToProps, mapDispatchToProps)(Form);
+
+AddItemForm.propTypes = {
+  dispatch: PropTypes.func.isRequired,
+  getTemplates: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+  weight: PropTypes.string.isRequired,
+};
