@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import Root from '../../Root';
 
 import Select from '../CategoryReactSelect';
 
@@ -12,7 +13,11 @@ const props = {
 };
 
 beforeEach(() => {
-  wrapped = mount(<Select {...props} />);
+  wrapped = mount(
+    <Root>
+      <Select {...props} />
+    </Root>,
+  );
 });
 
 afterEach(() => {
