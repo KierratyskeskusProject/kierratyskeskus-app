@@ -47,6 +47,9 @@ const CategoryReactSelect = (props) => {
       ':hover': {
         backgroundColor: meta.error && meta.touched ? 'rgba(220, 53, 69, 0.15)' : 'rgba(0, 167, 126, 0.15)',
       },
+      ':active': {
+        backgroundColor: meta.error && meta.touched ? 'rgba(220, 53, 69, 0.15)' : 'rgba(0, 167, 126, 0.15)',
+      },
     }),
   };
 
