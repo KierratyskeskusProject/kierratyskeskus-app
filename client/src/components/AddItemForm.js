@@ -46,7 +46,7 @@ class AddItemForm extends Component {
     const newValues = {
       ...values,
       condition: conditionRating.toString(),
-      weight: weight.weight.value,
+      weight: weight.weight.value === '0' ? values.weight : weight.weight.value,
       images: images.images.map(image => image.imageName),
     };
     values.category.map((item, key) => {
